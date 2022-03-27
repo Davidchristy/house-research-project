@@ -1,0 +1,35 @@
+{
+	"name": "House Research Project",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+	"extensions": [
+		"ms-python.python",
+		"amazonwebservices.aws-toolkit-vscode",
+	],
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.profiles.linux": {
+			"bash": {
+				"path": "/bin/bash"
+			}
+		},
+		"python.pythonPath": "/usr/local/bin/python3",
+		"python.defaultInterpreterPath": "/usr/local/bin/python3",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.formatting.blackPath": "/usr/local/bin/black",
+		"python.linting.pylintPath": "/usr/local/bin/pylint",
+	},
+
+	"mounts": [
+		// Expose local .aws profiles and credentials
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind",
+	],
+
+	
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}

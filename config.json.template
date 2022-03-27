@@ -1,0 +1,5 @@
+{
+    // <Insert email address that is being sent emails to parse, ex `house_search@gmail.com`>
+    "ses_recipient_email":""
+
+}

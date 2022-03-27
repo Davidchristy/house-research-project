@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Folders and files for vscode
+.vscode/
+
+# Folders and files for aws
+cdk.out/
+
+
+
+# Project speific files:
+config.json
