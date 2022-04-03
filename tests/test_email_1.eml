@@ -1,0 +1,384 @@
+Return-Path: <davidchristy520@gmail.com>
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+ by inbound-smtp.us-west-2.amazonaws.com with SMTP id 0282ib9ambsn09e7pml3k426dq7sos026s79r8o1
+ for house.search@tucsonbudgetclasses.org;
+ Sat, 26 Feb 2022 01:50:46 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of _spf.google.com designates 209.85.219.172 as permitted sender) client-ip=209.85.219.172; envelope-from=davidchristy520@gmail.com; helo=mail-yb1-f172.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of _spf.google.com designates 209.85.219.172 as permitted sender) client-ip=209.85.219.172; envelope-from=davidchristy520@gmail.com; helo=mail-yb1-f172.google.com;
+ dkim=pass header.i=@gmail.com;
+ dmarc=pass header.from=gmail.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFFenplTmsvL0w0WHRoNWdhRGsvNjFibnVRb3V0bDB1RURvVlh6K2V1MXFkQlFPMFBYTWZ4OUlGOGFJSU5BcEtXcGxYR21BWUo5dVVBU0JBQUlSYzd6VUwxeVJsVmd5dVlsNnZpaVNsTVQzSGlaZmhxb21EWFlRQTdRUnQvWlhUWkxYano4bnBQdnpwQzZnd0JwQ09hc2tOWkRYbXFabmZybHB3QVV3Y1BYa2F2RHAvcVkzaTRidDVQLzZCNGk0TnFCLzBmMFEreUQrTURVaHFFcWI2YllZYWs5QmZYUlFXUjBIUVl4UHEyaXpEd1NGYlprRmUwVE03RVAwT2Z6aTNSUURNUHhKdkhHRWVPZEFYbWFIYlZ1YTRTd1ozYmpBTGZyQTd4VFh6OUhkakE9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=H8xy4uZ46Ka6/1CJj/arkLMvHv+ceRFgkN5hY0nKtLYGYs+ugsNRIIkDxHworn/MyS3dn1Opl1R5RgU+IBdF5lDL+0N2DMn6MCCyYTEpvgsxsyS1fqgR+uM5tyHQJqMOA/KuxK5pzeYfpGlxzpt2Q63w/pPLHBTh1E1neTsu6vw=; c=relaxed/simple; s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1645840246; v=1; bh=9HMRytHmTXwPRqGi8k8ol8he9g2GFGWAIl9DTn70b8A=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-yb1-f172.google.com with SMTP id u12so9196281ybd.7
+        for <house.search@tucsonbudgetclasses.org>; Fri, 25 Feb 2022 17:50:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=QuiZOz9AespjTbJvlxTvf8+mPj8pgUPCtAAm4e++Ums=;
+        b=CKp+29IN3dZ2k3BjSaa5xQq0w4Q+5zphCt2/qhNqQCpydbo59Ucs0xse8rI48wnFlu
+         0g4ewVTsp4acV/sovwZKceCRRR3jK2RbNoYZM/nyjQV5PsExpRoNo7I84eTLYswN1Sxx
+         bxqZUR2xvsjKkPIjnMys4KQwJhwmsGAme81alPGwcjjAPDIlIw1GmiK0/sn68BJea1IX
+         PmG8dVl/BwWAgAyT92gw3MZMSgf3rMnZzgj0s+xhktlcxyuHMsGTVAruWPGW30RU3tzj
+         Q+zDu71RiR1nhneXltVb0mpnyJw+7aBIBU3aSvuE0g6BUycRsSmvCOHrCIDlCTzk/ajC
+         xDEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=QuiZOz9AespjTbJvlxTvf8+mPj8pgUPCtAAm4e++Ums=;
+        b=J+XQX06i+Kx2+f38WWxa9xbkZtj0Cn+rvBk4BHYp84OQB9evQAL4H620U4MtZfpYAR
+         1vf8i9K6oHysB3g/fwa6QclM6wJPB6lhsW9D9gGYHSzQLzqMUS4t6JH7EmtFlPuf7SVl
+         8i5ibN/6vgY0AFkJczGvu0hAkOV2VH7kBweLr8QJEZHdmDo/nfvy6VQ7wylM6Sr2mNXY
+         OcAsTifLdKgbdXr8eCYQCA0NnwJR0sUtuvVA7+SKWIOqln+hHVgtrdOZKApUpVYNYEXL
+         pjzhbHRoXAxC3CfOf/ecsGNOcPw9Q7S9g0H1xkFl54MGCgf6fKY3VyR1dtsbM8l22udg
+         Y0vg==
+X-Gm-Message-State: AOAM531KUALx8Dr5WqC1A/9XGi1ncqkSiBI4Cvc38dqNNRYMtSc5vYaL
+	jKM2ZZHLF37cYopTsaxAIGhiZY5hvRni6pVmZ0TjyPEO
+X-Google-Smtp-Source: ABdhPJyJIkasQhcf2X13ntxKfclXvY19qI2Pls7o5zjbNIk7YGPiw8z6yKs/W9jO5+2p7znv02piGyN9kCgHAxfibdI=
+X-Received: by 2002:a25:34c4:0:b0:624:406a:a2e5 with SMTP id
+ b187-20020a2534c4000000b00624406aa2e5mr10184178yba.68.1645840244672; Fri, 25
+ Feb 2022 17:50:44 -0800 (PST)
+Received: from 927538837578 named unknown by gmailapi.google.com with
+ HTTPREST; Sat, 26 Feb 2022 02:50:44 +0100
+MIME-Version: 1.0
+From: davidchristy520@gmail.com
+Date: Sat, 26 Feb 2022 02:50:44 +0100
+Message-ID: <CABvV4r9tMHE4Ue60RcdN84Xx3uw4dxc6vAjNdEDhyHE-zNrRfg@mail.gmail.com>
+Subject: 2plex or 3plex
+To: house.search@tucsonbudgetclasses.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content=3D"text/html; charset=3DUTF-8" http-equiv=3D"Content-Type=
+" />
+  </head>
+  <body style=3D"font-family:Helvetica,Arial,sans-serif;">
+<div style=3D"color:transparent;visibility:hidden;opacity:0;font-size:0px;b=
+order:0;max-height:1px;width:1px;margin:0px;padding:0px;border-width:0px!im=
+portant;display:none!important;line-height:0px!important;"><img
+border=3D"0" width=3D"1" height=3D"1"
+src=3D"http://t.flexmail.flexmls.com/q/S18H-EkPK3fpy1e-D8Ol9A~~/AAQYRwA~/Rg=
+Rj_AvhPVcDc3BjQgpiFuGGGWJ5_BCrUhlkYXZpZGNocmlzdHk1MjBAZ21haWwuY29tWAQAAAAA"
+alt=3D""/></div>
+
+    <div>
+
+
+
+
+<div style=3D"color: #444; font-size:28px; line-height: 36px; margin-bottom=
+:50px">
+  David Christy - duplex
+</div>
+  <div class=3D"custom-message" style=3D"margin-top: 10px; color: #444">
+     Hi David,<br /><br />Please see search results for 2plex or
+3plex, in all areas of Tucson (just to give you some comparisons). I
+also did not limit the price search so you can get a feel for what is
+out there on the market right now. <br /><br />If you'd like to take a
+look at some of these in person, just let me know. <br /><br />Any
+edits you'd like to make to the search, simply email me at:<br /><a
+href=3D"mailto:sarahmariaperry@gmail.com">sarahmariaperry@gmail.com</a><br
+/><br />Happy Hunting!<br />Sarah Perry<br />Long Realty Company
+</div>
+
+<table border=3D"0" cellpadding=3D"9" cellspacing=3D"0"
+style=3D"border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;">
+
+  <tr valign=3D"top">
+    <td style=3D"width:150px;height:118px;padding:9px;padding-top:23px;over=
+flow:hidden;">
+      <div style=3D"width:150px;height:100px;overflow:hidden;">
+          <a style=3D"color:#5c8cd7;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220125215424050344000000&eid=3D822951d549c5d64dc45c4d05eb8969ee"><img
+alt=3D"Listing Update" width=3D"150" style=3D"width:150px;max-height:100px;=
+"
+src=3D"http://cdn.photos.sparkplatform.com/tar/20220129203524642202000000.j=
+pg"
+/></a>
+      </div>
+    </td>
+    <td style=3D"height:118px;overflow:hidden;">
+      <div style=3D"font-size:19px;">
+        <a style=3D"color:#000000;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220125215424050344000000&eid=3D822951d549c5d64dc45c4d05eb8969ee">$549,=
+900</a>
+      </div>
+
+        <div style=3D"color:#5c8cd7;font-size:18px;margin-top:3px;">
+          <a style=3D"color:#5c8cd7;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220125215424050344000000&eid=3D822951d549c5d64dc45c4d05eb8969ee">2630
+N Estrella Avenue</a>
+        </div>
+
+      <div style=3D"color:#a9a9a9;font-size:13px;font-weight:100;margin-top=
+:2px;">
+          Tucson, AZ 85705 &bull;
+         #22202387
+      </div>
+
+      <div style=3D"color:#a9a9a9;margin-top:2px;font-size:13px;font-weight=
+:100;">
+        <img src=3D'https://cdn.assets.flexmls.com/1.8.36/gabby/icon_listin=
+g_change_refresh_green.png'
+style=3D'margin-right: 3px;' alt=3D''> <span
+style=3D'color:#6db267;font-weight:normal;'>Active</span>
+      </div>
+    </td>
+  </tr>
+
+
+  <tr valign=3D"top">
+    <td style=3D"width:150px;height:118px;padding:9px;padding-top:23px;over=
+flow:hidden;border-top:1px
+solid #E0E0E0;">
+      <div style=3D"width:150px;height:100px;overflow:hidden;">
+          <a style=3D"color:#5c8cd7;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220224171754330181000000&eid=3D822951d549c5d64dc45c4d05eb8969ee"><img
+alt=3D"Listing Update" width=3D"150" style=3D"width:150px;max-height:100px;=
+"
+src=3D"http://cdn.photos.sparkplatform.com/tar/20220224182930215433000000.j=
+pg"
+/></a>
+      </div>
+    </td>
+    <td style=3D"height:118px;overflow:hidden;border-top:1px solid #E0E0E0;=
+">
+      <div style=3D"font-size:19px;">
+        <a style=3D"color:#000000;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220224171754330181000000&eid=3D822951d549c5d64dc45c4d05eb8969ee">$299,=
+000</a>
+      </div>
+
+        <div style=3D"color:#5c8cd7;font-size:18px;margin-top:3px;">
+          <a style=3D"color:#5c8cd7;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220224171754330181000000&eid=3D822951d549c5d64dc45c4d05eb8969ee">5704
+E 24th Street</a>
+        </div>
+
+      <div style=3D"color:#a9a9a9;font-size:13px;font-weight:100;margin-top=
+:2px;">
+          Tucson, AZ 85711 &bull;
+         #22205074
+      </div>
+
+      <div style=3D"color:#a9a9a9;margin-top:2px;font-size:13px;font-weight=
+:100;">
+        <span style=3D'color:#6db267;font-weight:normal;'>New Listing</span=
+>
+      </div>
+    </td>
+  </tr>
+
+
+  <tr valign=3D"top">
+    <td style=3D"width:150px;height:118px;padding:9px;padding-top:23px;over=
+flow:hidden;border-top:1px
+solid #E0E0E0;">
+      <div style=3D"width:150px;height:100px;overflow:hidden;">
+          <a style=3D"color:#5c8cd7;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220225145739768475000000&eid=3D822951d549c5d64dc45c4d05eb8969ee"><img
+alt=3D"Listing Update" width=3D"150" style=3D"width:150px;max-height:100px;=
+"
+src=3D"http://cdn.photos.sparkplatform.com/tar/20220225153303356258000000.j=
+pg"
+/></a>
+      </div>
+    </td>
+    <td style=3D"height:118px;overflow:hidden;border-top:1px solid #E0E0E0;=
+">
+      <div style=3D"font-size:19px;">
+        <a style=3D"color:#000000;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220225145739768475000000&eid=3D822951d549c5d64dc45c4d05eb8969ee">$365,=
+000</a>
+      </div>
+
+        <div style=3D"color:#5c8cd7;font-size:18px;margin-top:3px;">
+          <a style=3D"color:#5c8cd7;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220225145739768475000000&eid=3D822951d549c5d64dc45c4d05eb8969ee">1655-=
+1657
+N Van Buren Avenue</a>
+        </div>
+
+      <div style=3D"color:#a9a9a9;font-size:13px;font-weight:100;margin-top=
+:2px;">
+          Tucson, AZ 85712 &bull;
+         #22205023
+      </div>
+
+      <div style=3D"color:#a9a9a9;margin-top:2px;font-size:13px;font-weight=
+:100;">
+        <span style=3D'color:#6db267;font-weight:normal;'>New Listing</span=
+>
+      </div>
+    </td>
+  </tr>
+
+
+  <tr valign=3D"top">
+    <td style=3D"width:150px;height:118px;padding:9px;padding-top:23px;over=
+flow:hidden;border-top:1px
+solid #E0E0E0;">
+      <div style=3D"width:150px;height:100px;overflow:hidden;">
+          <a style=3D"color:#5c8cd7;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220219173414570775000000&eid=3D822951d549c5d64dc45c4d05eb8969ee"><img
+alt=3D"Listing Update" width=3D"150" style=3D"width:150px;max-height:100px;=
+"
+src=3D"http://cdn.photos.sparkplatform.com/tar/20220219184021930921000000.j=
+pg"
+/></a>
+      </div>
+    </td>
+    <td style=3D"height:118px;overflow:hidden;border-top:1px solid #E0E0E0;=
+">
+      <div style=3D"font-size:19px;">
+        <a style=3D"color:#000000;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220219173414570775000000&eid=3D822951d549c5d64dc45c4d05eb8969ee">$345,=
+000</a>
+      </div>
+
+        <div style=3D"color:#5c8cd7;font-size:18px;margin-top:3px;">
+          <a style=3D"color:#5c8cd7;text-decoration:none;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&start_id=
+=3D20220219173414570775000000&eid=3D822951d549c5d64dc45c4d05eb8969ee">401
+E Pastime Road</a>
+        </div>
+
+      <div style=3D"color:#a9a9a9;font-size:13px;font-weight:100;margin-top=
+:2px;">
+          Tucson, AZ 85705 &bull;
+         #22205012
+      </div>
+
+      <div style=3D"color:#a9a9a9;margin-top:2px;font-size:13px;font-weight=
+:100;">
+        <span style=3D'color:#6db267;font-weight:normal;'>New Listing</span=
+>
+      </div>
+    </td>
+  </tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+  <div style=3D"text-align: center; margin-top: 50px;"><a style=3D"color:
+white; background-color: #4a76cd; text-decoration: none;
+text-transform: uppercase; font-size: 14px; line-height: 14px;
+padding: 12px 20px; border-radius: 3px; font-weight: bold;"
+href=3D"https://www.flexmls.com/notifications.html?agent_id=3D2016071216094=
+9869486000000&newsfeed_id=3D20190206105433045293252302&contact_id=3D2019020=
+6165051466854000000&notification_id=3D20220226014814925146000000&eid=3D8229=
+51d549c5d64dc45c4d05eb8969ee">View
+Listings</a></div>
+
+
+
+      <div style=3D"margin-top: 50px"><hr
+style=3D"color:#d9d9d9;background-color:#d9d9d9;height:1px;border:none;marg=
+in-top:25px;margin-bottom:25px;"></hr>
+       <div>
+          <div style=3D"margin-right:20px; float:left">
+            <img style=3D'max-width: 100px; max-height: 100px;'
+src=3D'https://cdn.photos.sparkplatform.com/tar/20180220221543745687000000.=
+jpg'>
+</img>
+          </div>
+          <div style=3D"float:left; max-width:270px;">
+            <div style=3D"font-size: 15px; line-height: 20px;
+font-weight: bold; color: #333">Sarah Perry</div>
+
+              <div style=3D"font-size: 15px; line-height: 20px;
+font-weight: regular; color: #333">1st Heritage Realty</div>
+
+
+              <div style=3D"font-size: 14px; line-height: 20px; color: #969=
+696">
+                T:
+                <a style=3D'color: #969696;text-decoration:none;'
+href=3D"tel:520-820-8651">520-820-8651</a>
+              </div>
+
+
+              <div style=3D"font-size: 14px; line-height: 20px; color: #969=
+696">
+                License #: SA664926000
+              </div>
+
+          </div>
+          <div style=3D"clear:both;"></div>
+
+        </div>
+</div>
+
+      <footer style=3D"color: #666; font-size: 14px; line-height: 16px;
+margin-top: 50px">You are receiving this email because of your
+affiliation with Sarah Perry, 5501 N Swan, Suite 231, Tucson, AZ
+85718.<br></br><a style=3D"color: #7395d9"
+href=3D"https://apps.flexmls.com/people/public/coi/201607121609498694860000=
+00/email/davidchristy520@gmail.com?token=3DSGUveUdvRWRTUHYvWVJiVTNSNy9HV0lT=
+R2RrQTNNN0tkTmxSRlg3cTB0WFZBL25zZlZBeGlBZ0ZYTWk0YWthaG15N3hqbU1QQ3lVdmlpU3l=
+FUDNuN2c9PS0tOHlBUWFnRno2NjBEMGxIOFlORXFodz09--3018a351b7a427accc710e399bb3=
+c8d49a5c0db6">Unsubscribe
+or manage notifications by clicking here</a></footer>
+
+      <img alt=3D""
+src=3D"http://collect.flexmls.com/c.gif?service=3Dapp.prod.gabby_gale.mailo=
+pen&l=3Dtrue&c=3D1&rid=3D5157dc49803565bf47ec730b&uuid=3D20220225-68a23586f=
+736ffe3c29c65c0&mailer=3DNewsfeedMailer"
+/>
+    </div>
+
+<img border=3D"0" width=3D"1" height=3D"1" alt=3D""
+src=3D"http://t.flexmail.flexmls.com/q/pllOLl316fzNSWGK760RHg~~/AAQYRwA~/Rg=
+Rj_AvhPlcDc3BjQgpiFuGGGWJ5_BCrUhlkYXZpZGNocmlzdHk1MjBAZ21haWwuY29tWAQAAAAA"=
+>
+</body>
+</html>

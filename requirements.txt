@@ -3,4 +3,11 @@ constructs>=10.0.0,<11.0.0
 setuptools==56.0.0
 # aws_cdk
 awscli==1.22.82
-json
+botocore==1.24.27
+beautifulsoup4
+# import quopri
+# boto3==1.24.27
+# json
+requests
+# requests-html
+pyppeteer

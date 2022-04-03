@@ -1,0 +1,38 @@
+{
+    "Records": [
+    {
+        "eventVersion": "2.1",
+        "eventSource": "aws:s3",
+        "awsRegion": "us-west-2",
+        "eventTime": "2022-04-03T10:11:51.125Z",
+        "eventName": "ObjectCreated:Put",
+        "userIdentity": {
+             "principalId": "AWS:AIDAJF4DQJXXZUH7QKSIS"
+        },
+        "requestParameters": {
+            "sourceIPAddress": "10.88.120.13"
+        },
+        "responseElements": {
+            "x-amz-request-id": "B252S5EMG9TK7M39",
+            "x-amz-id-2": "qrxmdLUpKd5rPLqEaAe4B63h3W3E/lTlCN/MVMb1fx3bEpQtIQ91S+riErM529k9nNcfKqDKqDdCFVkziv02oWvuDLos3IfN"
+        },
+        "s3": {
+            "s3SchemaVersion": "1.0",
+            "configurationId": "952bf4df-9345-4783-9f98-9aa7105c3cde",
+            "bucket": {
+                "name": "david-house-search-email-bucket",
+                "ownerIdentity": {
+                    "principalId": "A1LFUZL4H1W658"
+                },
+                "arn": "arn:aws:s3:::david-house-search-email-bucket"
+            },
+            "object": {
+                "key": "l7ttfua4ghtingiu4lcibub367897smh2eoi4701",
+                "size": 61619,
+                "eTag": "e65c528d0562f07a9bd6906723b6cebc",
+                "sequencer": "00624972E719934127"
+            }
+        }
+    }
+    ]
+}

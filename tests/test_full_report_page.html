@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>flexmls</title><meta content="IE=EDGE" http-equiv="X-UA-Compatible"/>
+</head>
+<body>
+<link href="/html/frames/main.css" media="screen" rel="StyleSheet" type="text/css"/>
+<script src="/client/core/flexmls-core-f18c43ebd0ceab6db76a65a182482e71.js" type="text/javascript"></script>
+<script src="/client/thirdparty/jquery-ui.min-56776c150f3a76193756d875eae8e79f.js" type="text/javascript"></script>
+<script src="/client/util-6e5b1557c7d132f4d0979128b987e7e6.js" type="text/javascript"></script>
+<link href="/client/thirdparty/fbsblue/jquery-ui-fc78bc4a159f66eae876084129e87ca7.css" media="all" rel="stylesheet" type="text/css"/>
+<style>
+@media print {
+.noprint {visibility:hidden;font-size:1px;}
+}
+</style>
+<script>
+function giveMeMore(listnbr,listingid,matechid,techid) {
+$( "#dialog-more-supplement" ).dialog({
+	resizable: false, width: 425,          
+	title: "More (MLS #"+listnbr+")",  
+	buttons: {                             
+		"Close": function() {              
+			$( this ).dialog( "close" );     
+		}                                    
+	}                                      
+});	                                     
+document.getElementById('moreSupplementFrame').src = "/cgi-bin/mainmenu.cgi?cmd=srv+lib/supplement/supplement.html&listingid="+listingid+"&ma_tech_id="+xId(matechid)+"&tech_id="+xId(techid);
+}
+</script>
+<div id="dialog-more-supplement" style="display:none" title="More">
+<iframe frameborder="0" height="250" id="moreSupplementFrame" name="moreSupplementFrame" src="" width="395"></iframe>
+</div>
+<style>
+body{font-size:8pt;font-family:Arial,Verdana,Helvetica}
+TABLE{font-size:8pt;font-family:Arial,Verdana,Helvetica;}
+.page-table > TBODY{}
+TR{font-size:8pt;font-family:Arial,Verdana,Helvetica;vertical-align:top;}
+TD{font-size:8pt;font-family:Arial,Verdana,Helvetica;}
+P{font-size:8pt;font-family:Arial,Verdana,Helvetica;margin:0px;padding:0px;}
+SPAN{font-size:8pt;font-family:Arial,Verdana,Helvetica;}
+LI{font-size:8pt;font-family:Arial,Verdana,Helvetica;}
+UL{font-size:8pt;font-family:Arial,Verdana,Helvetica;}
+DIV{font-size:8pt;font-family:Arial,Verdana,Helvetica;}
+@media print { .noprintdiv { visibility:hidden;font-size:1px; } }
+#npwait {position:absolute;overflow:hidden;height:60px;width:250px;z-index:100;left:40%;top:40%;padding:8px;border-right:2px solid #444444;border-bottom:2px solid #777777;border-left:2px solid #AAAAAA;border-top:2px solid #BBBBBB;background-color:rgb(230,230,220);background-image:url(/images/gradient-dossier.png);background-repeat:repeat-y;color:black;}
+</style>
+<div style="text-align: center;"> <span style="font-size: 12pt; font-weight: bold;">CLIENT FULL DETAIL REPORT</span></div><div>
+</div>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" width="100%">
+<tbody>
+<tr>
+<td><span class="style3"><strong>MLS#:</strong> 22208335</span></td>
+<td><span class="style3"><strong>Dwelling Type:</strong> Residential/Single Family Residence</span></td>
+<td><strong>Status:</strong> Cancelled</td>
+<td><strong>List Price:</strong> 650,000  <strong></strong> </td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td><img alt="" height="130" id="{{PHOTO:primary}}2" name="{{PHOTO:primary}}" onerror="this.src='/images/trans1x1.gif';" rel="flexphotopicker" src="https://cdn0.photos.sparkplatform.com/tar/20220402162650066486000000.jpg" style="border: 1px solid #000000;" title=""/></td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+<tr>
+<td width="125"><strong>Combined SqFt:</strong></td>
+<td>2,810</td>
+</tr>
+<tr>
+<td><strong>Main House SqFt:</strong></td>
+<td>2,810</td>
+</tr>
+<tr>
+<td><strong>Guest House SqFt:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Source of SqFt:</strong></td>
+<td>Assessor</td>
+</tr>
+<tr>
+<td><strong>Bedrooms:</strong></td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Total Baths </strong>(Full-1/2):</td>
+<td>3 (3-0)</td>
+</tr>
+<tr>
+<td><strong>Lot Acres:</strong></td>
+<td>0.22</td>
+</tr>
+<tr>
+<td><strong>Year Built:</strong></td>
+<td>1951</td>
+</tr>
+<tr>
+<td><strong>Stories:</strong></td>
+<td>One</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td width="10"> </td>
+<td valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td width="125"><strong>Comparable Only Listing:</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td width="125"><strong>Area:</strong></td>
+<td>     Central</td>
+</tr>
+<tr>
+<td><strong>Subdivision:</strong></td>
+<td>Winterhaven</td>
+</tr>
+<tr>
+<td><strong>Community:</strong></td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>Tax Code:</strong></td>
+<td>112-03-1820</td>
+</tr>
+<tr>
+<td><strong>Tax Year/Taxes:</strong></td>
+<td> 2021 / 2,374.18</td>
+</tr>
+<tr>
+<td><strong>Assessments:</strong></td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>Method of Title:</strong></td>
+<td>Fee (Simple)</td>
+</tr>
+<tr>
+<td><strong>Range Min - Max:</strong></td>
+<td> - </td>
+</tr>
+<tr>
+<td><strong>Co-Op Fee:</strong></td>
+<td>3%</td>
+</tr>
+<tr>
+<td><strong>Variable Commission:</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong></strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"><strong>Address:</strong> 2911 E Farr Street, Tucson, AZ 85716<div></div><strong>County:</strong> Pima     <strong>Country:</strong>  USA    <a href="http://dot.pima.gov/gis/maps/landbase/detail.cfm?parcel=112-03-1820" target="_blank">Pima County GIS</a><span style="text-decoration: underline;"><div></div></span><span style="font-family: arial,helvetica,sans-serif;"><strong>Legal Description:</strong> WINTERHAVEN LOT 12 BLK 8</span><div></div><strong>Directions:</strong> From Country Club, west on Fort Lowell. North on Christmas, East on Farr to address.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="width: 135px;" valign="top"><strong># Garage</strong></td>
+<td valign="top">2</td>
+</tr>
+<tr>
+<td valign="top"><strong># Carport</strong></td>
+<td valign="top">0</td>
+</tr>
+<tr>
+<td valign="top"><strong># of Covered Parking</strong></td>
+<td valign="top">2</td>
+</tr>
+<tr>
+<td><strong>Unit Level<div></div></strong></td>
+<td>1</td>
+</tr>
+<tr>
+<td valign="top"><strong>T/R/S</strong></td>
+<td valign="top">13/ 14/ 29</td>
+</tr>
+<tr>
+<td valign="top"><strong>Lot Dimensions</strong></td>
+<td valign="top">irreg.</td>
+</tr>
+<tr>
+<td valign="top"><strong>Lot Acres</strong></td>
+<td valign="top">0.22</td>
+</tr>
+<tr>
+<td valign="top"><strong>Lot Sq Ft</strong></td>
+<td valign="top">9,409</td>
+</tr>
+<tr>
+<td valign="top"><strong>Lot Size Source</strong></td>
+<td valign="top">Assessor</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td width="10"> </td>
+<td>
+<table cellpadding="0" cellspacing="2">
+<tbody>
+<tr>
+<td style="width: 100px;" valign="top" width="100"><strong>Construction</strong></td>
+<td valign="top">Concrete Block; Slump Block</td>
+</tr>
+<tr>
+<td valign="top"><strong>Style</strong></td>
+<td valign="top">Ranch</td>
+</tr>
+<tr>
+<td valign="top"><strong>Const. Status</strong></td>
+<td valign="top">Existing</td>
+</tr>
+<tr>
+<td valign="top"><strong>Basement</strong></td>
+<td valign="top">No</td>
+</tr>
+<tr>
+<td valign="top"><strong>Horse Property</strong></td>
+<td valign="top">No</td>
+</tr>
+<tr>
+<td valign="top"><strong>Horse Facilities</strong></td>
+<td valign="top">No</td>
+</tr>
+<tr>
+<td valign="top"><strong>List $/SqFt</strong></td>
+<td valign="top">231.32</td>
+</tr>
+<tr>
+<td valign="top"><strong>Lot Size $/SqFt</strong></td>
+<td valign="top">69.08</td>
+</tr>
+<tr>
+<td valign="top"><strong>Road Type</strong></td>
+<td valign="top">Paved</td>
+</tr>
+<tr>
+<td valign="top"><strong>Road Maintenance</strong></td>
+<td valign="top">City</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td width="10"> </td>
+<td valign="top">
+<table cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 120px;" width="130"><strong>Municipality/Zoning</strong></td>
+<td class="StandardText style4 style5">Tucson - R1</td>
+</tr>
+<tr>
+<td><strong>School District</strong></td>
+<td class="StandardText style4 style5">TUSD</td>
+</tr>
+<tr>
+<td><strong>Elementary School</strong></td>
+<td class="StandardText style4 style5">Cragin</td>
+</tr>
+<tr>
+<td><strong>Middle School</strong></td>
+<td class="StandardText style4 style5">Doolen</td>
+</tr>
+<tr>
+<td><strong>High School</strong></td>
+<td class="StandardText style4 style5">Catalina</td>
+</tr>
+<tr>
+<td><strong>Fire Protection</strong></td>
+<td class="StandardText" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px;">Included in Taxes</td>
+</tr>
+<tr>
+<td><strong>FEMA Flood Ins Req</strong></td>
+<td class="StandardText" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px;">TBD</td>
+</tr>
+<tr>
+<td><strong>Municipal Flood Req</strong></td>
+<td class="StandardText" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px;">TBD</td>
+</tr>
+<tr>
+<td><strong>Ownership</strong></td>
+<td class="StandardText" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td><strong></strong></td>
+<td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td><strong> </strong></td>
+<td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px;"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; background-color: #cccccc;">Property Description</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;">Welcome home! This stunning 4 bedroom, 3 bath Winterhaven home has everything. Gorgeous custom kitchen with quartz countertops and a large walk-in pantry. Breathtaking vaulted ceilings in living areas and Owner's Suite. Beautifully landscaped front yard (including a courtyard) and a large pool and spa with turf in the back- so many options for entertaining on this large corner lot! The huge Owner's suite has a beautiful ensuite with steam shower and massive walk-in closet w/ built-ins. The newer oversized 2 car garage plus attic add tons of storage space.  The remodel completed around 2018 included new windows, ACs (plus swamp for garage), Coretec vinyl flooring, roof, and updates to electrical &amp; plumbing! Owned Tesla solar panels.</td>
+</tr>
+<tr>
+<td bgcolor="#cccccc" style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"><strong>Agent Only Remarks</strong></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td bgcolor="#cccccc" colspan="7"><span class="CategoryHeader" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; background-color: #cccccc;">Subdivision, HOA &amp; Deed Restrictions</span></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="width: 50px;" width="110"><strong><span class="style3" style="font-family: arial,helvetica,sans-serif; font-size: 8pt;">CC&amp;Rs:</span></strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>HOA:</strong></td>
+<td> Yes</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td width="5"> </td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="width: 115px;" width="105"><span style="font-family: arial,helvetica,sans-serif; font-size: 8pt;"><span class="style3" style="font-family: arial,helvetica,sans-serif; font-size: 8pt;"><strong>HOA Fees/Month:</strong></span></span></td>
+<td>75</td>
+</tr>
+<tr>
+<td><span class="style3" style="font-family: arial,helvetica,sans-serif; font-size: 8pt;"><strong><span style="font-family: arial,helvetica,sans-serif; font-size: 8pt;">HOA Payment Freq:</span></strong></span></td>
+<td>Monthly</td>
+</tr>
+<tr>
+<td><span class="style3" style="font-family: arial,helvetica,sans-serif; font-size: 8pt;"><strong>HOA Recreation Fee:</strong></span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td width="5"> </td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td width="110"><strong>Green Valley Rec:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong><span class="style3" style="font-family: arial,helvetica,sans-serif; font-size: 8pt;"> </span></strong></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+</td>
+<td width="5"> </td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="width: 100px;" width="90"><strong><span class="style3" style="font-family: arial,helvetica,sans-serif; font-size: 8pt;">Age Restrictions:</span></strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><span class="style3" style="font-family: arial,helvetica,sans-serif; font-size: 8pt;"><strong>Deed Restrictions:</strong></span></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="7">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td colspan="2" style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="width: 125px; font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Assoc Fees Includes:</span></td>
+<td>Garbage Collection; Water</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="7">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="width: 130px; font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Association Amenities:</span></td>
+<td>Security</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<td style="width: 33%;">Listing 1 of 1</td>
+<td style="text-align: center;">April 03, 2022</td>
+<td style="width: 33%; text-align: right;">Page 1 of 2</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break" style="page-break-after:always;"><span class="noprintdiv"> </span></div>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" width="100%">
+<tbody>
+<tr>
+<td><span class="style3"><strong>MLS#:</strong> 22208335</span></td>
+<td><span class="style3"><strong>Dwelling Type:</strong> Residential/Single Family Residence</span></td>
+<td><strong>Status:</strong> Cancelled</td>
+<td><strong>List Price:</strong> 650,000  <strong></strong> </td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<div></div>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td bgcolor="#cccccc" colspan="2"><span class="CategoryHeader" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; background-color: #cccccc;">Interior Features</span></td>
+</tr>
+<tr>
+<td width="50%">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="width: 115px; font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Living Areas:</td>
+<td class="StandardText" valign="top">Living Room; Off Kitchen</td>
+</tr>
+<tr>
+<td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold;">Dining Areas:</td>
+<td>Breakfast Bar; Dining Area</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Extra Room:</td>
+<td class="StandardText" valign="top">Storage</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Guest Facilities:</td>
+<td class="StandardText" valign="top">None</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Laundry:</td>
+<td class="StandardText" valign="top">Gas Dryer Hookup; Laundry Room; Storage; Sink</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Kitchen Features:</td>
+<td class="StandardText" valign="top"># of Ovens: 2; Countertops: Quartz; Energy Star Qualified Dishwasher; Energy Star Qualified Freezer; Energy Star Qualified Refrigerator; Energy Star Qualified Stove; Exhaust Fan; Garbage Disposal; Gas Cooktop; Gas Hookup Available; Gas Range; Island; Pantry: Walk-In; Prep Sink; Reverse Osmosis</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Floor Covering:</td>
+<td class="StandardText" valign="top">Vinyl</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Master Bathroom:</td>
+<td class="StandardText" valign="top">Double Vanity; Exhaust Fan; Shower Only; Other: Steam Unit</td>
+</tr>
+<tr>
+<td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold;">Additional Bathroom:</td>
+<td>Exhaust Fan; Shower &amp; Tub; Tub</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top"># Fireplace-Type:</td>
+<td class="StandardText" valign="top">0-None</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Location Fireplace:</td>
+<td class="StandardText" style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;" valign="top">None</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top" width="5"> </td>
+<td style="width: 120px; font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Main Heating:</td>
+<td class="StandardText" valign="top">Forced Air</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Main Cooling:</td>
+<td class="StandardText" valign="top">Ceiling Fans; Ceiling Fans Pre-Wired; Central Air; Other: Evap Zone Garage</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Water Heater:</td>
+<td class="StandardText" valign="top">Natural Gas</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Green Features:</td>
+<td class="StandardText" valign="top">Solar</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Interior Features:</td>
+<td class="StandardText" valign="top">Energy Efficient Lighting: All; Skylight(s); High Ceilings 9+; Interior Steps Y/N: N; Non formaldehyde Cabinets; Solar Tube(s); Split Bedroom Plan; Storage; Vaulted Ceilings; Walk In Closet(s); Water Softener; Water Purifier</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Technology:</td>
+<td class="StandardText" valign="top">Cable TV; Ceiling Speakers; High Speed Internet; Home Automation; Pre-Wired Srnd Snd; Surround Sound; Smart Thermostat</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Window Coverings:</td>
+<td class="StandardText" valign="top">Some</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Electric:</td>
+<td class="StandardText" valign="top">Solar PV Ownership: Financed</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" valign="top">Accessibility Options:</td>
+<td class="StandardText" valign="top">None</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td bgcolor="#cccccc" colspan="2"><span class="CategoryHeader" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; background-color: #cccccc;">Exterior Features</span></td>
+</tr>
+<tr>
+<td valign="top" width="50%">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" width="150"><span class="style3">Fence:</span></td>
+<td class="StandardText style4 style5">Block; Stucco Finish</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Roof:</span></td>
+<td class="StandardText style4 style5">Shingle</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Landscape - Front:</span></td>
+<td class="StandardText style4 style5">Decorative Gravel; Flower Beds; Grass; Shrubs; Sprinkler/Drip; Trees</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Landscape - Rear:</span></td>
+<td class="StandardText style4 style5">Artificial Turf; Low Care</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Patio/Deck:</span></td>
+<td class="StandardText style4 style5">Patio</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Pool:</span></td>
+<td class="StandardText style4 style5">Conventional: Yes; Heated; Salt Water</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Spa:</span></td>
+<td class="StandardText style4 style5">Conventional</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Garage/Carport Features:</span></td>
+<td class="StandardText style4 style5">Attached Garage/Carport; Electric Door Opener; Extended Length; Separate Storage Area</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">RV Parking:</span></td>
+<td class="StandardText style4 style5">None</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign="top">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" width="5"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;" width="150"><span class="style3">Security:</span></td>
+<td class="StandardText style4 style5">Cameras; Carbon Monoxide Detectors; Security Lights; Smoke Detector(s)</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">View:</span></td>
+<td class="StandardText style4 style5">Residential</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Driveway:</span></td>
+<td class="StandardText style4 style5">Car(s) Pad; Paved: Concrete</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Water:</span></td>
+<td class="StandardText style4 style5">Water Company</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Exterior Features:</span></td>
+<td class="StandardText style4 style5">Front Faces: South; Play Equipment; Shed</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Lot Features:</span></td>
+<td class="StandardText style4 style5">Corner Lot</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Gas:</span></td>
+<td class="StandardText style4 style5">Natural</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Sewer:</span></td>
+<td class="StandardText style4 style5">Connected</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"><span class="style3">Neighborhood Features:</span></td>
+<td class="StandardText style4 style5">Historic; Jogging/Bike Path; Street Lights</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td colspan="2" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; background-color: #cccccc;">Comments</td>
+</tr>
+<tr>
+<td colspan="2" style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;">Status Comments</td>
+</tr>
+<tr>
+<td width="20"> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td colspan="2" style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;">Selling Comments</td>
+</tr>
+<tr>
+<td> </td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"><span style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"> </span></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td class="CategoryHeader" colspan="3" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; background-color: #cccccc;">New Construction</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="width: 115px;"><strong></strong></td>
+<td></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td width="10"> </td>
+<td style="vertical-align: top;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="width: 115px;"><strong></strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong></strong></td>
+<td style="vertical-align: top;"></td>
+</tr>
+<tr>
+<td><strong></strong></td>
+<td style="vertical-align: top;"><span style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></span></td>
+</tr>
+<tr>
+<td><strong></strong></td>
+<td style="vertical-align: top;"></td>
+</tr>
+<tr>
+<td><strong></strong></td>
+<td style="vertical-align: top;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"><strong></strong></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td class="CategoryHeader" colspan="3" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; background-color: #cccccc;">Manufactured SFR Information</td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="width: 115px; font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+<tr>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold;"></td>
+<td style="font-family: Arial,Helvetica,sans-serif; font-size: 11px;"></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td width="10"> </td>
+<td style="vertical-align: top;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td style="width: 120px;"><strong> </strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong> </strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong> </strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong> </strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong> </strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<span style="font-weight: bold;"><span style="font-weight: bold;"><span style="font-weight: bold;"> Listing Provided Courtesy Of:</span> Long Realty Company </span></span> <style>#buscardDiv TABLE{font-size:8pt;font-family:Arial,Verdana,Helvetica;}#buscardDiv TR{font-size:8pt;font-family:Arial,Verdana,Helvetica;vertical-align:top;}#buscardDiv TD{font-size:8pt;font-family:Arial,Verdana,Helvetica;}#buscardDiv > P{font-size:8pt;font-family:Arial,Verdana,Helvetica;}#buscardDiv > SPAN{font-size:8pt;font-family:Arial,Verdana,Helvetica;}#buscardDiv > DIV{font-size:8pt;font-family:Arial,Verdana,Helvetica;}</style><div id="buscardDiv"><table align="" style="border: medium none; width: 100%; border-collapse: collapse;" width=""><tbody><tr><td style="border: medium none; width: 5px; text-align: left; vertical-align: middle; letter-spacing: 0pt; word-spacing: 0pt;"><img align="" alt="" height="100" id="{{PROF:image:USER:photo}}" onerror="this.style.display='none';" src="https://cdn.photos.sparkplatform.com/tar/20180220221543745687000000.jpg" style="border: 1px solid rgb(0, 0, 0);"/><div></div></td><td style="border: medium none;">1st Heritage Realty<div></div>Sarah Perry<div></div>721 N 4th Avenue<div></div> Tucson, AZ 85705<div></div><a href="mailto:sarahmariaperry@gmail.com" target="_blank">sarahmariaperry@gmail.com</a><div> </div>520-820-8651<div> </div><div></div></td><td style="border: medium none; width: 5px; text-align: left; vertical-align: middle; letter-spacing: 0pt; word-spacing: 0pt;"><img align="" alt="" height="100" id="{{PROF:image:USER:logo}}" onerror="this.style.display='none';" src="" style="border: 1px solid rgb(0, 0, 0);"/><div></div></td></tr></tbody></table></div>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<td style="width: 33%;">Listing 1 of 1</td>
+<td style="text-align: center;">April 03, 2022</td>
+<td style="width: 33%; text-align: right;">Page 2 of 2</td>
+</tr>
+</tbody>
+</table><div style="border-top: 1px solid gray; page-break-before: avoid;"></div><p style="width:100%;margin-left:auto;margin-right:auto;font-size:10px;font-family:Arial,Helvetica,sans-serif;line-height:90%; margin:1px;padding:0px;">Information is deemed to be reliable, but is not guaranteed. © 2022 MLS and <a href="http://www.flexmls.com/copyright_notice.html?2" target="_blank">FBS</a>.  Prepared by Sarah Perry on Sunday, April 03, 2022 3:25 PM.  The information on this sheet has been made available by the MLS and may not be the listing of the provider.</p>
+<script language="javascript">
+$('.roomhidetrick').closest('table').each(function () {
+	var i = $(this);
+	if (i.prop('rows').length==1) {
+		i.hide()
+	}
+});
+</script>
+<!-- wysreport -->
+<script>
+	function report_warn_print() {
+		alert("To ensure proper formatting of this report, we suggest that you use the 'Print' link. \n\nIf you wish to use the built in print function, please click 'Cancel' on the following print dialog.");
+	}
+	
+	try {
+		if (parent.document.getElementById('iframe_detail') && parent.browser_type && parent.browser_type == 'IE') {
+			window.document.body.onbeforeprint=function(){return report_warn_print();};
+		}
+	} catch(e){}
+</script>
+</body>
+</html>
+

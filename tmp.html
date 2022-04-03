@@ -1,0 +1,1608 @@
+<html><head>
+<link rel="StyleSheet" href="/html/frames/main.css" type="text/css" media="screen">
+  <style></style></head>
+  <body style="position: relative; left: 185px; margin-right: 185px;">
+<script type="text/javascript" src="/client/util-6e5b1557c7d132f4d0979128b987e7e6.js"></script>
+<script type="text/javascript" src="/client/core/flexmls-core-f18c43ebd0ceab6db76a65a182482e71.js"></script>
+
+<script>
+    //helpfile='.html';
+    setFlexTitle(window, "");
+</script>
+
+
+
+
+	
+<link rel="stylesheet" type="text/css" href="/client/common/css/public/basic.css?20220401095304" media="all">
+
+
+
+<script type="text/javascript" src="/client/thirdparty/jquery-ui.min-56776c150f3a76193756d875eae8e79f.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/client/thirdparty/fbsblue/jquery-ui-fc78bc4a159f66eae876084129e87ca7.css" media="all">
+<style>
+@media print {
+.noprint {visibility:hidden;font-size:1px;}
+}
+</style>
+<script>
+function giveMeMore(listnbr,listingid,matechid,techid) {
+$( "#dialog-more-supplement" ).dialog({
+	resizable: false, width: 425,          
+	title: "More (MLS #"+listnbr+")",  
+	buttons: {                             
+		"Close": function() {              
+			$( this ).dialog( "close" );     
+		}                                    
+	}                                      
+});	                                     
+document.getElementById('moreSupplementFrame').src = "/cgi-bin/mainmenu.cgi?cmd=srv+lib/supplement/supplement.html&listingid="+listingid+"&ma_tech_id="+xId(matechid)+"&tech_id="+xId(techid);
+}
+</script>
+<div id="dialog-more-supplement" title="More" style="display:none">
+<iframe id="moreSupplementFrame" name="moreSupplementFrame" src="" frameborder="0" width="395" height="250"></iframe>
+</div>
+
+<script type="text/javascript" src="/client/fbsanalytics-aeedc7d032e64e4a107a1bf0896f8f27.js"></script>
+
+<script type="text/javascript" src="/client/srch_rs/quicknav-c33d5ee30f4e50341072312c9aa27536.js"></script>
+<script src="//cdn.assets.flexmls.com/flexmls-ui/event-tracking-efec0353.js"></script>
+<script type="text/javascript" src="/client/lib/event_tracking/snitch_integrations.min-e4bb21dae6dc508927e6bd455ce17eef.js"></script>
+<script type="text/javascript" src="/client/bugsnag/bugsnag.min-fa0c12e9326a9d51435428c1d2c7b1d1.js"></script>
+
+
+<a href="" style="display:none" id="distill_pick_me_pick_me"></a>
+<script language="JavaScript" type="text/javascript">
+var srState = "initializing";
+var trackSelectListingData = true;
+var senterrormessageforthissession = false;
+function resultsHasDied(msg) {
+  try {
+    if (!msg.match("xmlHttpRequest") && !senterrormessageforthissession) {
+      var errmsg = {
+        FEDERATED:                   "armls",
+        REMOTE_USER:                 undefined,
+        WEBNBR:                      "1",
+        ma_tech_id:                  js_ma_tech_id ? rmxId(js_ma_tech_id) : "",
+        tech_id:                     js_tech_id ? rmxId(js_tech_id) : "",
+        srState:                     srState,
+        message:                     msg,
+        last_detail_ran:             last_detail_ran,
+        share_recid:                 "",
+        srchlog_last_e:              srchlog_last_e,
+        srchlog_last_l:              srchlog_last_l,
+        selectedlisting:             selectedlisting,
+        public_link_tech_id:         public_link_tech_id ? rmxId(public_link_tech_id) : "",
+        idx_link_tech_id:            (idx_link_tech_id && !public_link_tech_id) ? rmxId(idx_link_tech_id) : "",
+        client_id:                   client_id ? rmxId(client_id) : "",
+        prospect_id:                 prospect_id ? rmxId(prospect_id) : "",
+        prospect_tech_id_4_messages: prospect_tech_id_4_messages ? rmxId(prospect_tech_id_4_messages) : "",
+        allwherestr:                 allwherestr,
+        allorderby:                  allorderby
+      }
+      if (interfaceObj) {
+        errmsg["publicside"] =  interfaceObj.publicside;
+        errmsg["litemode"] =    interfaceObj.litemode;
+        errmsg["privatemode"] = interfaceObj.privatemode;
+        errmsg["portal"] =      interfaceObj.portal;
+        errmsg["idx"] =         interfaceObj.idx;
+      }
+      Bugsnag.notify('ResultsHasDied', msg, errmsg);
+      senterrormessageforthissession = true;
+    }
+  } catch (e) {}
+  if (document.getElementById("firsttimeindiv").style.display!="none" ||
+      document.getElementById("loadingdiv").style.display!="none" ||
+      document.getElementById("morelistingstop").style.display!="none" ||
+      document.getElementById("morelistingsbot").style.display!="none") {
+    $.growl("There was a problem loading the results for this search. Please perform the search again and if the problem persists, please contact your agent.",{"typ":"warning", "sticky":true});
+
+  }
+}
+
+if (!window.JSON) {
+	var script = document.createElement("script");
+	script.src = '/client/json2.js';
+	document.body.appendChild(script);
+}
+</script>
+
+<script language="JavaScript" type="text/javascript">
+try {
+var latLonDivisor = 1000000;
+var sr3point0 = true;
+var sr3point0private = false;
+var drawmapserver = 'https://drawmap-cdn.flexmls.com/drawmapgoogle.php';
+var mapserver_miniZoom = 13200;
+var srchautoupdate = true;
+var listingcart = '';
+var header = "Search Results";
+var saved_search_type = '';
+var error_form = true;
+var newsfeed_data = {"20220314070948840414000000":{"Id":"20220314070948840414000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-04-03T22:00:59Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220402165141986811000000":{"Id":"20220402165141986811000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-03T19:24:36Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220303045629292939000000":{"Id":"20220303045629292939000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange","BackOnMarket"],"LastEventTimestamp":"2022-04-03T17:02:52Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220331154904201212000000":{"Id":"20220331154904201212000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange"],"LastEventTimestamp":"2022-04-03T15:12:11Z","Viewed":true,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220402205003796621000000":{"Id":"20220402205003796621000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-02T21:01:03Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220402163629155936000000":{"Id":"20220402163629155936000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-02T17:51:43Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220314174416519828000000":{"Id":"20220314174416519828000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-02T20:40:36Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220228163035855129000000":{"Id":"20220228163035855129000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-31T22:18:06Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220402175224312114000000":{"Id":"20220402175224312114000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-03T00:13:18Z","Viewed":true,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220315220730769048000000":{"Id":"20220315220730769048000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-31T22:27:51Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220314195313187057000000":{"Id":"20220314195313187057000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-03-27T18:34:49Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220228214257457198000000":{"Id":"20220228214257457198000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange"],"LastEventTimestamp":"2022-04-02T18:25:18Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220331010416263722000000":{"Id":"20220331010416263722000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-03T18:00:19Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20211215204232763320000000":{"Id":"20211215204232763320000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-04-01T17:41:31Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220401154855033818000000":{"Id":"20220401154855033818000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-01T16:03:29Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220330210938733239000000":{"Id":"20220330210938733239000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-01T05:12:03Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220330181054832312000000":{"Id":"20220330181054832312000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-01T00:28:44Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220110192530216938000000":{"Id":"20220110192530216938000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange","BackOnMarket","PriceChange"],"LastEventTimestamp":"2022-03-31T23:20:58Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20211102203253232029000000":{"Id":"20211102203253232029000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-03-31T23:20:37Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220309181140201923000000":{"Id":"20220309181140201923000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-03-31T23:20:30Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220101163257731623000000":{"Id":"20220101163257731623000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-03-18T19:21:51Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220331202308130315000000":{"Id":"20220331202308130315000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-04-01T04:19:28Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220223042840118093000000":{"Id":"20220223042840118093000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange","BackOnMarket"],"LastEventTimestamp":"2022-03-14T16:07:03Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220327222452500064000000":{"Id":"20220327222452500064000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-31T20:43:04Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220317210444218710000000":{"Id":"20220317210444218710000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-25T20:13:15Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220201051718580391000000":{"Id":"20220201051718580391000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-03-31T17:36:04Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220302212803292201000000":{"Id":"20220302212803292201000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-31T14:04:21Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220113205100812540000000":{"Id":"20220113205100812540000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange","BackOnMarket"],"LastEventTimestamp":"2022-03-31T15:57:43Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220329211322474060000000":{"Id":"20220329211322474060000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-31T15:54:14Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220330175817270907000000":{"Id":"20220330175817270907000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-31T17:27:46Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220322153830251695000000":{"Id":"20220322153830251695000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-24T19:13:44Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220316195050742403000000":{"Id":"20220316195050742403000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange","BackOnMarket"],"LastEventTimestamp":"2022-03-31T02:26:07Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20211216231639177502000000":{"Id":"20211216231639177502000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-03-30T22:50:26Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20211231214241062588000000":{"Id":"20211231214241062588000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-03-02T21:19:13Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20211111150444585313000000":{"Id":"20211111150444585313000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-03-29T23:43:03Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220322205043710786000000":{"Id":"20220322205043710786000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-24T07:22:41Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220328024519158701000000":{"Id":"20220328024519158701000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-29T18:56:56Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220129151754943066000000":{"Id":"20220129151754943066000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange","PriceChange","BackOnMarket"],"LastEventTimestamp":"2022-03-29T14:06:03Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220128182057184799000000":{"Id":"20220128182057184799000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-23T23:43:13Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220328141158457676000000":{"Id":"20220328141158457676000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-28T18:18:11Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20210927230634830173000000":{"Id":"20210927230634830173000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange","PriceChange","Pending","BackOnMarket"],"LastEventTimestamp":"2022-03-27T22:02:56Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220327183424335671000000":{"Id":"20220327183424335671000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-28T17:43:09Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220307190016242483000000":{"Id":"20220307190016242483000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-16T07:17:29Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220326222345969801000000":{"Id":"20220326222345969801000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange"],"LastEventTimestamp":"2022-03-27T23:38:15Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220325135007082420000000":{"Id":"20220325135007082420000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-26T01:03:51Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220326175557301303000000":{"Id":"20220326175557301303000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange"],"LastEventTimestamp":"2022-03-31T20:43:40Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220322064458365219000000":{"Id":"20220322064458365219000000","NewsFeed":{"Type":"Listing","Events":["New","PriceChange"],"LastEventTimestamp":"2022-03-26T16:47:46Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220316022238153755000000":{"Id":"20220316022238153755000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-17T02:42:55Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220317230150046124000000":{"Id":"20220317230150046124000000","NewsFeed":{"Type":"Listing","Events":["New"],"LastEventTimestamp":"2022-03-18T19:13:22Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}},"20220325223637525859000000":{"Id":"20220325223637525859000000","NewsFeed":{"Type":"Listing","Events":["New","StatusChange"],"LastEventTimestamp":"2022-03-31T18:35:18Z","Viewed":false,"Approved":true,"NotificationSent":true,"Restricted":false}}};
+var marketarea = '';
+additionalcond = '';
+var interfaceObj = {'showrateplug': true,'showrateplugdetail': true,'dashboard_url': "/cgi-bin/mainmenu.cgi?cmd=srv+flexdash/private_dashboard.html&command_line_mode=true",'usingprivatecgi': false,'idx_enabled': false,'idx_nostorepurchase': 'N','idx_store': 'Y','rent_calendar_label': 'Available Dates','idx_lite_version': 'Standard','showcolistinfo': 'Y','showcosellinfo': 'Y','publicside': true,'litemode': false,'nominimode': false,'privatemode': false,'oneclick_enabled': false,'searchbasis': 'undefined','documents_version': 'default','override_hot_vi': false,'portal': false,'idx': false,'can_search': false,'edit_on_load': false,'show_search_subpanel': true,'can_save': false,'limited_save': true,'can_email': false,'can_print': true,'can_cma': false,'can_export': false,'can_scheduleshowing': false,'can_transactiondesk': false,'can_mycondoplans': false,'can_eschedule': false,'can_houseplans': false,'can_sentrilock': false,'can_sentrilock_showing_data': false,'can_drivingdirections': true,'can_taxlookup': false,'can_parcelquest': false,'display_address': true,'show_grid': true,'show_viewswitcher': false,'show_sort': true,'show_custom_sort': false,'show_detail': true,'show_report': true,'show_reportselection': false,'show_versionselection': false,'show_history': false,'show_tax': false,'show_supplement': true,'show_rpr': false,'show_documents': true,'show_officeremarks': false,'show_tourhomes': false,'show_openhouse': true,'show_mortgagecalc': false,'show_availability': false,'socialmediashare': true,'enable_tour_of_homes': true,'enable_open_houses': true,'simplestatuscolumn': false,'enable_share_list': true,'show_map': true,'print_map': true,'birdseye': true,'satellite_map_default': false,'show_tour': true,'show_video': true,'show_photos': true,'show_virtualtours': true,'show_compare': false,'show_discuss': false,'show_approvereject': false,'skip_interim_email': true,'open_map_tab_on_edit': false,'full_search_enabled': false,'search_tab_on_edit': 'A','enable_adom': "N",'enable_cdom': "Y",'contingent_code_pfx': '','pwc_code_pfx': '','public_grid_buscard': false,'show_ma_search_list': true,'expand_ma_search_list': false,'in_special_datashare_group': false,'awc_status': true,'pwc_status': false,'select_range_fields': "",'search_list_fields': {},'scroll_sel_all_link': true,'editing_prospect_seller': false,'check_all': false,'cross_mls_search': true,'list_avail_abbrs': "E",'sr_enab_or_operator': "Y",'search_photos': true,'search_videos': true,'search_documents': true,'search_open_house': true,'idx_show_mls_logo': false,'idx_mls_logo': null,'disable_related_scrolls': true,'auto_offmrkt_status': true,'thumbphoto_dev': null,'township_range_sectf': "geo_county:i;sqft4:i;geo_block:I",'active_idx_user': false,'activeIDXAccount': false,'alt_pub_rem_field': "",'universal_location': true,'pdf_cma': false,'oneClickCmaMax': 1000,'privateNotesEnabled': false};
+if (!interfaceObj.privatemode)
+	error_form = false;
+
+latLonDivisor = 1000000;
+} catch(e) {
+	resultsHasDied("index.html(a): "+e.name+" -- "+e.message+(e.lineNumber?" on line number: "+e.lineNumber:"")+(e.line?" on line number: "+e.line:"")+(e.errorNum?" on line number: "+e.errorNum:""));
+}
+</script>
+<link rel="stylesheet" type="text/css" href="/client/srch_rs/searchresults.min-5dffe0fb3f558b369af8c67072185fa8.css" media="all">
+<link rel="stylesheet" type="text/css" href="/client/srch_rs/sr3point0.css?20220401095214" media="all">
+<link rel="stylesheet" type="text/css" href="/client/srch_rs/autoSuggest.css?20220401095214" media="all">
+
+<link rel="stylesheet" type="text/css" href="/client/buttons-e304a1f870c8fa3ea41722542e0d91cd.css" media="all">
+<link rel="stylesheet" type="text/css" href="/client/bootstrap_buttons-e971083488dd75d39481746409ed92f6.css" media="all">
+
+<link rel="stylesheet" href="//cdn.assets.flexmls.com/1.6.3/fontawesome/font-awesome.css" media="all">
+
+<!--[if lt IE 7]><style>body{background-image:none;}</style><![endif]-->
+<style>
+#backToSearch {background-image: url('/images/moduleheader/moduleheader_background_bw.png');}
+</style>
+<script type="text/javascript" src="/client/common/xmlHttpRequest-4185cb50d22e846d74dbbab27599fa41.js"></script>
+
+<script type="text/javascript" src="/client/select2/select2-4.0.13/js/select2.min-b5772ea7a09aa02d3185c89951fb9f6f.js"></script>
+<script type="text/javascript" src="/client/srch_rs/searchresults-81b842fb670b060b5c45b664184a8032.js"></script><div id="dropmenudiv" style="visibility:hidden;width:200px;background-color:#eee" onmouseover="menu_mouse_in_elem='overmenu';clearhidemenu()" onmouseout="menu_mouse_in_elem='';dynamichide(event)"></div>
+<script type="text/javascript" src="/client/flexcal/EventTypes-5bd44981e52217dd23378661d7b6dfa6.js"></script>
+<script type="text/javascript" src="/client/common/popcalendar_public.js?20220401095214"></script><div onclick="bShow=true" id="calendar" style="z-index:+999;position:absolute;visibility:hidden;"><table cellspacing="0" width="220" style="font-family:arial;font-size:11px;border-width:1;border-style:solid;border-color:#00416E;font-family:arial; font-size:11px}" bgcolor="#FFFFFF"><tbody><tr bgcolor="#00416E"><td><table width="218"><tbody><tr><td style="padding:2px;font-family:arial; font-size:11px;"><font color="#ffffff"><b><span id="caption"><span id="spanLeft" title="Previous month" style="border-style:solid;border-width:1;border-color:#3366FF;cursor:pointer" onmouseover="swapImage(&quot;changeLeft&quot;,&quot;left2.gif&quot;);this.style.borderColor=&quot;#88AAFF&quot;;window.status=&quot;Click to scroll to previous month. Hold mouse button to scroll automatically.&quot;" onclick="javascript:decMonth()" onmouseout="clearInterval(intervalID1);swapImage(&quot;changeLeft&quot;,&quot;left1.gif&quot;);this.style.borderColor=&quot;#3366FF&quot;;window.status=&quot;&quot;" onmousedown="clearTimeout(timeoutID1);timeoutID1=setTimeout(&quot;StartDecMonth()&quot;,500)" onmouseup="clearTimeout(timeoutID1);clearInterval(intervalID1)">&nbsp;<img id="changeLeft" src="/images/datepicker/left1.gif" width="10" height="11" border="0">&nbsp;</span>&nbsp;<span id="spanRight" title="Next month" style="border-style:solid;border-width:1;border-color:#3366FF;cursor:pointer" onmouseover="swapImage(&quot;changeRight&quot;,&quot;right2.gif&quot;);this.style.borderColor=&quot;#88AAFF&quot;;window.status=&quot;Click to scroll to next month. Hold mouse button to scroll automatically.&quot;" onmouseout="clearInterval(intervalID1);swapImage(&quot;changeRight&quot;,&quot;right1.gif&quot;);this.style.borderColor=&quot;#3366FF&quot;;window.status=&quot;&quot;" onclick="incMonth()" onmousedown="clearTimeout(timeoutID1);timeoutID1=setTimeout(&quot;StartIncMonth()&quot;,500)" onmouseup="clearTimeout(timeoutID1);clearInterval(intervalID1)">&nbsp;<img id="changeRight" src="/images/datepicker/right1.gif" width="10" height="11" border="0">&nbsp;</span>&nbsp;<span id="spanMonth" title="Click to select a month" style="border-style:solid;border-width:1;border-color:#3366FF;cursor:pointer" onmouseover="swapImage(&quot;changeMonth&quot;,&quot;drop2.gif&quot;);this.style.borderColor=&quot;#88AAFF&quot;;window.status=&quot;Click to select a month.&quot;" onmouseout="swapImage(&quot;changeMonth&quot;,&quot;drop1.gif&quot;);this.style.borderColor=&quot;#3366FF&quot;;window.status=&quot;&quot;" onclick="popUpMonth()"></span>&nbsp;<span id="spanYear" title="Click to select a year" style="border-style:solid;border-width:1;border-color:#3366FF;cursor:pointer" onmouseover="swapImage(&quot;changeYear&quot;,&quot;drop2.gif&quot;);this.style.borderColor=&quot;#88AAFF&quot;;window.status=&quot;Click to select a year.&quot;" onmouseout="swapImage(&quot;changeYear&quot;,&quot;drop1.gif&quot;);this.style.borderColor=&quot;#3366FF&quot;;window.status=&quot;&quot;" onclick="popUpYear()"></span>&nbsp;</span></b></font></td><td align="right"><a href="javascript:hideCalendar()"><img src="/images/datepicker/close.gif" width="15" height="13" border="0" alt="Close the Calendar"></a></td></tr></tbody></table></td></tr><tr><td style="padding:5px" bgcolor="#ffffff"><span id="content"></span></td></tr><tr bgcolor="#CCCCCC"><td style="padding:5px" align="center"><span id="lblToday">Today is <a onmousemove="window.status=&quot;Go To Current Month&quot;" onmouseout="window.status=&quot;&quot;" title="Go To Current Month" style="text-decoration:none;color:black;" href="javascript:monthSelected=monthNow;yearSelected=yearNow;constructCalendar();">Sun, 3 Apr	2022</a></span></td></tr></tbody></table></div><div id="selectMonth" style="z-index:+999;position:absolute;visibility:hidden;"></div><div id="selectYear" style="z-index:+999;position:absolute;visibility:hidden;"></div>
+
+<script type="text/javascript">
+
+try {
+
+var srch_toh_label = 'Tour of Homes';
+var mobile_agent = false;
+remoteuserloginname = "";
+savedfont = 9;
+last_detail_ran = "reports";
+searchtype = "";
+flexmlcmd = "url+search/newsfeeds/results.html";
+js_memid = "";
+onelinemode = false;
+onelinemodeturnedon = true;
+show_options_to_send_listings = true;
+private_side_share = true;
+howmanytoinit = 100;
+howmanytoshow = 100;
+address_include = "";
+preview = "";
+prospect_link_id = "";
+listuserrejected = "";
+detailselectvalue = "c,20100119161745206017000000,wysr";
+nefdetailselectvalue = "";
+agnt_shrd_cnfdnt_lvl = "";
+show_datashare_badge = "Y";
+frceminiqcknavpriv = "N";
+inact_noshow_lst_agt = "N";
+idx_showcontactnreq = "Y";
+rentavailondetailtab = "Y";
+dolistnumberordercheck = false;
+dolistnumberordercheck_orig = false;
+idx_fulllistlink = "Y";
+idx_hideohc = "N";
+extended_showing = "N";
+pref_show_ids = "Y";
+ignore_bds = "";
+param_contact_id = "20190206165051466854000000";
+/* these fields used for recreating newsfeed link */
+newsfeed_client_id = "20190206165051505988000000";
+newsfeed_contact_id = "20190206165051466854000000";
+newsfeed_id = "20210408182626386503478150";
+newsfeed_eid = "";
+fromportalsavedsearch = "";
+newsfeed_agent_version = "";
+newsfeed_agent_id = "20160712160949869486000000";
+newsfeed_command_line_mode = "true";
+newsfeed_bypass = "Y";
+newsfeedNotFoundMessage = "";
+newsfeedNotFoundMessageCode = "";
+email_portal_view = "newsfeed";
+
+agent_email_addr = "sarahmariaperry@gmail.com";
+agent_name = "Sarah Perry";
+office_name = "1st Heritage Realty";
+agent_phone = "520-820-8651";
+agent_photo_url = "https://cdn.photos.sparkplatform.com/tar/20180220221543745687000000.jpg";
+agent_url = "";
+fromshare = false;
+shareMode = "";
+shareShortId = "undefined"
+exportlimit = 0;
+public_link_tech_id = "";
+idx_link_tech_id = "";
+img_ext = "png";
+prtl_reg_req_results = 'N';
+prtl_reg_req_details = 'N';
+prtl_reg_req_time = 'N';
+prtl_reg_req_srches = 'N';
+prtl_reg_req_lstngs = 'N';
+prtl_reg_bypass = 'N';
+if (prtl_reg_req_results=="N" && prtl_reg_req_details=="N" && prtl_reg_req_time=="N" && prtl_reg_req_srches=="N" && prtl_reg_req_lstngs=="N")
+    prtl_reg_bypass = "Y";
+pdf_enabled = true;
+var query_id= "";
+var draft_query_id = "";
+var mySearchFromPortal= false;
+var hours_new = 72;
+var rm1154ison = true;
+var simplified_carts_disabled = false;
+var star_rating_enabled = true;
+var star_rating_cart = false;
+hideContactOrFeedback4someMLS = false;hideShow4someMLS = true;hide_openhouse_feedback = false;fromemail_manualorder = '2022031407094884041400000020220402165141986811000000202203030456292929390000002022033115490420121200000020220402205003796621000000202204021636291559360000002022031417441651982800000020220228163035855129000000202204021752243121140000002022031522073076904800000020220314195313187057000000202202282142574571980000002022033101041626372200000020211215204232763320000000202204011548550338180000002022033021093873323900000020220330181054832312000000202201101925302169380000002021110220325323202900000020220309181140201923000000202201011632577316230000002022033120230813031500000020220223042840118093000000202203272224525000640000002022031721044421871000000020220201051718580391000000202203022128032922010000002022011320510081254000000020220329211322474060000000202203301758172709070000002022032215383025169500000020220316195050742403000000202112162316391775020000002021123121424106258800000020211111150444585313000000202203222050437107860000002022032802451915870100000020220129151754943066000000202201281820571847990000002022032814115845767600000020210927230634830173000000202203271834243356710000002022030719001624248300000020220326222345969801000000202203251350070824200000002022032617555730130300000020220322064458365219000000202203160222381537550000002022031723015004612400000020220325223637525859000000';
+
+portal_client_name = "";
+client_id = "";
+
+prospect_id = "";
+smilies = "true";
+additional_ajax_params = "";
+interfaceObj.office_remarks = "Y";
+interfaceObj.qs_expand_fields = "N";
+interfaceObj.send_supplement = "Y";
+interfaceObj.buildsearchquery_dropped_mls_flag = false;
+porthidecontactinfo = "Y";
+priceaftrmlsnuminone = "N";
+prospect_tech_id_4_messages = "";
+pt4mcart = "";
+eShowingEnabled = false;
+var create_public_logon_for_prospect_id = true;
+
+interfaceObj.active_statuses="'A','AWC_G','AWC_P','AWC_S','AWC_Y'";
+interfaceObj.pending_statuses="'P'";
+prospect_tech_id_4_messages_name = "";
+
+private_warning_message="Are you sure you want to email a private version?";
+additional_ajax_params = "&tech_id=x'20160712160949869486000000'&ma_tech_id=x'20091028173201638455000000'&pubwebflag=false&bas_link_tech_id=&publicversion=true&ups=undefined&fromshare=false";
+js_ma_tech_id = "20091028173201638455000000";
+js_tech_id = "20160712160949869486000000";
+js_realu_id = "";
+js_primary_association_id = "20171026173849730559000000";
+start_id = "20220331154904201212000000";
+wasThereAStartId = true;
+helpfile='new_search_results_tab_grid.html';
+
+
+	allwherestr = "4C14E54F4C4F05CFE3A5D5B47DB422E125B9FECDE363FDC5F4B992D1EFAF9FBA9EA7FFDDFE30A6DB663D39935A0967AC3BAB652DDA1EC13BC4FD26379401EE5C230489FEA7294B4D96C875AFB0687151FCDAA8B42381186C344FA0C88A4ACBC90DD7A6F92BCC2907A9529ACB89F536ACA98F3F2E4B493EA70DA59603304776C95A6AF74146490CFA68C9D364B4213086866163920E817793E94864DD4B73D5E58CD88205B1256DD748FA37313EBDEFC65C8F6F9800A3FCDF54DC95969793B510938F1A90110D3B104C0B0B76FC1425047B0332C7A8C15ABCB01F380CB309F9D56DCE6CBB29B1E83662ECDEB3BCFE9B9AD5C60FE95180EA4CAF4E416ED14CE01C2895F9EBA529FD1C326ACDACE92D362ED8B68D83B618826F742BD93E63DA5B6C0DFFAD715D2D0A381AD6242A310880F026294F0F1314F4CF633443D45884A400E7FF157C3CFAD5F39EF68C088E8DB0F905676A2A0F7DCBFC1AD9632AE4B77887F4483AC8B67E2C1D2649CD26FDE1FEEC3D9E693AF736E00D7DE5A06001591339B3E3A38D874F0117A7F067CAF83334E55F48A9E3EA16900C15FF6EC5E11E16EF61789CA7203A58600B4DF92C9623ECBBF6A79756659384042FA42524A4A0EE519AD0DD84C6ED69E059D16EED57D0E63D716D19785E93EE1818C803326428979C1A8B3D478870C67D7340CEAEFAE66CBF686229415EDC3A818C544A4B7CFCBC9654BEA1DAC36F757D21486696A429B4C6D0A0145EC03699ACC05B3F8E180A0F147B182138A5F9A949FF2632D2A1859C6BAD77720101C91ECCBFC63E6BE89CEB470F8B6E5A8E75B450983816C8350E949ABC349BEA85503154387FCB67B15283AEE003964F66F6A70A6FFCF5C4B14A08CE7EED3B141810DC9E8BFFB61B3A3AD29DE0A148F3E8012F8E841FC93A7C31CB11D540B26CC153F1C90BBC41CF1DBBCDAD8E23A04BF76703FE416B8D720F0C09779BBA6308FA879E99222E88C9D9798D37F802362ACD3DC214DCCFAE4F859CFAAD11B55057583BC107063F6B96B3C90B41BC1B67E11324B11B659F43ED31338C086A81946B33EF5AB25ED09B1DCD74285A2EE4914FA19266BCB073E40B51C0AA6A5A50A613D2977D8F4706594667B150783478117FA34C3F770A8BE314A2ADD674F14319622686930FD30C7942E806921E9C6DA6336196054B31F9CA955231AE5B0602626A41A17FFD61793FA33E9DD07B20F9AF826973085AC72F317B2F8A2D6BD82ACCCAE3BA2896EBB919533AC16AEEDF399F1101F3BCFF89A20A056E4267A6C453B77D7A3DC68BF7702800156787E16E7941360F7F806FFC84088B999C2F0724634A11DFCECC2239C7E80808F19B389660CA48AAAA6ECDA5BF02554181DFDCAC94B0D7575BE447994C56DE71EEFDE8E01BFCBFFFB43278B7A4E7A3AD6F6A0CDD2DC84D1ACB8BA112BCA6F0E4154B68C34FA167602D8232EA7D903F31FF057938138A1EBF11C6FE98C87BC15517FD69E1235D0FFB3D5294BBA18D75EEA6A5CC08EA1A9943F04E0BF5BEBC8021F64BF0F45EADFF32174845315ABC849409D12D249F7E59708DD2A1F4279C9F4569BC9723DE098CA87FD1BED935546F57CFB3D527A61F1AD1D7E1B6AE4B06B5DA3548E6249897F7C6E71945E9FE97D1D3B60771FCDDB0EA2747C04F536426AE4B75EDDB728454EAABD4442B9944A84CB5606D6B77180E6FAC146BB9D9E80E3794538A5D9BDA7F37CE9DB1EB70BEC2849D5BFD35BE360452AA55F230D900DFB2BB14B50D6BA419D29561C5F536492D48FBC15EE45027205E16DC4F420AE42CD2872AEC9268FB833CE95EDEAE2F493BEA19E66337E7880C33033DF26AE0B8234CD5970234BAEE647997D28D7146B13EF573DAC92102CBF6C6A53B1943DCB876CDBFEF181D7B64E9702F3BF3E5068F5FC457CA68FC75FD827AF2A1515C99A47866381217D6EA792E0874F0D0B67C75720D37FC51E2C426DB4CB95FC699865F9C1F6905775F9E18FDE003F391655172FE965E7F397DFBE370ECF06267BFA3DE8B12304409ABB35A97E420CE561EA3A9384C5B6A774E7A7F421DB06B427E913597E5BBD3ED2552EF78BFBC171845115343A0A99947C29C6C835CEFFA7DF86E11C5B9526A19EF003758B1926B3EC1EC645073279BC65624605032A4EE54379FB1C748F40880712410F034665FE0A1F35C038FBE8E1A4CDD026C49EE45CCA7B9E965F5BC7778D8A5743E4B83A9BDA50323A46A21E3F249A8F5B7C5D39E2B0AA43CCB9390CD471A26D0945B49D8D58EF21BE1CB9BFF6E108BCBA60CB8E3F2C87DE1F6BAA027988CD86EFB5B12E7FAAAED2313788E41EA4E4749927A8A7FC87F652FA8C9724D9A209C61F5126032EBFF8849870482B3016423E5EC592F3158C193642393DB7E127ADD885FA9B7AD2AE88C2AA2BC898BE6907FC84D73F239DDB7D240F6F705D07E36C18B72A8FF62A5013EC31AD4A07644675B6B224FD4239830DCE1DCF43CEC18EC65";
+if (srmode=="cart")
+	cart_allwherestr = allwherestr;
+else
+	results_allwherestr = allwherestr;
+allorderby = "4E07DE5E5B0C0FE9AAAD9CAE67CB7AEB6BE8ABDDBE37BE94";
+results_allorderby = allorderby;
+force_list_agency=false;
+force_list_agent=false;
+idx_sel_proptype='';
+report_puborpriv = 'public';
+report_pubpriv = 'public';
+businesscard = "20100205205401647630000000";
+startpos = "detail";
+directlink = false;newbgcolor = '1975E5';
+timezonedesc = "Mountain (AZ)";
+skip_tech_id = false;
+viewexpired_end_date = "Y";
+hs_force_mls_view = "N";
+function mlsobj(){
+	this.currencySymbol = "";
+	this.noCommaFields;
+	this.picPath = "";
+	this.useListPrefix = "";
+	this.status = new Object();
+	this.proptype = new Object();
+	this.propgroup = new Object();
+	this.canshowsoldprice = new Object();
+	this.list_agency_logo_id = "";
+	this.new_srch_dflt_status = "";
+}
+mlsArray = new Object();
+ma_search_list = "x'20091028173201638455000000'";
+card_fmt_list = "'--'";
+cart_techid_list = new Array();
+limit_card_fmt_list = "undefined";
+prop_type_list = "";
+full_list_view_init=false;
+show_contingent_code = "Y";
+show_contingent_act = "N";
+show_contingent_pend = "N";
+show_contingent_rem = "Y";
+show_rental_badge = "Y";
+rental_badge_label = "Rental";
+bcc_mls_app_rej = "N";
+
+mls_email_addr = "techsupport@mlssaz.com";
+/* variables to display message if no permission to approve */
+approvereject = false;
+approverejectlistnbr = false;
+notautorizedmessage = "";
+
+contingent_disp_val = "Contingent";
+mlsArray["20091028173201638455000000"] = {"bdsexclude":[],"currencySymbol":"$","picPath":"https://cdn.photos.sparkplatform.com/","hostTheirOwn":false,"useListPrefix":"N","proptype":{"A":"Residential","B":"Land-Lot","C":"Multi-Family","D":"Commercial","E":"Rental","F":"Commercial Lease","G":"Farm & Ranch"},"propgroup":{"A":"R","B":"L","C":"M","D":"M","E":"T","F":"C","G":"F"},"canshowsoldprice":{"A":true,"B":true,"C":true,"D":true,"E":true,"F":true,"G":true},"list_agency_logo_id":"","dataShareGroup":"20091028173201638455000000","noCommaFields":["userdefined30","yr_built","geo_lat","geo_lon","tax_year"],"new_srch_dflt_status":"::::::::","status":{"A":{"A":"Active","H":"Coming Soon","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"},"B":{"A":"Active","H":"Coming Soon","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"},"C":{"A":"Active","H":"Coming Soon","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"},"D":{"A":"Active","H":"Coming Soon","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"},"E":{"A":"Active","H":"Coming Soon","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"},"F":{"A":"Active","H":"Coming Soon","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"},"G":{"A":"Active","H":"Coming Soon","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"},"H":{"A":"Active","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"},"I":{"A":"Active","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"},"J":{"A":"Active","P":"Pending","C":"Closed","E":"Expired","W":"Temp Off Market","L":"Cancelled","D":"Deleted"}}}
+hotsheet=false;
+
+sortmenu=new Array();
+sortmenu[0]='<a href="javascript:columnSort(\'A\');"><img src="/images/trans1x1.gif" class="triangle_up_icon" border=0 align="absmiddle"> Sort Ascending</a>';
+sortmenu[1]='<a href="javascript:columnSort(\'D\');"><img src="/images/trans1x1.gif" class="triangle_down_icon" border=0 align="absmiddle"> Sort Descending</a>';
+cust_sort_menu=new Array();
+save_sort_menu=new Array();
+
+
+cust_sort_menu.push({'link':'major_change_ts','text':'<a href="javascript:void(0)" onclick="srchlog(\'sort order menu\',\'new or recent first\');columnSort(\'D\',\'major_change_ts\');" class="custsortlink">New or Recently Changed First</a>'});
+cust_sort_menu.push({'link':'current_price_D','text':'<a href="javascript:void(0)" onclick="srchlog(\'sort order menu\',\'highest price first\');columnSort(\'D\',\'current_price\');" class="custsortlink">Price - Highest First</a>'});
+cust_sort_menu.push({'link':'current_price_A','text':'<a href="javascript:void(0)" onclick="srchlog(\'sort order menu\',\'lowest price first\');columnSort(\'A\',\'current_price\');" class="custsortlink">Price - Lowest First</a>'});
+cust_sort_menu.push({'link':'status','text':'<a href="javascript:void(0)" onclick="srchlog(\'sort order menu\',\'status\');columnSort(\'A\',\'status\');" class="custsortlink">Status</a>'});
+cust_sort_menu.push({'link':'area','text':'<a href="javascript:void(0)" onclick="srchlog(\'sort order menu\',\'area\');columnSort(\'A\',\'area\');" class="custsortlink">Area</a>'});
+cust_sort_menu.push({'link':'city','text':'<a href="javascript:void(0)" onclick="srchlog(\'sort order menu\',\'city\');columnSort(\'A\',\'city\');" class="custsortlink">City</a>'});
+cust_sort_menu.push({'link':'total_br','text':'<a href="javascript:void(0)" onclick="srchlog(\'sort order menu\',\'total_br\');columnSort(\'A\',\'total_br\');" class="custsortlink">Bedrooms</a>'});
+cust_sort_menu.push({'link':'total_bath','text':'<a href="javascript:void(0)" onclick="srchlog(\'sort order menu\',\'total_bath\');columnSort(\'A\',\'total_bath\');" class="custsortlink">Total Baths</a>'});
+
+cust_sort_menu.push({'link':'orderofentry','text':'<a href="javascript:void(0)" id="order_of_entry_link" onclick="srchlog(\'sort order menu\',\'order of entry\');orderOfEntrySort();" class="custsortlink">Order of Entry</a>'});
+
+
+
+
+listfunctionsmenu=new Array();
+
+
+listfunctionsmenu.push('<a href="javascript:srchlog(\'listing options triangle\',\'match prospects\',false,dropdownparentelement.attributes.getNamedItem(\'listing\').value);matchProspects(dropdownparentelement)">Match Contacts</a>');
+listfunctionsmenu.push('<a href="javascript:srchlog(\'listing options triangle\',\'error form\',false,dropdownparentelement.attributes.getNamedItem(\'listing\').value);errorForm(dropdownparentelement.attributes.getNamedItem(\'listing\').value, dropdownparentelement.attributes.getNamedItem(\'prefix\').value, dropdownparentelement.attributes.getNamedItem(\'list_nbr\').value)">Report Error</a>');
+listfunctionsmenu.push('<a href="javascript:void(0)" id="calculatinglink" style="font-style:italic;"><img src="/images/srch_rs/loading.gif" align="middle"> loading actions</a>');listfunctionsmenu.push('<a href="javascript:srchlog(\'listing options triangle\',\'edit listing\',false,dropdownparentelement.attributes.getNamedItem(\'listing\').value);editListing(dropdownparentelement)" id="editlistinglink" style="display:none">Edit Listing</a>');
+
+listfunctionsmenu.push('<a href="javascript:srchlog(\'listing options triangle\',\'list activity\',false,dropdownparentelement.attributes.getNamedItem(\'listing\').value);listactivity(dropdownparentelement)" id="listactivitylink" style="display:none">Listing Activity</a>');
+
+
+listfunctionsmenu.push('<a href="javascript:srchlog(\'listing options triangle\',\'listing exports\',false,dropdownparentelement.attributes.getNamedItem(\'listing\').value);viewListingExports(dropdownparentelement)" id="listing_exports_link" style="display:none">View Broker Distribution</a>');
+
+hotsheetSqlobj = new Object();
+hotsheetLabels = "";
+hotsheetmenu = new Array();
+hotsheetmenu_foot = new Array();
+
+var cma_apps = {};
+var export_apps = {};
+var detail_links = {"history":{"obj_name":"history","id":"history","title":"History","descr":"View history of this property","srchlog":true,"mls_allow":true},"taxes":{"obj_name":"tax","id":"taxes","title":"Tax Info","descr":"View tax record for this property","srchlog":true,"mls_allow":true},"statistics":{"obj_name":"statistics","id":"statistics","title":"Statistics <img src=\"/images/trans1x1.gif\" class=\"triangle_down_icon\" id=\"detail_cromford_link_img\" style=\"border:none;\">","descr":"View Statistics","onclick":"dropdownmenu(this, event, cromfordmenu, '150px');return false;","mls_allow":false},"rpr":{"obj_name":"rpr","id":"rpr","title":"RPR","descr":"View RPR Report","srchlog":true,"mls_allow":false},"rateplug":{"obj_name":"rateplug","title":"Mortgage Info","descr":"View Mortgage Info","srchlog":true,"mls_allow":true,"id":"rateplug"},"dpr_api":{"obj_name":"dpr_api","title":"DPR","descr":"View DPR Report","img":"/images/icon.dpr_16x16.png","srchlog":true,"mls_allow":false,"id":"dpr_api"},"supplement":{"obj_name":"supplement","title":"Supplement","descr":"View supplement","srchlog":true,"mls_allow":true,"id":"supplement"},"documents":{"obj_name":"documents","title":"Documents","descr":"View documents","srchlog":true,"mls_allow":true,"id":"documents"},"officerem":{"obj_name":"officeremarks","title":"Office Remarks","descr":"View office remarks","srchlog":true,"mls_allow":true,"id":"officerem"},"tourofhomes":{"obj_name":"tourhomes","title":"Tour of Homes","descr":"View tour of homes times","srchlog":true,"mls_allow":true,"id":"tourofhomes"},"openhouse":{"obj_name":"openhouse","title":"Open House","descr":"View open house times","srchlog":true,"mls_allow":true,"id":"openhouse"},"showingtime":{"obj_name":"showing","title":"ShowingTime","descr":"Schedule showing via ShowingTime","srchlog":true,"mls_allow":false,"id":"showingtime","use_icon_only":false},"transactiondesk":{"obj_name":"transaction","title":"TransactionDesk","descr":"TransactionDesk","srchlog":true,"mls_allow":false,"id":"transactiondesk","use_icon_only":false},"available":{"obj_name":"available","title":"Available Dates","descr":"View rental availability","srchlog":true,"mls_allow":true,"id":"available"},"calculator":{"obj_name":"calculator","title":"Calculator","descr":"View mortgage calculator","srchlog":true,"mls_allow":true,"id":"calculator","use_icon_only":false},"mycondoplans":{"obj_name":"mycondoplans","title":"MyCondoPlans","descr":"MyCondoPlans","img":"/images/mycondoplans.png","srchlog":true,"mls_allow":false,"id":"mycondoplans"},"eschedule":{"obj_name":"eschedule","title":"eSchedule","descr":"eSchedule","srchlog":true,"mls_allow":false,"id":"eschedule"},"houseplans":{"obj_name":"houseplans","title":"HousePlans","descr":"HousePlans","img":"/images/mycondoplans.png","srchlog":true,"mls_allow":false,"id":"houseplans"},"sentrilock":{"obj_name":"sentrilock","title":"Access","descr":"Show the SentriLock Access Time Matrix for this listing","srchlog":false,"mls_allow":false,"id":"sentrilock"},"sentrilock-showing-data":{"obj_name":"sentrilock-showing-data","title":"Showing","descr":"Show the SentriLock Showing Data report for this listing","srchlog":false,"mls_allow":false,"id":"sentrilock-showing-data"},"r2neighborhood":{"obj_name":"r2neighborhood","title":"Neighborhood","descr":"Show the Realist neighborhood report for this listing","srchlog":false,"mls_allow":false,"id":"r2neighborhood"},"realavm":{"obj_name":"realavm","title":"AVM","descr":"CoreLogic RealAVM","srchlog":false,"mls_allow":false,"id":"realavm"},"core_lma":{"obj_name":"core_lma","title":"Listing and Market Activity","descr":"CoreLogic Listing and Market Activity Report","srchlog":false,"mls_allow":false,"id":"core_lma"},"core_cr":{"obj_name":"core_cr","title":"Consolidated","descr":"CoreLogic Consolidated Report","srchlog":false,"mls_allow":false,"id":"core_cr"},"core_gv":{"obj_name":"core_gv","title":"Data Co-op View","descr":"CoreLogic Data Co-op View","srchlog":false,"mls_allow":false,"id":"core_gv"},"core_g":{"obj_name":"core_g","title":"Gadget View","descr":"CoreLogic Gadget View","srchlog":false,"mls_allow":false,"id":"core_g"},"parcel_quest":{"obj_name":"parcel_quest","title":"ParcelQuest","descr":"ParcelQuest","srchlog":false,"mls_allow":false,"id":"parcel_quest"},"find_community":{"obj_name":"find_community","title":"Community","descr":"Find Community Report","img":"/images/find_by_move_dot_com.png","srchlog":false,"mls_allow":false,"id":"find_community"},"find_property":{"obj_name":"find_property","title":"Property","descr":"Find Property Details Report","img":"/images/find_by_move_dot_com.png","srchlog":false,"mls_allow":false,"id":"find_property"},"find_location":{"obj_name":"find_location","title":"School & Location","descr":"Find School & Location Report","img":"/images/find_by_move_dot_com.png","srchlog":false,"mls_allow":false,"id":"find_location"}};
+
+for (var curDetail in detail_links) {
+	detail_links[curDetail] = new DetailLink(detail_links[curDetail]);
+}
+
+var rails_root = "/r";
+var apps_root = "https://apps.flexmls.com/";
+
+
+} catch (e) {
+	resultsHasDied("index.html(b): "+e.name+" -- "+e.message+(e.lineNumber?" on line number: "+e.lineNumber:"")+(e.line?" on line number: "+e.line:"")+(e.errorNum?" on line number: "+e.errorNum:""));
+}
+</script>
+
+<!---->
+<select name="detailreportshidden" id="detailreportshidden" style="display:none">
+<option value="c,20180323173651245369000000,wysr">BPO Report</option><option value="c,20171025153454612129000000,wysr">Data Detail Report</option><option value="c,20100119161745206017000000,wysr" selected="">Detail Report</option><option value="c,20140819160355129333000000,wysr">Detail Report - Mortgage Info</option><option value="c,20100430050211783180000000,wysr">Detail Report with Branding</option><option value="c,20170808214658283112000000,wysr">Detail Report-Mini</option><option value="c,20100129210312556465000000,wysr">flexmls Flyer 1</option><option value="c,20100129210313027400000000,wysr">flexmls Flyer 2</option><option value="c,20100129210313686279000000,wysr">flexmls Flyer 3</option><option value="c,20100129210314229909000000,wysr">flexmls Flyer 4</option><option value="c,20100129210314607959000000,wysr">flexmls Flyer 5</option><option value="c,20100217175358685340000000,wysr">IDX Report</option><option value="c,20100430195914503908000000,wysr">MLS Public Website Report</option><option value="c,20100212021231019696000000,wysr">Summary Report - 3 Per Page</option><option value="c,ezr20180621175008402782700000,ezr1"> 5 Photo Flyer</option><option value="c,ezr20180621174448896819800000,ezr1">3 Column Flyer</option><option value="c,ezr20120921165449733492000000,ezr2">Detail V1</option><option value="c,ezr20120921165450009281900000,ezr2">Detail V2</option><option value="c,ezr20120921165450271399300000,ezr2">Detail V3</option><option value="c,ezr20120921165450571733000000,ezr2">Detail with Branding</option><option value="c,ezr20120921165450843156800000,ezr2">Detail with Calendar</option><option value="c,ezr20120921165451361152400000,ezr2">Detail with Columns</option><option value="c,ezr20120921165451649647700000,ezr2">Detail with Contract</option><option value="c,ezr20120921165451899586000000,ezr2">Detail with Map</option><option value="c,ezr20120921165452182069800000,ezr2">Detail with Table</option><option value="c,ezr20120921165452422891400000,ezr2">Film Strip</option><option value="c,ezr20120921165452671895700000,ezr2">Film Strip - Vertical</option><option value="c,ezr20180621174402842855500000,ezr1">Flyer</option><option value="c,ezr20180802134547962352000000,ezr1">Flyer</option><option value="c,ezr20120921165453573378000000,ezr2">L-Shape Photos</option><option value="c,ezr20140610141923177266400000,ezr1">L-Shape Photos</option><option value="c,ezr20180529184026028372300000,ezr2">One Line</option><option value="c,ezr20120921165453760554000000,ezr2">Six Up</option><option value="c,ezr20180802134447578438300000,ezr2">Summary Flyer</option>
+</select>
+
+<div id="copyrightPanel"><span class="deltext" title="Close Copyright Notice" onclick="toggleCopyright();" style="float:right;margin-left:10px;margin-bottom:10px;">X</span>The data relating to real estate listings on this website comes in part from the Internet Data Exchange (IDX) program of Multiple Listing Service of Southern Arizona. IDX information is provided exclusively for consumers' personal, non-commercial use and may not be used for any purpose other than to identify prospective properties consumers may be interested in purchasing. Listings provided by brokerages other than the listing brokerage here are identified with the MLSSAZ IDX Logo.
+All Information Is Deemed Reliable But Is Not Guaranteed Accurate.
+Listing information Copyright 2020 MLS of Southern Arizona. All Rights Reserved.</div>
+
+<div id="dialog-cart-save" title="Save Collection" style="display:none">
+<iframe id="cartSaveFrame" name="cartSaveFrame" src="" frameborder="0" width="365" height="175"></iframe>
+</div>
+
+<div id="dialog-search-save" title="Save Search" style="display:none;overflow:hidden;">
+<div style="margin-bottom:60px;margin-top:40px;-webkit-overflow-scrolling: touch; background: none repeat scroll;  position: absolute; top: 0; right: 0; bottom: 0; width: 100%">
+<iframe id="searchSaveFrame" name="searchSaveFrame" src="" frameborder="0" width="365" height="175"></iframe>
+</div>
+</div>
+
+<div id="businessCardPanel" title="Business Card" style="display:none;">
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tbody><tr>
+<td colspan="2" id="buscardinnerds" bgcolor="#ffffff">
+</td>
+</tr>
+<tr>
+<td colspan="2" id="buscardlinks" bgcolor="#ffffff">
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div id="portalmenupanel" style="height: 600px; width: 184px; left: -185px;"><ul id="p15_menu_ul_big"><div id="p15agentNavbar" onclick="quickNav.showOrHideProfileSection()"><div class="p15profilepic"><img style="" src="https://cdn.photos.sparkplatform.com/tar/20180220221543745687000000.jpg" onerror="$(this).parent().hide();$('#p15agentNavbar .agency-monogram').show()"></div><div class="agency-monogram" style="display:none;"><span class="monogram-initials">S</span></div><div class="p15agentName">Sarah Perry</div><div class="p15officeName">1st Heritage Realty</div><img style="border: medium none; margin-top:5px;" src="/images/trans1x1.gif" class="triangle_down_icon"></div> <li class="p15_menu_item" id="newsfeed" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/newsfeeds/results.html&amp;bypass=Y&amp;command_line_mode=true&amp;agent_id=20160712160949869486000000&amp;tech_id=20160712160949869486000000&amp;contact_id=20190206165051466854000000&amp;newsfeed_id=',false,true);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_newsfeed_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_newsfeed_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="View unread listings which have been emailed"> <span class="p15_count count_newsfeed count_inbox_notzero" id="count_undefined">50+</span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_newsfeed_blue"> <span class="p15_menu_item_text" style="font-weight:bold;color:#333333; width:50%; margin-bottom:5px">News Feed</span> </li> <hr><li class="p15_menu_item"><div class="p15_menu_header">Searches</div></li> <li class="p15_menu_item" id="agent_search" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/saved/step2run.html&amp;fromprospect=x\'20190206165051466854000000\'&amp;pt4m=x\'20190206165051466854000000\'&amp;searchlist=x\'20210408234104195970000000\'',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="2 Plex
+3 Plex
+4 Plex"> <span class="p15_count count_2/3/4plex-david " id="count_20210408234104195970000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_agent_search"> <span class="p15_menu_item_text" style=" ">2/3/4 Plex - David</span> </li> <li class="p15_menu_item" id="agent_search" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/saved/step2run.html&amp;fromprospect=x\'20190206165051466854000000\'&amp;pt4m=x\'20190206165051466854000000\'&amp;searchlist=x\'20210408232603828525000000\'',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="2br, 2ba, Central
+South of River
+North of 22nd
+East of I-10
+West of Kolb"> <span class="p15_count count_centraltucson-david " id="count_20210408232603828525000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_agent_search"> <span class="p15_menu_item_text" style=" ">Central Tucson - David</span> </li> <li class="p15_menu_item" id="agent_search" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/saved/step2run.html&amp;fromprospect=x\'20190206165051466854000000\'&amp;pt4m=x\'20190206165051466854000000\'&amp;searchlist=x\'20190206165027190441000000\'',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="2 plex or 3 plex, all areas"> <span class="p15_count count_davidchristy-duplex " id="count_20190206165027190441000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_agent_search"> <span class="p15_menu_item_text" style=" ">David Christy - duplex</span> </li> <hr><li class="p15_menu_item"><div class="p15_menu_header">Listings</div></li>  <li class="p15_menu_item" id="saved" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/cart/viewcontents.html&amp;pt4mcart=true&amp;client_id=20190206165051505988000000&amp;pt4m=x\'20190206165051466854000000\'&amp;cart_id=20190206165051519502000000',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_saved_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_saved_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}"> <span class="p15_count count_saved " id="count_20190206165051519502000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_saved"> <span class="p15_menu_item_text" style=" ">Saved</span> </li> <li class="p15_menu_item" id="custom" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/cart/viewcontents.html&amp;pt4mcart=true&amp;client_id=20190206165051505988000000&amp;pt4m=x\'20190206165051466854000000\'&amp;cart_id=20190206165051524330000000',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_custom_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_custom_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}"> <span class="p15_count count_hidden " id="count_20190206165051524330000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_custom"> <span class="p15_menu_item_text" style=" ">Hidden</span> </li> <li class="p15_menu_item" id="recommended" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/cart/viewcontents.html&amp;pt4mcart=true&amp;client_id=20190206165051505988000000&amp;pt4m=x\'20190206165051466854000000\'&amp;cart_id=20190206165051533233000000',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_recommended_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_recommended_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}"> <span class="p15_count count_recommended " id="count_20190206165051533233000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_recommended"> <span class="p15_menu_item_text" style=" ">Recommended</span> </li> <li class="p15_menu_item" id="hidden_by_agent" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/cart/viewcontents.html&amp;pt4mcart=true&amp;client_id=20190206165051505988000000&amp;pt4m=x\'20190206165051466854000000\'&amp;cart_id=20190206165051528717000000',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_hidden_by_agent_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_hidden_by_agent_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}"> <span class="p15_count count_hiddenbyagent " id="count_20190206165051528717000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_hidden_by_agent"> <span class="p15_menu_item_text" style=" ">Hidden by Agent</span> </li>  <li class="p15_menu_item" id="links" onclick="quickNav.goto('https://www.flexmls.com/cgi-bin/view.cgi?20210408234156044192000000',true,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_links_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_links_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="View this Link received at 04:42 PM on 04/08/2021"> <span class="p15_count count_2/3/4plexlistings " id="count_20210408234156044192000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_links"> <span class="p15_menu_item_text" style=" ">2/3/4 Plex Listings</span> </li> <li class="p15_menu_item" id="links" onclick="quickNav.goto('https://www.flexmls.com/cgi-bin/view.cgi?20210408232629614492000000',true,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_links_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_links_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="View this Link received at 04:27 PM on 04/08/2021"> <span class="p15_count count_centraltucsonlistings " id="count_20210408232629614492000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_links"> <span class="p15_menu_item_text" style=" ">Central Tucson Listings</span> </li> </ul><br><br><br></div>
+<div id="poweredby" style="">Powered by <img src="/images/flexmls-footer.png" title="flexmls"></div>
+
+<div id="notesDialog" title="Notes" style="display:none;">
+<textarea id="listing_notes" name="listing_notes" rows="10" cols="50"></textarea>
+</div>
+
+
+<div id="portallogonbypass" style="position: relative; z-index: 1002; display: none; background-color: #4a76cd; font-size: 26px; border: 1px solid #333; text-align: right; font-family: 'HelveticaNeue-Medium', 'Helvetica Neue Medium', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; box-shadow: 0px 3px 5px rgba(0,0,0,0.2); ">
+  <a href="#" style="color: white; margin-right: 15px;">
+    No Thanks
+  </a>
+</div>
+<iframe id="portallogonframe" name="portallogonframe" sandbox="allow-forms allow-scripts allow-same-origin allow-top-navigation" style="display:none;" src="" frameborder="0"></iframe>
+
+
+<div id="backshadowlayer" style="display: none; width: 800px; left: -185px; height: 600px;"></div>
+
+<div id="overlayPanel" style="display: none; width: 800px; height: 600px; left: -185px;">
+	<div id="backToSearch" onclick="closeOverlay()" style="width: 800px;">
+    <span class="flexicon flexicon-chevron--large flexicon-180"></span>
+    <span class="u-link--plain u-link--breadcrumb float-left">Return to Search Results</span></div>
+	
+	<iframe id="overlayframe" name="overlayframe" src="" frameborder="0" style="width: 800px; height: 558px;"></iframe>
+</div>
+
+<iframe id="fullsearchgridframe" name="fullsearchgridframe" class="iframeClass " style="display:none;" src="" frameborder="0"></iframe>
+<div id="fullsearch_bottom" style="display:none;">
+	<!--<a href="javascript:void(0);" style="width:100%;" id="fs_update_link" title="Update criteria and return to previous search tab" onclick="document.getElementById('fullsearchgridframe').contentWindow.do_submit('fullsearchedit');"><span class="bigBlueLink" onmouseover="this.className='bigBlueLink_hover';" onmouseout="this.className='bigBlueLink';">Update Criteria</span></a>	-->
+</div>
+
+<div id="enhance" style="display:none;">
+	<div style="float:right;position:relative;margin-right:30px;">
+		<a href="javascript:void(0);" class="bigBlueLink" id="smenu_clearall_a" onclick="srchlog('edit search clear','click');searchClearAll();return false;" onmouseover="$(this).addClass('bigBlueLink_hover');" onmouseout="$(this).addClass('bigBlueLink');">
+			<span id="clear_srch_params" title="Clear Search Parameters">
+				Clear
+			</span>
+		</a>
+	</div>
+	<div>
+		<a id="gridlink_updatematches" href="javascript:void(0)" title="Update Matches" onclick="srchlog('edit search update count','bottom');updateMatchCount();" class="bigBlueLink" onmouseover="$(this).addClass('bigBlueLink_hover');" onmouseout="$(this).addClass('bigBlueLink');" style="display:none;margin-right:9px;">
+			<span id="matchesdivtext">Update Count</span>
+		</a>
+		<a href="javascript:srchlog('edit search update view results','bottom');showResults();" id="gridlink_outermatch" style="display:none;" class="bigBlueLink" onmouseover="$(this).addClass('bigBlueLink_hover');" onmouseout="$(this).addClass('bigBlueLink');">
+			<span id="gridlink_match" title="Show Search Results">View Results</span><span id="matchesdiv"></span>
+		</a>
+	</div>
+</div>
+
+<div id="warningdiv" style="display:none"></div>
+
+<div id="sortmenudiv" style="display:none;overflow:auto;" class="flexdropdownmenu" onmouseover="sortstillMousingAround(this)" onmouseout="sortnotMousingAround(this)"></div>
+
+<div id="poweredbyflexmls" style="display: none; left: 307.5px;"><a href="http://www.flexmls.com/products/flexmls-idx/" target="_blank" class="poweredbyflexmls_link">Powered by flexmls IDX ®</a></div>
+
+<div id="loadingdiv" style="display:none;background-color:white;top:24px;padding:2px;text-align:center;filter:alpha(opacity=75); -moz-opacity:0.75; opacity:0.75;"><span>Loading <img src="/images/srch_rs/loading.gif" border="0" align="absmiddle"></span></div>
+
+
+<div id="approvepanel" data-title="Approve or Reject" style="display:none">
+	
+</div>
+
+<!-- Begin: Field Picking Dialog - now with the power of jQuery Dialog (CUR-11686) -->
+<div id="fieldPicker" style="display:none;">
+	<div id="fieldPicker_list"> &nbsp; </div>
+</div>
+<!-- End: Field Picking Dialog -->
+
+<div id="tabcheckdiv" style="display:none;">
+<img id="tabcheck" src="/images/trans1x1.gif" class="unchecked_icon" align="absmiddle" onclick="tabcheckClicked()"> <a href="javascript:tabcheckClicked()" id="tabcheckdiv_a">Select</a>
+</div>
+
+
+
+<div class="flexmls-ui-scope">
+  <span id="singlelistingpicturemediarestriction" class="flexmls-ui-scope label label-unapproved">Private</span>
+</div>
+<div id="floatingsmilies" style="display:none;">
+<img src="/images/trans1x1.gif" id="fav_out" onclick="markListing(rmxId(selectedlisting),'fav');" class="fav_icon" onmouseover="specialIconsTooltips(this,'Click here to mark this listing as Saved');" alt="Click here to mark this listing as Saved" align="absmiddle"><img src="/images/trans1x1.gif" id="rej_out" onclick="markListing(rmxId(selectedlisting),'rej');" class="rej_icon" onmouseover="specialIconsTooltips(this,'Click here to mark this listing as Hidden');" alt="Click here to mark this listing as Hidden" align="absmiddle"><img src="/images/trans1x1.gif" id="agt_out" onclick="markListing(rmxId(selectedlisting),'agt');" class="agt_icon" onmouseover="specialIconsTooltips(this,'Click here to mark this listing as Recommended');" alt="Click here to mark this listing as Recommended" align="absmiddle"><img src="/images/trans1x1.gif" id="rem_out" onclick="markListing(rmxId(selectedlisting),'rem');" class="rem_icon" onmouseover="specialIconsTooltips(this,'Click here to mark this listing as Hidden by Agent');" alt="Click here to mark this listing as Hidden by Agent" align="absmiddle"><img src="/images/trans1x1.gif" id="shn_out" onclick="showNotesDialog(selectedlisting,selListObj.list_nbr);" class="listing_note_icon" title="View or edit notes about this listing" alt="View or edit notes about this listing" align="absmiddle">
+</div>
+
+<div id="singlemodeactioniconset" style="display:none;">
+<img id="tabcheck30" src="/images/trans1x1.gif" class="unchecked_icon" align="absmiddle" title="Select this listing" alt="Select this listing" onclick="tabcheckClicked()">
+<img id="actions_button_singlemode" src="/images/trans1x1.gif" class="actions_icon_horz" align="absmiddle" alt="Open the action panel" title="Open the action panel" onclick="showActionsPanel(selectedlisting,true);event.cancelBubble=true;" style="margin-left:5px;margin-right:2px;">
+<img src="/images/trans1x1.gif" id="fav_out30" onclick="markListing(rmxId(selectedlisting),'fav');" class="fav_icon" title="Click here to mark this listing as Saved" alt="Click here to mark this listing as Saved" align="absmiddle" style="margin-left:3px;"><img src="/images/trans1x1.gif" id="rej_out30" onclick="markListing(rmxId(selectedlisting),'rej');" class="rej_icon" title="Click here to mark this listing as Hidden" alt="Click here to mark this listing as Hidden" align="absmiddle" style="margin-left:3px;"><img src="/images/trans1x1.gif" id="agt_out30" onclick="markListing(rmxId(selectedlisting),'agt');" class="agt_icon" title="Click here to mark this listing as Recommended" alt="Click here to mark this listing as Recommended" align="absmiddle" style="margin-left:3px;"><img src="/images/trans1x1.gif" id="rem_out30" onclick="markListing(rmxId(selectedlisting),'rem');" class="rem_icon" title="Click here to mark this listing as Hidden by Agent" alt="Click here to mark this listing as Hidden by Agent" align="absmiddle" style="margin-left:3px;">
+</div>
+
+<div id="searchtip" style="display:none;"></div>
+
+<div id="searchparam_dialog" title="Search Details" style="display:none;">
+	<div id="searchparamtip"></div>
+</div>
+
+<div id="reset_grid_dialog" title="Reset View Column Widths" style="display:none;">
+Please confirm you would like to reset the column widths for this View.
+</div>
+
+<div id="savequicksearch_dialog" title="Save Quick Search" style="display:none;">
+  <div id="savequicksearch_dialog_body"></div>
+</div>
+
+<div id="showallsearch_dialog" title="" style="display: none; height: 346px; max-height: 346px;">
+  <div id="showallsearch_dialog_body"></div>
+</div>
+
+<div id="pretty_dialog" title="" style="display:none;">
+	<div id="prettydialogbody"></div>
+</div>
+
+<div id="actions_dialog" style="display:none;">
+</div>
+
+<div id="saved_search_success_dialog" style="display:none;">
+</div>
+
+<div id="manage_subscriptions_dialog" style="display:none;">
+<div id="manage_subscriptions_body"></div>
+</div>
+
+<div id="my_account_dialog" style="display:none;">
+<div id="my_account_body"></div>
+</div>
+
+<link rel="stylesheet" href="//cdn.assets.flexmls.com/flexmls-ui/scoped-flexmls-ui-24bbda9e.css" media="all">
+<script type="text/javascript">window.OPT_OUT_FOCUS_VISIBLE = true;</script><script src="//cdn.assets.flexmls.com/flexmls-ui/flexmls-ui-178d3b72.js"></script>
+<script>var flexUIJQuery=jQuery.noConflict(true);</script>
+
+
+<div id="header-container" class="flexmls-ui-scope">
+  <div id="header">
+    <div class="u-flex-space-between">
+      <!-- ============================= TOP LEFT  =============================-->
+
+
+
+<div id="resultsheader" class="" style="">
+  
+<link rel="stylesheet" type="text/css" href="/client/srch_rs/portal15_menu-1246e8fd3767a9be3fc10c18cf06d08a.css" media="all">
+
+  
+  
+  <div id="p15_menu_button" class="btn btn-secondary">
+    Portal Menu
+    <span class="flexicon flexicon-chevron--small flexicon-90"></span>
+  </div>
+  <div id="p15_nav"><ul id="p15_menu_ul" class="ui-menu ui-widget ui-widget-content ui-corner-all" role="listbox" aria-activedescendant="ui-active-menuitem" style="height: 400px;"><div id="p15agentNavbar" onclick="quickNav.showOrHideProfileSection()"><div class="p15profilepic"><img style="" src="https://cdn.photos.sparkplatform.com/tar/20180220221543745687000000.jpg" onerror="$(this).parent().hide();$('#p15agentNavbar .agency-monogram').show()"></div><div class="agency-monogram" style="display:none;"><span class="monogram-initials">S</span></div><div class="p15agentName">Sarah Perry</div><div class="p15officeName">1st Heritage Realty</div><img style="border: medium none; margin-top:5px;" src="/images/trans1x1.gif" class="triangle_down_icon"></div> <li class="p15_menu_item" id="newsfeed" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/newsfeeds/results.html&amp;bypass=Y&amp;command_line_mode=true&amp;agent_id=20160712160949869486000000&amp;tech_id=20160712160949869486000000&amp;contact_id=20190206165051466854000000&amp;newsfeed_id=',false,true);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_newsfeed_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_newsfeed_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="View unread listings which have been emailed"> <span class="p15_count count_newsfeed count_inbox_notzero" id="count_undefined">50+</span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_newsfeed_blue"> <span class="p15_menu_item_text" style="font-weight:bold;color:#333333; width:50%; margin-bottom:5px">News Feed</span> </li> <hr><li class="p15_menu_item"><div class="p15_menu_header">Searches</div></li> <li class="p15_menu_item" id="agent_search" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/saved/step2run.html&amp;fromprospect=x\'20190206165051466854000000\'&amp;pt4m=x\'20190206165051466854000000\'&amp;searchlist=x\'20210408234104195970000000\'',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="2 Plex
+3 Plex
+4 Plex"> <span class="p15_count count_2/3/4plex-david " id="count_20210408234104195970000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_agent_search"> <span class="p15_menu_item_text" style=" ">2/3/4 Plex - David</span> </li> <li class="p15_menu_item" id="agent_search" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/saved/step2run.html&amp;fromprospect=x\'20190206165051466854000000\'&amp;pt4m=x\'20190206165051466854000000\'&amp;searchlist=x\'20210408232603828525000000\'',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="2br, 2ba, Central
+South of River
+North of 22nd
+East of I-10
+West of Kolb"> <span class="p15_count count_centraltucson-david " id="count_20210408232603828525000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_agent_search"> <span class="p15_menu_item_text" style=" ">Central Tucson - David</span> </li> <li class="p15_menu_item" id="agent_search" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/saved/step2run.html&amp;fromprospect=x\'20190206165051466854000000\'&amp;pt4m=x\'20190206165051466854000000\'&amp;searchlist=x\'20190206165027190441000000\'',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_agent_search_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="2 plex or 3 plex, all areas"> <span class="p15_count count_davidchristy-duplex " id="count_20190206165027190441000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_agent_search"> <span class="p15_menu_item_text" style=" ">David Christy - duplex</span> </li> <hr><li class="p15_menu_item"><div class="p15_menu_header">Listings</div></li>  <li class="p15_menu_item" id="saved" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/cart/viewcontents.html&amp;pt4mcart=true&amp;client_id=20190206165051505988000000&amp;pt4m=x\'20190206165051466854000000\'&amp;cart_id=20190206165051519502000000',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_saved_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_saved_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}"> <span class="p15_count count_saved " id="count_20190206165051519502000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_saved"> <span class="p15_menu_item_text" style=" ">Saved</span> </li> <li class="p15_menu_item" id="custom" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/cart/viewcontents.html&amp;pt4mcart=true&amp;client_id=20190206165051505988000000&amp;pt4m=x\'20190206165051466854000000\'&amp;cart_id=20190206165051524330000000',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_custom_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_custom_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}"> <span class="p15_count count_hidden " id="count_20190206165051524330000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_custom"> <span class="p15_menu_item_text" style=" ">Hidden</span> </li> <li class="p15_menu_item" id="recommended" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/cart/viewcontents.html&amp;pt4mcart=true&amp;client_id=20190206165051505988000000&amp;pt4m=x\'20190206165051466854000000\'&amp;cart_id=20190206165051533233000000',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_recommended_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_recommended_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}"> <span class="p15_count count_recommended " id="count_20190206165051533233000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_recommended"> <span class="p15_menu_item_text" style=" ">Recommended</span> </li> <li class="p15_menu_item" id="hidden_by_agent" onclick="quickNav.goto('/cgi-bin/mainmenu.cgi?cmd=url+search/cart/viewcontents.html&amp;pt4mcart=true&amp;client_id=20190206165051505988000000&amp;pt4m=x\'20190206165051466854000000\'&amp;cart_id=20190206165051528717000000',false,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_hidden_by_agent_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_hidden_by_agent_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}"> <span class="p15_count count_hiddenbyagent " id="count_20190206165051528717000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_hidden_by_agent"> <span class="p15_menu_item_text" style=" ">Hidden by Agent</span> </li>  <li class="p15_menu_item" id="links" onclick="quickNav.goto('https://www.flexmls.com/cgi-bin/view.cgi?20210408234156044192000000',true,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_links_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_links_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="View this Link received at 04:42 PM on 04/08/2021"> <span class="p15_count count_2/3/4plexlistings " id="count_20210408234156044192000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_links"> <span class="p15_menu_item_text" style=" ">2/3/4 Plex Listings</span> </li> <li class="p15_menu_item" id="links" onclick="quickNav.goto('https://www.flexmls.com/cgi-bin/view.cgi?20210408232629614492000000',true,false);" onmouseover="$(this).find('div img').addClass('p15_menu_icon_links_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').show();}" onmouseout="$(this).find('div img').removeClass('p15_menu_icon_links_hover'); if (navigator.platform != 'iPad' &amp;&amp; !(navigator.platform === 'MacIntel' &amp;&amp; navigator.maxTouchPoints > 1)) {$(this).find('.count_trash').hide();}" title="View this Link received at 04:27 PM on 04/08/2021"> <span class="p15_count count_centraltucsonlistings " id="count_20210408232629614492000000"></span>  <img src="/images/trans1x1.gif" class="p15_menu_icon_links"> <span class="p15_menu_item_text" style=" ">Central Tucson Listings</span> </li> <li>&nbsp;</li><li id="poweredbyipad">Powered by <img src="/images/flexmls-footer.png" title="flexmls"></li></ul></div>
+  <div class="p15agent-info-panel" style="display: none; left: -170px; top: 85px;">
+    <span id="closeX" onclick="quickNav.showOrHideProfileSection('hide')">X</span>
+      <div class="p15profilepic"><img style="" src="https://cdn.photos.sparkplatform.com/tar/20180220221543745687000000.jpg" onerror="$(this).parent().hide();$('.p15agent-info-panel .agency-monogram').show();"></div>
+      <div class="agency-monogram" style="display:none;"><span class="monogram-initials">S</span></div>
+      <div class="p15agentName">Sarah Perry</div>    
+      <header>Contact</header>
+      
+      <header class="sub-header">Phone</header>
+      <div class="phoneJs"><a href="tel:+17018382852">520-820-8651</a></div>
+      
+      
+      <header class="sub-header">Email</header>
+      <div class="emailJs"><a href="mailto:sarahmariaperry@gmail.com">sarahmariaperry@gmail.com</a></div>
+      
+      
+      <div class="office-section">
+          <header>Office</header>
+          <div class="agency-monogram">
+              <span class="monogram-initials">1</span>
+          </div>
+          <div class="p15agencyName">1st Heritage Realty</div>
+      </div>
+  </div>
+    
+<select id="newsfeed_mode" name="newsfeed_mode" onchange="newsfeedModeChange()" class="flexdropdownmenu form-control" style="margin-top: 12px; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; position:relative; top:-1px;">
+  <optgroup label="Notifications">
+  <option value="unviewed">Unread Notifications</option>
+  <option value="all" selected="">All Notifications</option>
+</optgroup></select>
+<div id="resultsheaderNoLink" class="t-title--largest u-overflow-ellipsis" style="display:none;">
+<span id="resultsheaderNoLinkText" title="News Feed">News Feed</span>
+</div>
+<div class="u-hidden">
+<div id="new_quicksearch" style="display:none;">
+  <select name="quick_srche" id="quick_srche" size="10" onchange="loadNewQuickSearch(this.selectedIndex);"></select>
+</div>
+</div>
+
+
+  <div id="qs-template-chooser" class="dropdown" style="display:none;">
+    <button id="searchtab_quicksearch" class="btn btn-title c-dropdown--trigger" data-toggle="dropdown" onclick="srchlog('quicksearch', 'edit search subtab click');changeSearchSubTab('open_quick_search');">
+      <span class="t-title--largest u-overflow-ellipsis" title="News Feed">News Feed</span>
+    </button>
+    <button class="btn btn-plain c-dropdown--trigger choose-qs-helper" type="button" data-toggle="dropdown" onclick="srchlog('quicksearch', 'edit search subtab click');changeSearchSubTab('open_quick_search');">
+      Change Search Template
+      <span class="flexicon flexicon-chevron--small flexicon-90"></span>
+    </button>
+    <ul id="quick_srches" class="dropdown-menu"></ul>
+  </div>
+
+
+
+  <div id="timediv-container" class="u-hidden">
+    <span id="timediv" title="this is server side time from beginning of allsearch (query) to end of allsearch: ms(ml) means memcache reset from search cause it was missing, ms(np) means memcache reset from search cause new page needed" nowrap=""></span>
+    <span id="timedivm" title="this is server side time from beginning of search (fetching data) to end of search" nowrap=""></span>
+    <span id="timedivjs" title="this is the time of client side javascript execution of search ajax return" nowrap=""></span>
+    <span id="timedivcachecounts" style="font-size:8pt" title="green number is cached hits, red is missed cached" nowrap=""></span>
+  </div>
+
+</div> <!-- /#resultsheader -->
+
+<!--=========================== TOP RIGHT ===========================-->
+
+<script>
+  
+  var idsOfButtonsToHide = [];
+</script>
+
+<div id="menuicons_container" class="">
+  <div id="menuicons">
+    <div class="menuicon-button-container" style="display:none;"><a class="filemenu btn btn-sm btn-secondary" href="javascript:void(0);" id="workOnBehalfLink"></a></div>
+<script>idsOfButtonsToHide.push("dashboardlink");</script>
+<div class="menuicon-button-container" id="dashboardlink" style="display:none;"><a class="filemenu btn btn-sm btn-secondary" href="javascript:void(0);" onclick="srchlog('home','menu click');gotoPortalHome(event);return false;" title="My Account">My Account</a></div>
+<div class="menuicon-button-container" id="contactusfilemenu"><a class="filemenu btn btn-sm btn-secondary" href="javascript:void(0);" onclick="srchlog('contactUs','menu click');icon_contact(this,event);return false;" title="Contact Us">Contact</a></div>
+<div id="sharepanel_dialog" title="Share Listing(s)" style="display:none">  <table cellpadding="0" cellspacing="3" width="100%" height="130">    <tbody><tr height="1%" id="shareselectionrow">      <td colspan="2" nowrap="" style="padding-bottom:10px"><b>Listings to share:</b>        <input type="radio" name="shareradio" id="shareradioOne" value="one" checked="">        <label for="shareradioOne">Current</label>        <input type="radio" name="shareradio" id="shareradioMulti" value="multi">        <label for="shareradioMulti">Selected</label>      </td>    </tr>    <tr height="98%">      <td valign="top" width="50%">        <a href="javascript:srchlog('facebook','share results');sharewindow = window.open();sharelink('facebook');">          <img src="/images/trans1x1.gif" class="facebook_icon" style="margin:2px;margin-right:3px;" align="absmiddle">Facebook        </a>        <a href="javascript:srchlog('email','share results');sharelink('email');">          <img src="/images/trans1x1.gif" class="email_icon" style="margin:2px;" align="absmiddle">Email        </a>      </td>      <td valign="top" width="50%">        <a href="javascript:srchlog('twitter','share results');sharewindow = window.open();sharelink('twitter');">          <img src="/images/trans1x1.gif" class="twitter_icon" style="margin:2px;margin-right:4px;" align="absmiddle">Twitter        </a>        <a href="javascript:srchlog('permalink','share results');sharelink('permalink');">          <img src="/images/trans1x1.gif" class="link_icon" style="margin:2px;margin-right:3px;" align="absmiddle">Permalink        </a>      </td>    </tr>    <tr height="1%" id="permalinkrow">      <td colspan="2" style="padding-top:10px">        <b>Please copy and paste <a href="" id="permalinklink" target="_blank" style="text-decoration:underline">this link</a> to share:</b>        <input type="text" id="permalinkinput" name="permalinkinput" size="35">      </td>    </tr>  </tbody></table></div>
+<div class="menuicon-button-container" id="helplink"><a class="filemenu btn btn-sm btn-secondary" href="javascript:void(0);" onclick="srchlog('help','menu click');idx_get_help();return false;" title="Help">Help</a></div>
+<script>idsOfButtonsToHide.push("logofflink");</script>
+<div class="menuicon-button-container" id="logofflink" style="display:none;"><a class="filemenu btn btn-sm btn-secondary" href="javascript:void(0);" onclick="logOffPortal();return false;" title="Log Off">Log Off</a></div>
+<div class="menuicon-button-container" id="loginlink"><a class="filemenu btn btn-sm btn-secondary" href="javascript:void(0);" onclick="portallogon(null,null,'Log In');return false;" title="Portal Log In">Log In</a></div>
+<script>idsOfButtonsToHide.push("search-details");</script>
+
+<script>idsOfButtonsToHide.push("jump-to-listing");</script>
+
+<div class="menuicon-button-container  dropdown" id="more-ellipses"><a class="filemenu btn btn-sm btn-secondary  dropdown-trigger" title="More" data-toggle="dropdown"><span class="flexicon flexicon-toggler flexicon-ellipsis"></span></a><ul class="dropdown-menu dropdown-menu-right"><li id="jump-to-listing"><a class="" href="javascript:void(0);" onclick="srchlog('jump-to-listing','menu click');return false;" title="Jump to Listing" data-toggle="modal" data-target="#jump-to-listing-modal">Jump to Listing</a></li><li id="search-details"><a class="" href="javascript:void(0);" onclick="srchlog('searchDetails','menu click');showSearchParametersModal();return false;" title="Search Details">Search Details</a></li></ul></div>
+
+  </div> <!-- /#menuicons -->
+</div> <!-- /#menuicons_container -->
+
+<!-- 'Work On Behalf Of Contact' modal -->
+<div class="modal" id="work-on-behalf-modal" tabindex="-1">
+  <div class="modal-dialog modal-sm c-modal">
+    <div class="c-modal__header">
+      <div class="t-title--large">Work on behalf of a contact</div>
+    </div>
+
+    <div class="c-modal__content">
+      <div class="form-group">
+        <label for="contactRemoteLookup">Enter contact name</label>
+        <input class="form-control" type="text" id="contactRemoteLookup">
+      </div>
+      <input type="text" id="contactRemoteLookupPlain" style="display:none">
+    </div>
+
+    <div class="c-modal__footer">
+      <button class="btn btn-tertiary" data-dismiss="modal" type="button">
+        Cancel
+      </button>
+      <button class="btn btn-primary" data-dismiss="modal" type="button" onclick="workForClient(true);">
+        OK
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 'CMA' modal -->
+<div class="modal" id="cma-modal" tabindex="-1">
+  <div class="modal-dialog modal-sm c-modal">
+    <div class="c-modal__header">
+      <div class="t-title--large">CMA Menu</div>
+    </div>
+
+    <div class="c-modal__content"></div>
+
+    <div class="c-modal__footer">
+      <button class="btn btn-primary" data-dismiss="modal" type="button">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 'Search Details' modal -->
+<div class="modal" id="search-details-modal" tabindex="-1">
+  <div class="modal-dialog modal-sm c-modal">
+    <div class="c-modal__header">
+      <div class="t-title--large">Search Details</div>
+    </div>
+
+    <div class="c-modal__content"></div>
+
+    <div class="c-modal__footer">
+      <button class="btn btn-primary" data-dismiss="modal" type="button">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 'Jump to Listing' modal -->
+<div class="modal" id="jump-to-listing-modal" tabindex="-1">
+  <div class="modal-dialog modal-sm c-modal">
+    <div class="c-modal__header">
+      <div class="t-title--large">Jump to Listing</div>
+    </div>
+    
+    <div class="c-modal__content">
+      <form onsubmit="jumpToListing();return false;">
+        <div class="form-group">
+          <label class="control-label" for="selectedinput">Enter number</label>
+          <input class="form-control" id="selectedinput" size="4" min="1" type="number">
+        </div>
+      </form>
+    </div>
+
+    <div class="c-modal__footer">
+      <button class="btn btn-tertiary" data-dismiss="modal" type="button" onclick="toggleJumpToListingError(false);">
+        Cancel
+      </button>
+      <button class="btn btn-primary" type="button" onclick="jumpToListing();">
+        OK
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Ellipses button setup
+  var $menuicons = $('#menuicons'),
+      $moreButton = $menuicons.find('#more-ellipses'),
+      $ellipsesButtonDropdown = $moreButton.find('.dropdown-menu'),
+      $button, $li,
+      hideButtonBehindEllipses = function hideButtonBehindEllipses(id,upfront) {
+        $button = $menuicons.find('#' + id);
+
+        if ($button.length && $button.is(':visible')) {
+          if (upfront) {
+            $li = $('<li>')
+            .attr('id', $button.attr('id'))
+            .prependTo($ellipsesButtonDropdown);
+          } else {
+            $li = $('<li>')
+            .attr('id', $button.attr('id'))
+            .appendTo($ellipsesButtonDropdown);
+          }
+
+          $button.remove();
+          $button.find('a')
+            .removeClass()
+            .appendTo($li);            
+        }
+      },
+      showButtonFromBehindEllipses = function showButtonFromBehindEllipses(id) {
+        $button = $moreButton.find('#' + id);
+        $button.find('a').addClass('filemenu btn btn-sm btn-secondary').insertBefore($moreButton).wrap("<div class='menuicon-button-container' id='"+id+"'></div>");
+      };
+
+  idsOfButtonsToHide.forEach(hideButtonBehindEllipses);
+  if ($ellipsesButtonDropdown.children().length === 0) {
+    $moreButton.hide();
+  }
+  
+  // Disable listing selector (key up/down listener) when WOBO modal is shown.
+  flexUIJQuery('#work-on-behalf-modal')
+    .on('shown.bs.modal', disableLSelector)
+    .on('hidden.bs.modal', enableLSelector);
+  
+  // Clear error message from 'Jump to Listing' modal when hiding.
+  flexUIJQuery('#jump-to-listing-modal')
+    .on('shown.bs.modal', function() {
+      var $selectedInput = $('#selectedinput');
+      if (selectedInd) $selectedInput.val(selectedInd);
+      if (results_totallistings) $selectedInput.attr('max', results_totallistings);
+    })
+    .on('hidden.bs.modal', function() {
+      toggleJumpToListingError(false);
+    });
+
+  var resizeTimer;
+  function topMenuAdjustments() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+    var width2check = 350+portalMenuWidth;  
+    if ($('#menuicons_container').offset().left < width2check) {
+      if ($("#report-violation-button").is(":visible")) {
+        hideButtonBehindEllipses("report-violation-button",true);  
+      }
+      if ($('#menuicons_container').offset().left < width2check) {
+        if ($("#schedule-showing-button").is(":visible")) {
+          hideButtonBehindEllipses("schedule-showing-button",true);  
+        }
+        if ($('#menuicons_container').offset().left < width2check) {
+          if ($("#tax-lookup-button").is(":visible")) {
+            hideButtonBehindEllipses("tax-lookup-button",true);  
+          }
+          if ($('#menuicons_container').offset().left < width2check) {
+            if ($("#cma").is(":visible")) {
+              hideButtonBehindEllipses("cma",true);  
+            }
+          }            
+        }          
+      }      
+    } else {
+      if ($('#menuicons_container').offset().left - width2check > 50) {
+        if (!$("#cma").is(":visible")) {
+          showButtonFromBehindEllipses("cma");  
+        }
+      }
+      if ($('#menuicons_container').offset().left - width2check > 50) {
+        if (!$("#tax-lookup-button").is(":visible")) {
+          showButtonFromBehindEllipses("tax-lookup-button");  
+        }      
+      }
+      if ($('#menuicons_container').offset().left - width2check > 100) {
+        if (!$("#schedule-showing-button").is(":visible")) {
+          showButtonFromBehindEllipses("schedule-showing-button");  
+        }      
+      }
+      if ($('#menuicons_container').offset().left - width2check > 100) {
+        if (!$("#report-violation-button").is(":visible")) {
+          showButtonFromBehindEllipses("report-violation-button");  
+        }      
+      }
+    }
+    }, 250);
+  }
+</script>
+
+    </div>
+    <div class="u-flex-space-between">
+      <!------------------------------ BOTTOM LEFT ------------------------------>
+
+<div id="bottom-left-header-wrapper">
+	<div id="autosave-timestamp"></div>
+</div>
+
+<!------------------------------ BOTTOM RIGHT ------------------------------>
+
+
+<div id="tabrow" class=""><div id="tabrowinner">
+<ul class="c-nav c-nav-tabs c-nav-tabs-noborderbottom" data-flexmls="nav-tabs">
+<li style="display:none;"><a onclick="editSearch();srchlog('Edit Search','tab click');" id="tab_search" title="Change Search Criteria">Edit Search</a></li>
+<li class="active"><a onclick="clickTab(this.id,null,null,'mouse');srchlog('List','tab click');" id="tab_grid" title="View Results in a List">List</a></li>
+<li><a onclick="clickTab(this.id);srchlog('Detail','tab click');" id="tab_detail" title="Review Listings in Detail">Detail</a></li>
+<li><a onclick="clickTab(this.id);srchlog('Tour','tab click');" id="tab_tour" title="View Photos, Videos, and Virtual Tours">Photos</a></li>
+<li><a onclick="clickTab(this.id);srchlog('Map','tab click');" id="tab_map" title="Locate Listings on a Map">Map</a></li>
+<li style="display:none;"><a onclick="clickTab(this.id);srchlog('Compare','tab click');" id="tab_stats" title="Compare Listings">Compare</a></li>
+<li style="display:none;"><a onclick="clickTab(this.id);srchlog('Messages','tab click');" id="tab_notes" title="Messages About Listings">Messages</a></li>
+<li class="u-hidden" style="display: list-item;"><a id="no_tab">&nbsp;</a></li>
+
+</ul>
+</div></div>
+
+<div id="upper_left_group">
+	<table border="0" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td style="position:relative;top:18px;">
+				<span id="search_results_blue_counter">&nbsp;</span>
+				<span id="listings_in_div">listings</span>
+
+			</td>
+			<td align="right">
+				<div class="btn btn-sm btn-primary" id="bbb_view_results" onclick="showResults();" style="display:none">View Results</div>
+				<div class="btn btn-sm btn-primary" id="bbb_edit_search" style="display:none" onclick="editSearch();">Edit Search</div>
+				<div class="btn btn-sm btn-primary" id="bbb_new_search" style="display:none" onclick="">New Search</div>
+				<div class="btn btn-sm btn-secondary" id="grey_save_this_search" onclick="fireSave('search');" style="display:none">Save this Search</div>
+				<div class="btn btn-sm btn-secondary" id="mark_all_as_read" onclick="markAllAsRead();" style="">Mark All As Read</div>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+    </div>
+  </div>
+  <div id="header-separator" class="c-section__separator"></div>
+</div>
+
+
+<div id="idx_link_name_dialog" title="Save Menu" style="display:none">
+  <div style="margin:5px;">
+    <div style="font-weight:bold;">Name</div>
+    <input type="text" id="idx_link_name" maxlength="50">
+
+    <div style="margin-top:25px; margin-bottom:10px">
+      Name will be used for both IDX link and associated saved search
+    </div>
+  </div>
+</div>
+
+<div id="emailnotify" title="Email Updates" style="display:none">
+<input type="checkbox" id="mysearchautoemail"><label for="mysearchautoemail"> Daily Email Updates</label>
+</div>
+
+
+
+	
+	
+
+
+<div id="firsttimeindiv" class="" style="width: 565px; height: 477px;"><table align="center" border="0" width="90%" height="90%"><tbody><tr><td valign="middle" align="center" id="firsttimeindiv_innerds"><span>Loading <img src="/images/srch_rs/loading.gif" border="0" align="absmiddle"></span></td></tr></tbody></table></div>
+
+	<iframe id="gridinlineiframe" class="" style="display: none; width: 565px; height: 477px;" src="" frameborder="0"></iframe>
+	<div id="grid" class="" style="width: 565px; height: 477px; border-right: 1px solid rgb(207, 207, 207);">
+    <div id="findfielddiv" class="item" style="display: none;"><input aria-label="Add field to this search" id="findfield" onfocus="userFieldPickerInput(this);" onblur="resetFieldPickerInput(document.getElementById('findfield'));" onclick="userFieldPickerInput(this);" onkeydown="return fieldPicker_matchFields(event,this);" value="Add a field to the search"></div>
+		<div id="singlegriddiv" style="display: none; width: 565px; height: 446px;"></div>
+		<div id="singlegriddiv_blackout" style="display: none; width: 565px; height: 446px;"></div>
+		
+        <div id="searchgriddiv" class="" style="display: none; width: 565px; height: 396px;">
+
+<script type="text/javascript" src="/client/srch_rs/scrollfl_relate-dff14fe1ce78e8f98c83ce18ae549690.js"></script>
+
+<script type="text/javascript">
+String.prototype.trim = function() {
+	return this.replace( /^\s+|\s+$/, "" );
+}
+var a='',b='',c='',d='',e='',f='',g='';
+
+var scrollfl_ma_tech_id="x'20091028173201638455000000'";
+
+// 
+var brokerload_scrollfl_relate = false;
+var brokerload_add_listing = false;
+
+// if brokerload_update_listing is true, then the Listing[] structure and items[] list in the FieldType structure are updated
+var brokerload_update_listing = false;
+
+// brokerload_1child_sel is used to determine whether a child field
+// with one element has that element automatically selected
+var brokerload_1child_sel = false;
+
+// New lookups using select2 in listing maintenance can be cleared;
+// they are based solely on the content of the backing <select>
+// control
+var brokerload_scrollfl_clear_lookup_fields = false;
+
+// Optional, and set outside of this script.
+// Should be set to the MLS whose scrollfl_relate columns we want to check.
+var scrollfl_ma_tech_id;
+
+// field_id_list is only consulted if use_field_id_list is set to true.
+// a multi-dimentional array with three cells in the second dimension:
+// [0]:  id of the element
+// [1]:  field_id
+// [2]:  an array of values and innerHTML of options. used for restoring
+//       original set of options.
+var field_id_list = new Array();
+var use_field_id_list = false;
+
+/* Also only applicable if use_field_id_list == true.
+      Points to an elsewhere defined function, called in loadField_done, 
+      and is passed the id of the parent select. */
+var loadFieldFinishFunc;
+
+// 
+var RelatedFields = new Array();
+var Parents = new Array(); // 
+
+//
+
+
+//
+_AP();
+
+
+
+
+
+/* BEGIN CUR-21779 RESEARCH RESOURCES */
+
+// RateMinder keeps track of when and how many times increment has been called, and if a
+// specified threshold is reached, calls a callback. Callback will be passed the RateMinder instance.
+function RateMinder(target_count, interval, callback) {
+    this.id = ("0000000000"+Math.round(Math.random() * 10000000000).toString()).slice(-10); // a "unique" 10-digit ID to help us correlate things, just in case it's useful
+    this.callback = callback;
+    this.events = [];
+    this.total_count = 0;
+    this.target_count = target_count;
+    this.interval = interval;
+    this.halt = false; // if this is set to true, eg in the callback, it will stop the rateminder from continuing to mind the rate of increment calls
+}
+
+RateMinder.prototype.increment = function (optional_data) { // additional data
+    if (this.halt) return;
+    this.total_count++; 
+    var time = this.getTime();
+    var event = {
+        timestamp: time
+    };
+    if (optional_data) {
+        event.data = optional_data;
+    }
+    this.events.push(event);
+    this._cullEvents(time);
+    if (this.events.length >= this.target_count) {
+        if (typeof(this.callback) === 'function') {
+            this.callback.call(null, this);
+        }
+        this._clearEvents();
+    }
+}
+
+RateMinder.prototype.getCount = function () {
+    return this.events.length;
+}
+
+RateMinder.prototype.getTotalCount = function () {
+    return this.total_count;
+}
+
+RateMinder.prototype.getTime = function () {
+    return new Date().getTime();
+}
+
+// returns the time range represented by the current events, oldest event - newest event
+RateMinder.prototype.getRange = function () {
+    if (this.events.length === 0) {
+        return 0;
+    }
+    return this.events[this.events.length - 1].timestamp - this.events[0].timestamp;
+}
+
+RateMinder.prototype._clear = function () {
+    this.events = [];
+    this.total_count = 0;
+    this.halt = false;
+}
+
+RateMinder.prototype._clearEvents = function () {
+    this.events = [];
+}
+
+RateMinder.prototype._cullEvents = function (time) {
+    var that = this;
+    this.events = this.events.filter(function (event) {
+        return event.timestamp > time - that.interval;
+    });
+}
+
+
+// create a RateMinder for detecting 100 increments within a single minute
+var loadFieldRateMinder = new RateMinder(100, 60 * 1000, function (rm) {
+    rm.halt = true; // stop this from repeatedly firing
+    var data = {
+       id: rm.id,
+       total_count: rm.getTotalCount(),
+       range: rm.getRange(),
+       first_10_events: rm.events.slice(0, 10),
+       last_10_events: rm.events.slice(-10)
+    };
+
+    // Bugsnag will generate a stacktrace for us
+    Bugsnag.notify("RateMinder-loadField", JSON.stringify(data));
+});
+
+
+/* END CUR-21779 RESEARCH RESOURCES*/
+
+
+
+
+
+
+
+
+// 
+function loadField( field_id, select_control, field_list, called_from_onchange )
+{
+   try {
+      loadFieldRateMinder.increment({field_id: field_id, field_list: field_list});
+   } catch (e) {}
+   
+   var s = new Array();
+   if (typeof(additional_ajax_params) == 'undefined' || !additional_ajax_params) additional_ajax_params = '';
+   
+   s.push('cmd=srv+srch/scrollfl_relate_load_field.html&field_id=' + escape( field_id ) + additional_ajax_params + '&card_fmt_list=');
+   s.push( escape('\'--\'') );
+   s.push( '&extra_limit=' + escape(''));
+   
+   /* Added for PUB-1432 */
+   s.push( '&tech_id=x\'20091028173201638455000000\'' );
+
+   //
+   s.push( '&occall=' + (called_from_onchange ? 'true' : 'false') )
+
+   if( !field_list )
+   {
+      var o = select_control.options;
+      if( select_control.type == 'select-multiple' )
+      {
+         var len = o.length;
+         for( var i = 0; i < len; i++ )
+            if( o[i].selected )
+               s.push('&val=' + escape( o[i].value ) );
+      }
+      else
+      {
+         if( select_control.selectedIndex >= -1 )
+            s.push('&val=' + escape( o[select_control.selectedIndex].value ) );
+      }
+   }
+   else
+   {
+      for( var i = 0; i < field_list.length; i++ )
+         s.push('&val=' + escape( field_list[i] ) );
+   }
+   if( s.length > 1 )
+   {
+      s.push( '&quote=' + (quote == "'" ? 'true' : 'false') );
+      
+      if (scrollfl_ma_tech_id)
+        s.push( '&srch_ma_tech_id=' + scrollfl_ma_tech_id );
+      
+      loadJavaScriptDoc( 'querystring', 'mainmenu.cgi', s.join('') );
+   }
+}
+</script>
+<script>
+	var scrollsize = 5;
+  if (scrollsize < 5 && jQuery.browser.mozilla)
+    scrollsize = 5;
+	var srch_number_type = 'N';
+	var searchOptionsVisible = true;
+</script>
+<form name="inputform" id="inputform" action="/cgi-bin/mainmenu-compress.cgi" method="post" onsubmit="return false;"><input type="hidden" name="cmd" value="srv srch/compile.html"><input type="hidden" name="bas_link_tech_id" value=""><input type="hidden" name="ma_tech_id" value="x'20091028173201638455000000'"><input type="hidden" name="public_idx" id="public_idx" value="false"><ul class="search" id="searchList"><li id="listAdditionalOptions" onclick="toggleSearchOptions();"><span id="addlExpCol" style="font-size:12pt;">-</span> Additional Search Options</li><li id="adv_picture" class="item"></li><li id="adv_video" class="item"></li><li id="adv_document" class="item"></li><li id="adv_vtour" class="item"></li><li id="adv_openhouse" class="item"></li><li id="adv_tour" class="item"></li><li id="adv_cart" class="item"></li></ul><div id="hiddenFormElements"></div></form>
+<ul id="hiddenSearchList" style="display:none;"></ul>
+<form name="fieldform" id="fieldform" action="/cgi-bin/mainmenu.cgi" method="post">
+	<input type="hidden" name="cmd" value="srv+srch/getFields.html">
+	<input type="hidden" name="field_restrict" value="true">
+	<input type="hidden" name="noFieldCheck" value="false">
+	<input type="hidden" name="firstLoad" value="">
+	<input type="hidden" name="card_fmt_list" value="">
+	<input type="hidden" name="prop_type_list" value="">
+	<input type="hidden" name="ma_search_list" value="">
+	<input type="hidden" name="uloc" value="true">
+	<div id="field_restrict_list"></div>
+</form>
+
+<script type="text/javascript">
+
+use_field_id_list = true;
+loadFieldFinishFunc = scrollflrelate_checkRelatedupdateChildSelects;
+document.getElementById("searchList").innerHTML = getAdvancedSearchHTML();
+var srch_source = "newsfeed";
+var template_id = "";
+srch_mls.push({"tech_id":"x'20091028173201638455000000'","name":"MLS of Southern Arizona","abbr":"tar","card_fmt_list":[{"code":"A","name":"Residential","prop_group_id":"19990816212109142258000000","non_public":false},{"code":"B","name":"Land-Lot","prop_group_id":"19990816212131825981000000","non_public":false},{"code":"C","name":"Multi-Family","prop_group_id":"19990816212116581394000000","non_public":false},{"code":"D","name":"Commercial","prop_group_id":"19990816212116581394000000","non_public":false},{"code":"E","name":"Rental","prop_group_id":"20010809200717574625000000","non_public":false},{"code":"F","name":"Commercial Lease","prop_group_id":"19990816212135227274000000","non_public":false},{"code":"G","name":"Farm & Ranch","prop_group_id":"19990816212136977397000000","non_public":false}],"prefix":false,"default_select":true});
+search.push( new Criteria('list', 'tech_id', 'in', 'x\'20220314070948840414000000\',x\'20220402165141986811000000\',x\'20220303045629292939000000\',x\'20220331154904201212000000\',x\'20220402205003796621000000\',x\'20220402163629155936000000\',x\'20220314174416519828000000\',x\'20220228163035855129000000\',x\'20220402175224312114000000\',x\'20220315220730769048000000\',x\'20220314195313187057000000\',x\'20220228214257457198000000\',x\'20220331010416263722000000\',x\'20211215204232763320000000\',x\'20220401154855033818000000\',x\'20220330210938733239000000\',x\'20220330181054832312000000\',x\'20220110192530216938000000\',x\'20211102203253232029000000\',x\'20220309181140201923000000\',x\'20220101163257731623000000\',x\'20220331202308130315000000\',x\'20220223042840118093000000\',x\'20220327222452500064000000\',x\'20220317210444218710000000\',x\'20220201051718580391000000\',x\'20220302212803292201000000\',x\'20220113205100812540000000\',x\'20220329211322474060000000\',x\'20220330175817270907000000\',x\'20220322153830251695000000\',x\'20220316195050742403000000\',x\'20211216231639177502000000\',x\'20211231214241062588000000\',x\'20211111150444585313000000\',x\'20220322205043710786000000\',x\'20220328024519158701000000\',x\'20220129151754943066000000\',x\'20220128182057184799000000\',x\'20220328141158457676000000\',x\'20210927230634830173000000\',x\'20220327183424335671000000\',x\'20220307190016242483000000\',x\'20220326222345969801000000\',x\'20220325135007082420000000\',x\'20220326175557301303000000\',x\'20220322064458365219000000\',x\'20220316022238153755000000\',x\'20220317230150046124000000\',x\'20220325223637525859000000\'', '22206798,22208385,22205625,22208335,22208352,22208338,22208350,22208110,22208340,22208095,22207127,22208282,22208240,22201867,22208192,22208167,22208144,22200785,22128289,22206140,22200031,22208100,22205294,22208039,22207598,22202834,22208030,22201140,22208041,22208040,22207487,22206763,22202920,22200397,22129319,22207388,22207770,22203569,22207402,22207802,22124916,22207753,22205952,22207731,22207566,22207719,22207512,22206772,22207006,22207662', '', '') );</script>
+</div>
+		
+		<div id="options_summary" class="optionsClass" style="width: 555px;">
+			<div style="float:left;height:27px;" id="opt_sum_left_div">
+			<span class="left_subtabs" id="grid_subtabs" style="left: 7px; width: 443px;">
+					<a id="gridlink_hotsheet" class="subTab" href="javascript:showResults();" style="display:none" onmouseover="dropdownmenu(this, event, hotsheetmenu, '150px')" onmouseout="delayhidemenu()"><span id="hotsheetlabel"></span> <img src="/images/trans1x1.gif" class="triangle_down_icon" border="0"></a>
+					<a id="gridlink_results" class="subTab_selected" href="javascript:showResults();" title="Show All Listings" style="display: none;">View All<span id="results_totaldiv"> (0)</span></a>
+					<a id="gridlink_cart" class="subTab" href="javascript:showSelected();" title="Show Selected Listings">View Checked<span id="cart_totaldiv"> (0)</span></a>
+					<a id="removeCartLink" class="removelink" href="javascript:void(0);" onclick="removeSelectedListingsFromCarts()" title="Remove selected listings from cart" style="display:none"><img src="/images/trans1x1.gif" class="delete_icon" style="margin-right:5px" align="absmiddle">Remove</a>
+					<span id="listabmessageicons">
+					
+					</span>
+					<span id="miniactioniconset">
+					  <img src="/images/trans1x1.gif" class="share_icon" onclick="cart_totallistings?showSharePanel(event,true,true):$.growl('Please select listings to Share',{typ:'attention'});" align="middle" alt="Share checked listings" title="Share checked listings" style="margin-right:5px;display:none">
+					  <img src="/images/trans1x1.gif" class="print_icon" onclick="cart_totallistings?firePrint('selected'):$.growl('Please select listings to Print',{typ:'attention'});" align="middle" alt="Print checked listings" title="Print checked listings" style="margin-right:5px">
+					  <img src="/images/trans1x1.gif" class="save_icon" onclick="cart_totallistings?fireSave('selected'):$.growl('Please select listings to Save',{typ:'attention'});" align="middle" alt="Save checked listings to a collection" title="Save checked listings to a collection" style="margin-right:5px;">
+					</span>
+				</span>
+				<div style="display:none;">
+				<!--<a id="gridlink_edit" href="javascript:editSearch();" title="Edit Search">Edit&nbsp;Search</a>-->
+				<table id="sr3poin0searchheader" style="display: none; width: 555px;" cellpadding="0" cellspacing="0" border="0">
+				<tbody><tr><td align="left"><span id="largesearchtitle">Search</span></td>
+				<td align="right"><a href="javascript:void(0);" title="Clear Search Parameters" onclick="srchlog('edit search clear','click');searchClearAll();return false;">Reset Search</a></td></tr>
+				</tbody></table>
+				<a id="topgridlink_updatematches" href="javascript:void(0)" title="Update Count" onclick="srchlog('edit search update count','top');updateMatchCount();" style="display:none;margin-left:5px"><span id="top_matchesdivtext" class="bigBlueLink" onmouseover="this.className='bigBlueLink_hover';" onmouseout="this.className='bigBlueLink';">Update Count</span></a>
+				<a href="javascript:srchlog('edit search update view results','top');showResults();" id="topgridlink_outermatch" style="display:none;"><span id="top_gridlink_match" class="bigBlueLink" title="Show Search Results" onmouseover="this.className='bigBlueLink_hover';" onmouseout="this.className='bigBlueLink';">View Results</span><span id="top_matchesdiv" class="bigBlueLink" onmouseover="this.className='bigBlueLink_hover';" onmouseout="this.className='bigBlueLink';"></span></a>
+				</div>
+			</div>
+			<span class="movebut" style="float:right;margin-right:3px;margin-top:3px;padding-top:3px;padding-bottom:3px;display:none" id="hidegridbut" title="Click to hide this panel" onclick="moveGrid('hide');"><img src="/images/trans1x1.gif" alt="" class="arrowleft_icon"></span>
+			<span id="switchviewdiv" style="float:right; padding-right:3px">
+				
+				<select name="new_sd_tech_id" id="new_sd_tech_id" size="1" onchange="srchlog('change view','',false,rmxId(this.value));viewSelectBoxFixForIE(this.value);" onmousewheel="return false;" style="display: none;">
+				<option value="x'20190920201736614504000000'">[1 - Residential *]</option>
+<option value="x'20091204194201039768000000'">[2 - Land/Lot  *]</option>
+<option value="x'20091207193524776701000000'">[3 - Multi-Family *]</option>
+<option value="x'20091207193536264318000000'">[4 - Commercial *]</option>
+<option value="x'20181213211918178970000000'">[7 - Farm and Ranch *]</option>
+<option value="x'20160712160949968836000000'" selected="">[Default view]</option>
+<option value="x'20091208170649603660000000'">[General *]</option>
+<option value="x'20180508215605671799000000'">[General]</option>
+<option value="x'20100329154238853396000000'">[Member IDX View Template *]</option>
+<option value="x'20110210174250014189000000'">[Open House IDX View *]</option>
+<option value="x'20180214181112560065000000'">[Tour View-GVSAR *]</option>
+<option value="x'20180215201730127194000000'">[Tour View-SCCBR *]</option>
+
+				</select>
+				&nbsp;
+			</span>
+			<script>
+				try {
+				if (!using_custom_sort && sortorder.indexOf('card_fmt')==-1) {
+sortobj['card_fmt'] = 'A';
+sortorder.push('card_fmt');
+}
+if (!using_custom_sort && sortorder.indexOf('status')==-1) {
+sortobj['status'] = 'A';
+sortorder.push('status');
+}
+if (!using_custom_sort && sortorder.indexOf('list_price')==-1) {
+sortobj['list_price'] = 'A';
+sortorder.push('list_price');
+}
+if (!using_custom_sort && sortorder.indexOf('total_sqft')==-1) {
+sortobj['total_sqft'] = 'A';
+sortorder.push('total_sqft');
+}
+
+				} catch (e) {
+					resultsHasDied("index.html(d): "+e.name+" -- "+e.message+(e.lineNumber?" on line number: "+e.lineNumber:"")+(e.line?" on line number: "+e.line:"")+(e.errorNum?" on line number: "+e.errorNum:""));
+				}
+			</script>
+			<span id="rightgridoptionsdiv" style="float:right;">
+			<span id="oneline_buttons" style="display: none;">
+      <a href="javascript:confirmResetColumnWidths();" title="Reset Grid Column Widths" id="resetgridcolumnwidth" style="display: none;">Reset Columns</a><a href="javascript:setOnelineMode();srchlog('set_oneline_mode','oneline');" title="Change the view to one line" id="setonelinemodelink" class=""><i class="icon-align-justify" style="font-size:14px"></i></a><a href="javascript:setNormalMode();srchlog('set_oneline_mode','normal');" title="Change the view to normal" id="setnormalmodelink" class="optionsClassSelected"><i class="icon-th-list" style="font-size:14px"></i></a>
+			</span>
+			<a href="javascript:void(0);" onclick="changeGridFont('down')" title="Decrease grid font size" id="fontsizeminus">-</a><input type="text" id="fontsizedisp" onchange="changeGridFont(this.value);" value="32"><a href="javascript:void(0);" onclick="changeGridFont('up')" title="Increase grid font size" id="fontsizeplus">+</a>
+      <a href="javascript:void(0);" id="gridsortlink" onclick="srchlog('sort button','top');showSortMenu(event,'top');addtlSortLogic();hideSortSpot();">Sort <img style="border: medium none ;" src="/images/trans1x1.gif" class="triangle_down_icon"></a>
+			<a href="javascript:editview();" id="gridviewlink" title="Edit the current view" style="display: none;">View</a><a href="javascript:firehotsheetviewchange();" id="gridviewlinkhotsheet" title="Edit the hotsheet views" style="display:none">View</a>
+			</span>
+			<img src="/images/trans1x1.gif" alt="" border="0" height="27" width="1" align="right">
+		</div>
+		
+		<div id="gridH" style="width: 565px;">
+			<table cellspacing="0" cellpadding="0" width="100%" border="0" id="thegridheadertable" style="width: 565px;">
+				<thead id="thegridheader">
+				</thead>
+  		</table>
+  	</div>
+		<div id="gridC" style="width: 565px; height: 446px;">
+			<table cellspacing="0" cellpadding="3" width="100%" height="auto" border="0" id="thegridbodytable">
+				<thead id="thegridheaderforsize">
+				</thead>
+  			<tbody id="thegridbody">
+  			</tbody>
+  		</table>
+			<table cellspacing="0" cellpadding="3" width="100%" border="0" id="thegrid_dummy" style="display:none">
+  			<tbody id="thegridbody_dummy">
+  			</tbody>
+  		</table>
+		</div>
+		<div id="morelistingstop" style="display:none;">more listings <img src="/images/srch_rs/loading.gif" border="0" align="absmiddle"></div>
+		<div id="morelistingsbot" style="display:none;">more listings <img src="/images/srch_rs/loading.gif" border="0" align="absmiddle"></div>
+		<div id="gridbottom" style="width: 565px; display: none; height: 30px;">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%" height="30" id="gridbottomtable">
+				<tbody><tr>
+				<td align="left" valign="middle">
+					<span id="orderbuttons" style="display:none"><img src="/images/trans1x1.gif" border="0" title="Move the listing to the top" align="absmiddle" class="sort_top_icon" onclick="srchlog('listing manual order','top');reorderListing('top')"><img src="/images/trans1x1.gif" border="0" title="Move the listing up" align="absmiddle" class="sort_up_icon" onclick="srchlog('listing manual order','up');reorderListing('up')"><img src="/images/trans1x1.gif" border="0" title="Move the listing down" align="absmiddle" class="sort_down_icon" onclick="srchlog('listing manual order','down');reorderListing('down')"><img src="/images/trans1x1.gif" border="0" title="Move the listing to the bottom" align="absmiddle" class="sort_bottom_icon" onclick="srchlog('listing manual order','bottom');reorderListing('bottom')"> or drag</span>
+					<span id="orderbuttons_dead" style="display:none"><img src="/images/trans1x1.gif" border="0" title="Move the listing to the top" align="absmiddle" class="sort_top_bw_icon" onclick="writeToWarningDiv('Manual sorting is only available on a set of listings less than '+sortmax,'attention',5000);"><img src="/images/trans1x1.gif" border="0" title="Move the listing up" align="absmiddle" class="sort_up_bw_icon" onclick="writeToWarningDiv('Manual sorting is only available on a set of listings less than '+sortmax,'attention',5000);"><img src="/images/trans1x1.gif" border="0" title="Move the listing down" align="absmiddle" class="sort_down_bw_icon" onclick="writeToWarningDiv('Manual sorting is only available on a set of listings less than '+sortmax,'attention',5000);"><img src="/images/trans1x1.gif" border="0" title="Move the listing to the bottom" align="absmiddle" class="sort_bottom_bw_icon" onclick="writeToWarningDiv('Manual sorting is only available on a set of listings less than '+sortmax,'attention',5000);"></span>
+					<span id="beginandendspan" style="padding-top:6px;display:none;"><span id="begindexdiv"></span>&nbsp;-&nbsp;<span id="endindexdiv"></span></span>
+				</td>
+				<td align="right" id="gridchangebuttons" style="padding-right:5px;display:none" valign="middle">
+					<span id="singlegridimage" class="icon_nonactive" title="Single Listing View"><img src="/images/trans1x1.gif" alt="Single View" border="0" align="absmiddle" class="single_view_icon" onclick="srchlog('single listing view','footer icon');switchGridView('single');"></span>
+				  <span id="gridimage" class="icon_active" title="Grid view"><img src="/images/trans1x1.gif" alt="Grid View" border="0" align="absmiddle" class="grid_view_icon" onclick="srchlog('grid view','footer icon');switchGridView('multi');"></span>
+				</td>
+				
+                               <td align="right" id="copyrighttd" style="padding-right:5px;line-height:8pt;" valign="middle"></td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+  <script>
+  try {
+  var theight = getWindowHeight();
+  var twidth = getWindowWidth();
+  if (!isNaN(parseInt(twidth)) && document.getElementById("firsttimeindiv"))
+    document.getElementById("firsttimeindiv").style.width = (twidth-20)+"px";
+  if (!isNaN(parseInt(theight)) && document.getElementById("firsttimeindiv"))
+    document.getElementById("firsttimeindiv").style.height = (theight-50-10)+"px";
+  } catch (e) {
+  	//resultsHasDied("index.html(c): "+e.name+" -- "+e.message+(e.lineNumber?" on line number: "+e.lineNumber:"")+(e.line?" on line number: "+e.line:"")+(e.errorNum?" on line number: "+e.errorNum:""));
+  }
+  </script>
+	<div id="minibar" onclick="moveGrid('mini', false, 'minibar');" style="display: none; width: 15px; height: 477px;" title="Click to expand panel"><table cellpadding="0" cellspacing="0" height="100%"><tbody><tr><td align="center"><img src="/images/trans1x1.gif" class="arrowright_icon " style="margin-left:5px"></td></tr></tbody></table></div>
+	<div id="bottomsection" class="" style="height: 488px;">
+	  <div id="fullsearchgapcover" style="display:none"></div>
+	  <div id="rightpanelfooter" style="display:none">&nbsp;</div>
+		<div id="options_detail" style="display: none; border-bottom: 1px solid rgb(207, 207, 207); width: 383px;" class="optionsClass">
+			<span id="icons_detail_left">
+				<img src="/images/trans1x1.gif" class="open_new_window_icon" onclick="srchlog('open in a new window','click');fireNewWindow();" title="Open in a new window">
+				
+			</span>
+		<span id="options_detail_right" class="right_subtabs">
+			<a href="javascript:void(0);" id="detail_reports_link" class="subTab" title="View a detailed report" onclick="srchlog('reports','detail subtab click');changeDetail();">Report</a>
+      <span id="options_detail_right_inner"></span>
+      <a href="javascript:void(0);" class="subTab" id="options_detail_more" onclick="dropdownmenu(this, event, more_detail_menu, '180px');">more <img src="/images/trans1x1.gif" class="triangle_down_icon" border="0"></a>
+    </span>
+    <img src="/images/trans1x1.gif" alt="" border="0" height="27" width="1" align="right">
+		</div>
+		<iframe id="iframe_detail" class="iframeClass" style="display: none; width: 383px; height: 470px;" src="" frameborder="0"></iframe>
+		<div id="mobile-details-wrap" style="display:none"><div id="mobile-details-content"></div></div>
+		<script type="text/javascript" charset="utf-8">
+			if(navigator.platform == 'iPad' || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+				updateMobileDetailsWidth();
+				parent.parent.window.addEventListener('orientationchange', updateMobileDetailsWidth, false);
+			}
+		</script>
+		
+		
+		<div id="options_tour" style="display: none; width: 383px;"></div>
+		<div id="mediaIsLoading" class="media_loading newmediaClass" style="display:none">
+			<svg class="loading-spinner" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#bbb"><g fill="none" fill-rule="evenodd"><g transform="translate(1 1)" stroke-width="2"><circle stroke-opacity=".5" cx="18" cy="18" r="18"></circle><path d="M36 18c0-9.94-8.06-18-18-18" transform="rotate(0)"><animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"></animateTransform></path></g></g></svg>
+		</div>
+		
+		<iframe name="iframe_tour" id="iframe_tour" style="display: none; width: 383px; height: 470px;" class="newmediaClass firstLoad" src="" data-publicnewmediaurl="https://my.flexmls.com/sarahperry1/search{public_search_params}/listings/{listingid}/media?_variant=flagship" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe>
+		
+		
+		
+		<div id="options_map" style="display: none; width: 383px;" class="optionsClass">
+			<span id="icons_map_left">
+				<img src="/images/trans1x1.gif" class="open_new_window_icon" id="map_popoff" style="float:left;" onclick="srchlog('open in a new window','map');document.getElementById('iframe_map').contentWindow.popOffMap();" title="Open in a new window">
+				
+			</span>
+			<span style="float:right">
+			<a href="javascript:void(0);" class="mapmenu" id="options_map_more" onclick="srchlog('map listing action','open menu');dropdownmenu(this, event, more_map_menu, '180px');">Map Actions <img src="/images/trans1x1.gif" class="triangle_down_icon" border="0"></a><a href="javascript:srchlog('route','menu click');fireDirections();" title="Driving Directions">Driving Directions</a>
+			</span>
+			<!--<span class="movebut" id="mapaddressbtn" onclick="toggleMapAddressSearch();" title="Add an Address to the Map">Find Address</span>-->
+			<img src="/images/trans1x1.gif" border="0" height="27" width="1" align="right">
+		</div>
+		<div id="map_addressearch" style="display:none;">
+			<div class="disclaimer">Clicking <b>Find</b> will locate an address on the map.</div>
+			<div class="buttons">
+				<button onclick="findMapAddress();"><img src="/images/trans1x1.gif" class="blue_check_icon">Find</button> <button onclick="closeMapAddressSearch();"><img src="/images/trans1x1.gif" class="cancel_icon">Cancel</button>
+			</div>
+		</div>
+		<iframe name="iframe_map" title="FlexMLS QuickSearch Map" id="iframe_map" style="display: none; width: 383px; height: 470px;" class="iframeClass" src="" frameborder="0" scrolling="no" onmouseover="if (document.getElementById('iframe_map').contentWindow &amp;&amp; document.getElementById('iframe_map').contentWindow.hoverInfo) document.getElementById('iframe_map').contentWindow.hoverInfo.enabled=true;" onmouseout="if (document.getElementById('iframe_map').contentWindow &amp;&amp; document.getElementById('iframe_map').contentWindow.hoverInfo &amp;&amp; !document.getElementById('iframe_map').contentWindow.bubbleActivated()) { document.getElementById('iframe_map').contentWindow.hoverInfo.enabled=false; document.getElementById('iframe_map').contentWindow.myHoverClear(); }"></iframe>
+		<div id="options_stats" style="display: none; width: 383px;" class="optionsClass">
+			<span id="icons_compare_left">
+			
+			</span>
+
+      <div class="compare_tab">
+        <img src="/images/trans1x1.gif" alt="" border="0" height="27" width="1" align="right"><div class="compare_link_wrap" data-context="comparison_statistics"><a href="#" title="View Comparison Statistics" class="subTab subTab_selected comparisonStatistics">Comparison Statistics</a></div><div class="compare_link_wrap" data-context="comparison_statistics"><a href="#" title="View Search Statistics" class="subTab searchStatistics">Search Statistics</a></div><div class="compare_title">Comparison Statistics</div>
+      </div>
+
+		</div>
+		<iframe id="iframe_stats" style="display: none; width: 383px; height: 470px;" class="iframeClass" src="" frameborder="0"></iframe>
+		<iframe id="iframe_search_stats" style="display:none" class="iframeClass" src="" frameborder="0"></iframe>
+		<iframe name="iframe_no_tab" id="iframe_no_tab" style="display: none; width: 383px; height: 470px;" class="iframeClass" frameborder="0" src="/client/srch_rs/nomap.html?12312012"></iframe>
+		<div id="options_no_tab" style="display: none; border-bottom: 1px solid rgb(207, 207, 207); width: 383px;" class="optionsClass">
+			<img src="/images/trans1x1.gif" alt="" border="0" height="27" width="1" align="right">
+			<span id="search_subtabs" style="display:none;" class="right_subtabs">
+				<a id="searchtab_mapsearch" class="subTab" href="javascript:void(0);" onclick="srchlog('mapsearch','edit search subtab click');changeSearchSubTab('searchtab_mapsearch');return false;" title="Edit Search in Quick Search Mode">Quick Search</a>
+                
+			</span>
+		</div>
+		<div id="stats_defn">
+		  <script>/*enables printing compare tab*/
+		   try {
+       var statsAll = new Array();
+       var statsVarListAll = new Array( 'orLstPrCt', 'orLstPrAv', 'orLstPrMd', 'orLstPrMx', 'orLstPrMn', 'lstPrCt', 'lstPrAv', 'lstPrMd', 'lstPrMx', 'lstPrMn', 'sldPrCt', 'sldPrAv', 'sldPrMd', 'sldPrMx', 'sldPrMn', 'prChCt', 'prChAv', 'prChMd', 'prChMx', 'prChMn', 'prChPctCt', 'prChPctAv', 'prChPctMd', 'prChPctMx', 'prChPctMn', 'domCt', 'domAv', 'domMd', 'domMx', 'domMn');
+       for( var i = 0; i < statsVarListAll.length; i++ ){   statsAll[ statsVarListAll[i] ] = 0;   }
+       } catch (e) {
+       	resultsHasDied("index.html(e): "+e.name+" -- "+e.message+(e.lineNumber?" on line number: "+e.lineNumber:"")+(e.line?" on line number: "+e.line:"")+(e.errorNum?" on line number: "+e.errorNum:""));
+       }
+	   </script>
+		</div>
+		<div id="options_notes" style="display: none; width: 383px;" class="optionsClass">
+		 <script>
+			var discussShowDiv = '';/**/
+		</script>
+		<span id="icons_compare_left">
+		
+		</span>
+	  <img src="/images/trans1x1.gif" alt="" border="0" height="27" width="1" align="right">
+		</div>
+		<iframe id="iframe_notes" style="display: none; width: 383px; height: 470px;" class="iframeClass" src="" frameborder="0"></iframe>
+	</div>
+<form name="add_to_cma_form" id="add_to_cma_form" action="/cgi-bin/mainmenu.cgi" method="POST">
+    <input type="hidden" name="cmd" value="url+search/reports/cma/fullcma/addcomps/addQuickSearch.html">
+    <input type="hidden" name="wherestr">
+</form>
+
+<form name="transferform" action="/cgi-bin/mainmenu.cgi" method="POST" target="overlayframe">
+<input type="hidden" name="cmd" value="url+other/transfer/step3.html">
+<input type="hidden" name="qcount" value="1">
+<input type="hidden" name="tb1" value="list">
+<input type="hidden" name="f1" value="tech_id">
+<input type="hidden" name="o1" value="in">
+<input type="hidden" name="c1" value="">
+<input type="hidden" name="tech_id_str" value="">
+
+<input type="hidden" name="agent_id" value="20160712160949869486000000">
+<input type="hidden" name="original_agent" value="20160712160949869486000000">
+<input type="hidden" name="orig_c1" value="20160712160949869486000000">
+<input type="hidden" name="transferlistings" value="">
+<input type="hidden" name="transfer_listings" value="">
+<input type="hidden" name="ma_search_list" value="x'20091028173201638455000000'">
+<input type="hidden" name="card_fmt_list" value="'--'">
+<input type="hidden" name="prop_type_list" value="">
+</form>
+<form name="cmaform" action="/cgi-bin/mainmenu.cgi" method="POST" target="overlayframe">
+<input type="hidden" name="cmd" value="url+search/reports/cma/index.html">
+<div id="cmainputcontainer"></div>
+<input type="hidden" name="ma_tech_id">
+<input type="hidden" name="ma_search_list">
+<input type="hidden" name="card_fmt_list">
+<input type="hidden" name="prop_type_list">
+<input type="hidden" name="new_sd_tech_id">
+<input type="hidden" name="e_additionalcond">
+<input type="hidden" name="e_orderby">
+<input type="hidden" name="from_search_results" value="true">
+</form>
+<form name="saveqsform" action="/cgi-bin/mainmenu.cgi" method="POST" target="">
+	<input type="hidden" name="cmd" value="srv+srch/saveQuickSearch.html">
+	<input type="hidden" name="mode" value="new">
+	<input type="hidden" name="name" value="">
+	<input type="hidden" name="repl" value="">
+	<div id="saveqsform_inputs"></div>
+</form>
+<form name="newwindowform" action="/cgi-bin/mainmenu.cgi" method="POST" target="_blank">
+	<div id="newwindowform_inputs"></div>
+</form>
+<form name="fullsearchform" action="/cgi-bin/mainmenu.cgi" method="post" target="fullsearchgridframe">
+
+
+
+
+<input type="hidden" name="fullsearchmode" value="tabbed">
+<input type="hidden" name="cmd" value="url+search/fullsearchtemplate/use/tabstart.html">
+<input type="hidden" name="fullsearch_id" value="20100208203711841233000000">
+
+<input type="hidden" name="search_results_edit" value="true">
+<input type="hidden" name="ma_search_list" value="">
+<input type="hidden" name="nosavebutton" value="true">
+<input type="hidden" name="card_fmt_list" value="">
+
+<div id="fullsearch_hidden"></div>
+</form>
+<form name="idxform" action="/cgi-bin/mainmenu.cgi" method="POST" target="overlayframe">
+	<input type="hidden" name="cmd" value="url+idx/index.html">
+	<div id="idxform_div"></div>
+</form>
+<form name="saveform" action="/cgi-bin/mainmenu.cgi" method="POST" target="overlayframe">
+<input type="hidden" name="cmd" value="srv+srch_rs/save.html">
+<input type="hidden" id="fullsearch_id" name="fullsearch_id" value="20100208203711841233000000">
+<input type="hidden" name="additionalcond" value="">
+<input type="hidden" name="contactMgmtBasedSearch" value="">
+<input type="hidden" name="fromportalsavedsearch" value="">
+<input type="hidden" name="idx_pref_based_search" value="">
+<input type="hidden" name="fromprospect" value="undefined">
+<input type="hidden" name="template_id" value="">
+<input type="hidden" id="query_id" name="query_id" value="">
+<input type="hidden" id="draft_query_id" name="draft_query_id" value="">
+<span id="saveformcontainer" style="display:none"></span>
+</form>
+<form name="returnform" action="/cgi-bin/mainmenu.cgi" method="POST">
+<span id="returnformcontainer" style="display:none"></span>
+</form>
+<form action="/flexmls-servlets/sservlet/TextExport" method="post" name="exportform" target="overlayframe">
+<input type="hidden" name="where" value="">
+<input type="hidden" name="additionalcond" value="">
+<input type="hidden" name="countall" value="">
+<input type="hidden" name="countselected" value="">
+<input type="hidden" name="showonlyselectedoption" value="">
+<input type="hidden" name="pseudo_tech_id" value="">
+<span id="exportrcontainer" style="display:none"></span>
+
+<input type="hidden" name="dbserver" value="armls">
+
+</form>
+
+<form name="taxlookupform" action="/cgi-bin/mainmenu.cgi" method="POST" target="_blank">
+<input type="hidden" name="cmd" value="url+search/reports/taxes/mls/poc/multilookup.html">
+<input type="hidden" name="c1" value="">
+<input type="hidden" name="action" value="taxes">
+<input type="hidden" name="newfullsearch" value="true">
+</form>
+
+<form name="backtoaddressform" action="/cgi-bin/mainmenu.cgi" method="POST" target="view_frame">
+<input type="hidden" name="cmd" value="url+search/address/index.html">
+<input type="hidden" name="qcount" value="1">
+
+<input type="hidden" name="tb1" value="list">
+<input type="hidden" name="f1" value="tech_id">
+<input type="hidden" name="o1" value="in">
+
+<input type="hidden" name="c1" value="x'20220314070948840414000000',x'20220402165141986811000000',x'20220303045629292939000000',x'20220331154904201212000000',x'20220402205003796621000000',x'20220402163629155936000000',x'20220314174416519828000000',x'20220228163035855129000000',x'20220402175224312114000000',x'20220315220730769048000000',x'20220314195313187057000000',x'20220228214257457198000000',x'20220331010416263722000000',x'20211215204232763320000000',x'20220401154855033818000000',x'20220330210938733239000000',x'20220330181054832312000000',x'20220110192530216938000000',x'20211102203253232029000000',x'20220309181140201923000000',x'20220101163257731623000000',x'20220331202308130315000000',x'20220223042840118093000000',x'20220327222452500064000000',x'20220317210444218710000000',x'20220201051718580391000000',x'20220302212803292201000000',x'20220113205100812540000000',x'20220329211322474060000000',x'20220330175817270907000000',x'20220322153830251695000000',x'20220316195050742403000000',x'20211216231639177502000000',x'20211231214241062588000000',x'20211111150444585313000000',x'20220322205043710786000000',x'20220328024519158701000000',x'20220129151754943066000000',x'20220128182057184799000000',x'20220328141158457676000000',x'20210927230634830173000000',x'20220327183424335671000000',x'20220307190016242483000000',x'20220326222345969801000000',x'20220325135007082420000000',x'20220326175557301303000000',x'20220322064458365219000000',x'20220316022238153755000000',x'20220317230150046124000000',x'20220325223637525859000000'">
+<input type="hidden" name="d1" value="22206798,22208385,22205625,22208335,22208352,22208338,22208350,22208110,22208340,22208095,22207127,22208282,22208240,22201867,22208192,22208167,22208144,22200785,22128289,22206140,22200031,22208100,22205294,22208039,22207598,22202834,22208030,22201140,22208041,22208040,22207487,22206763,22202920,22200397,22129319,22207388,22207770,22203569,22207402,22207802,22124916,22207753,22205952,22207731,22207566,22207719,22207512,22206772,22207006,22207662">
+<input type="hidden" name="r1" value="">
+<input type="hidden" name="g1" value="">
+
+<input type="hidden" name="ma_search_list" value="x'20091028173201638455000000'">
+<input type="hidden" name="card_fmt_list" value="'--'">
+<input type="hidden" name="prop_type_list" value="">
+</form>
+<form name="hotsheet2dform" action="/cgi-bin/mainmenu.cgi" method="POST" target="_blank">
+<input type="hidden" name="cmd" value="srv+srch_rs/printFactory.html">
+<script>
+	try {
+	for (var s=0; s<search.length; s++) {
+		document.writeln('<input type="hidden" name="tb'+(s+1)+'" value="'+search[s].tb+'" />');
+		document.writeln('<input type="hidden" name="f'+(s+1)+'" value="'+search[s].f+'" />');
+		document.writeln('<input type="hidden" name="o'+(s+1)+'" value="'+search[s].o+'" />');
+		document.writeln('<input type="hidden" name="c'+(s+1)+'" value="'+search[s].c+'" />');
+		document.writeln('<input type="hidden" name="d'+(s+1)+'" value="'+search[s].d+'" />');
+		document.writeln('<input type="hidden" name="r'+(s+1)+'" value="'+search[s].r+'" />');
+		document.writeln('<input type="hidden" name="g'+(s+1)+'" value="'+search[s].g+'" />');
+	}
+	document.writeln('<input type="hidden" name="qcount" value="'+search.length+'" />');
+	document.writeln('<input type="hidden" name="uniquet" value="'+uniquet+'" />');
+	document.writeln('<input type="hidden" name="ma_search_list" value="'+ma_search_list+'" />');
+	document.writeln('<input type="hidden" name="card_fmt_list" value="'+card_fmt_list+'" />');
+	document.writeln('<input type="hidden" name="prop_type_list" value="'+prop_type_list+'" />');
+	if (hotsheet) {
+		document.writeln('<input type="hidden" name="hotsheet" value="'+hotsheet+'"/>');
+		document.writeln('<input type="hidden" name="header" value="'+header+'"/>');
+		var tmpstr2 = "";
+		for (var o in hotsheetSqlobj) {
+			var tmo = o.replace(" ","").replace(" ","").replace(",","");
+			document.writeln('<input type="hidden" name="hotsheet_'+tmo+'" value="'+hotsheetSqlobj[o]+'"/>');
+			tmpstr2 += tmo+"|";
+		}
+		if (tmpstr2.length>0)
+			tmpstr2 = tmpstr2.substring(0,tmpstr2.length-1);
+		document.writeln('<input type="hidden" name="hotsheetparts" value="'+tmpstr2+'"/>');
+		document.writeln('<input type="hidden" name="hotsheetLabels" value="'+hotsheetLabels+'"/>');
+	}
+	if (interfaceObj.publicside) {
+		document.writeln("<input type=\"hidden\" name=\"tech_id\" value=\"x'20160712160949869486000000'\"/>");
+		document.writeln("<input type=\"hidden\" name=\"ma_tech_id\" value=\"x'20091028173201638455000000'\"/>");
+	}
+	} catch (e) {
+		resultsHasDied("index.html(f): "+e.name+" -- "+e.message+(e.lineNumber?" on line number: "+e.lineNumber:"")+(e.line?" on line number: "+e.line:"")+(e.errorNum?" on line number: "+e.errorNum:""));
+	}
+</script><input type="hidden" name="tb1" value="list">
+<input type="hidden" name="f1" value="tech_id">
+<input type="hidden" name="o1" value="in">
+<input type="hidden" name="c1" value="x'20220314070948840414000000',x'20220402165141986811000000',x'20220303045629292939000000',x'20220331154904201212000000',x'20220402205003796621000000',x'20220402163629155936000000',x'20220314174416519828000000',x'20220228163035855129000000',x'20220402175224312114000000',x'20220315220730769048000000',x'20220314195313187057000000',x'20220228214257457198000000',x'20220331010416263722000000',x'20211215204232763320000000',x'20220401154855033818000000',x'20220330210938733239000000',x'20220330181054832312000000',x'20220110192530216938000000',x'20211102203253232029000000',x'20220309181140201923000000',x'20220101163257731623000000',x'20220331202308130315000000',x'20220223042840118093000000',x'20220327222452500064000000',x'20220317210444218710000000',x'20220201051718580391000000',x'20220302212803292201000000',x'20220113205100812540000000',x'20220329211322474060000000',x'20220330175817270907000000',x'20220322153830251695000000',x'20220316195050742403000000',x'20211216231639177502000000',x'20211231214241062588000000',x'20211111150444585313000000',x'20220322205043710786000000',x'20220328024519158701000000',x'20220129151754943066000000',x'20220128182057184799000000',x'20220328141158457676000000',x'20210927230634830173000000',x'20220327183424335671000000',x'20220307190016242483000000',x'20220326222345969801000000',x'20220325135007082420000000',x'20220326175557301303000000',x'20220322064458365219000000',x'20220316022238153755000000',x'20220317230150046124000000',x'20220325223637525859000000'">
+<input type="hidden" name="d1" value="22206798,22208385,22205625,22208335,22208352,22208338,22208350,22208110,22208340,22208095,22207127,22208282,22208240,22201867,22208192,22208167,22208144,22200785,22128289,22206140,22200031,22208100,22205294,22208039,22207598,22202834,22208030,22201140,22208041,22208040,22207487,22206763,22202920,22200397,22129319,22207388,22207770,22203569,22207402,22207802,22124916,22207753,22205952,22207731,22207566,22207719,22207512,22206772,22207006,22207662">
+<input type="hidden" name="r1" value="">
+<input type="hidden" name="g1" value="">
+<input type="hidden" name="qcount" value="1">
+<input type="hidden" name="uniquet" value="1649023781807">
+<input type="hidden" name="ma_search_list" value="x'20091028173201638455000000'">
+<input type="hidden" name="card_fmt_list" value="'--'">
+<input type="hidden" name="prop_type_list" value="">
+<input type="hidden" name="tech_id" value="x'20160712160949869486000000'">
+<input type="hidden" name="ma_tech_id" value="x'20091028173201638455000000'">
+
+<input type="hidden" name="reportselection" value="s,full">
+<input type="hidden" name="printout_type" value="results">
+<input type="hidden" name="versionselection" value="private">
+<script>
+	try {
+	document.writeln("<input type='hidden' name='print_sd_tech_id' value=\"x'20160712160949968836000000'\">");
+	document.writeln("<input type='hidden' name='results_allwherestr' value=\""+results_allwherestr+"\">");
+	document.writeln("<input type='hidden' name='additionalcond' value=\""+additionalcond+"\">");
+	document.writeln("<input type='hidden' name='results_allorderby' value=\""+results_allorderby+"\">");
+	document.writeln("<input type='hidden' name='selectedlisting' value=\"\">");
+	document.writeln("<input type='hidden' name='sellistings' value=\"\">");
+	document.writeln("<input type='hidden' name='cart_allorderby' value=\""+cart_allorderby+"\">");
+	} catch (e) {
+		resultsHasDied("index.html(g): "+e.name+" -- "+e.message+(e.lineNumber?" on line number: "+e.lineNumber:"")+(e.line?" on line number: "+e.line:"")+(e.errorNum?" on line number: "+e.errorNum:""));
+	}
+</script><input type="hidden" name="print_sd_tech_id" value="x'20160712160949968836000000'">
+<input type="hidden" name="results_allwherestr" value="4C14E54F4C4F05CFE3A5D5B47DB422E125B9FECDE363FDC5F4B992D1EFAF9FBA9EA7FFDDFE30A6DB663D39935A0967AC3BAB652DDA1EC13BC4FD26379401EE5C230489FEA7294B4D96C875AFB0687151FCDAA8B42381186C344FA0C88A4ACBC90DD7A6F92BCC2907A9529ACB89F536ACA98F3F2E4B493EA70DA59603304776C95A6AF74146490CFA68C9D364B4213086866163920E817793E94864DD4B73D5E58CD88205B1256DD748FA37313EBDEFC65C8F6F9800A3FCDF54DC95969793B510938F1A90110D3B104C0B0B76FC1425047B0332C7A8C15ABCB01F380CB309F9D56DCE6CBB29B1E83662ECDEB3BCFE9B9AD5C60FE95180EA4CAF4E416ED14CE01C2895F9EBA529FD1C326ACDACE92D362ED8B68D83B618826F742BD93E63DA5B6C0DFFAD715D2D0A381AD6242A310880F026294F0F1314F4CF633443D45884A400E7FF157C3CFAD5F39EF68C088E8DB0F905676A2A0F7DCBFC1AD9632AE4B77887F4483AC8B67E2C1D2649CD26FDE1FEEC3D9E693AF736E00D7DE5A06001591339B3E3A38D874F0117A7F067CAF83334E55F48A9E3EA16900C15FF6EC5E11E16EF61789CA7203A58600B4DF92C9623ECBBF6A79756659384042FA42524A4A0EE519AD0DD84C6ED69E059D16EED57D0E63D716D19785E93EE1818C803326428979C1A8B3D478870C67D7340CEAEFAE66CBF686229415EDC3A818C544A4B7CFCBC9654BEA1DAC36F757D21486696A429B4C6D0A0145EC03699ACC05B3F8E180A0F147B182138A5F9A949FF2632D2A1859C6BAD77720101C91ECCBFC63E6BE89CEB470F8B6E5A8E75B450983816C8350E949ABC349BEA85503154387FCB67B15283AEE003964F66F6A70A6FFCF5C4B14A08CE7EED3B141810DC9E8BFFB61B3A3AD29DE0A148F3E8012F8E841FC93A7C31CB11D540B26CC153F1C90BBC41CF1DBBCDAD8E23A04BF76703FE416B8D720F0C09779BBA6308FA879E99222E88C9D9798D37F802362ACD3DC214DCCFAE4F859CFAAD11B55057583BC107063F6B96B3C90B41BC1B67E11324B11B659F43ED31338C086A81946B33EF5AB25ED09B1DCD74285A2EE4914FA19266BCB073E40B51C0AA6A5A50A613D2977D8F4706594667B150783478117FA34C3F770A8BE314A2ADD674F14319622686930FD30C7942E806921E9C6DA6336196054B31F9CA955231AE5B0602626A41A17FFD61793FA33E9DD07B20F9AF826973085AC72F317B2F8A2D6BD82ACCCAE3BA2896EBB919533AC16AEEDF399F1101F3BCFF89A20A056E4267A6C453B77D7A3DC68BF7702800156787E16E7941360F7F806FFC84088B999C2F0724634A11DFCECC2239C7E80808F19B389660CA48AAAA6ECDA5BF02554181DFDCAC94B0D7575BE447994C56DE71EEFDE8E01BFCBFFFB43278B7A4E7A3AD6F6A0CDD2DC84D1ACB8BA112BCA6F0E4154B68C34FA167602D8232EA7D903F31FF057938138A1EBF11C6FE98C87BC15517FD69E1235D0FFB3D5294BBA18D75EEA6A5CC08EA1A9943F04E0BF5BEBC8021F64BF0F45EADFF32174845315ABC849409D12D249F7E59708DD2A1F4279C9F4569BC9723DE098CA87FD1BED935546F57CFB3D527A61F1AD1D7E1B6AE4B06B5DA3548E6249897F7C6E71945E9FE97D1D3B60771FCDDB0EA2747C04F536426AE4B75EDDB728454EAABD4442B9944A84CB5606D6B77180E6FAC146BB9D9E80E3794538A5D9BDA7F37CE9DB1EB70BEC2849D5BFD35BE360452AA55F230D900DFB2BB14B50D6BA419D29561C5F536492D48FBC15EE45027205E16DC4F420AE42CD2872AEC9268FB833CE95EDEAE2F493BEA19E66337E7880C33033DF26AE0B8234CD5970234BAEE647997D28D7146B13EF573DAC92102CBF6C6A53B1943DCB876CDBFEF181D7B64E9702F3BF3E5068F5FC457CA68FC75FD827AF2A1515C99A47866381217D6EA792E0874F0D0B67C75720D37FC51E2C426DB4CB95FC699865F9C1F6905775F9E18FDE003F391655172FE965E7F397DFBE370ECF06267BFA3DE8B12304409ABB35A97E420CE561EA3A9384C5B6A774E7A7F421DB06B427E913597E5BBD3ED2552EF78BFBC171845115343A0A99947C29C6C835CEFFA7DF86E11C5B9526A19EF003758B1926B3EC1EC645073279BC65624605032A4EE54379FB1C748F40880712410F034665FE0A1F35C038FBE8E1A4CDD026C49EE45CCA7B9E965F5BC7778D8A5743E4B83A9BDA50323A46A21E3F249A8F5B7C5D39E2B0AA43CCB9390CD471A26D0945B49D8D58EF21BE1CB9BFF6E108BCBA60CB8E3F2C87DE1F6BAA027988CD86EFB5B12E7FAAAED2313788E41EA4E4749927A8A7FC87F652FA8C9724D9A209C61F5126032EBFF8849870482B3016423E5EC592F3158C193642393DB7E127ADD885FA9B7AD2AE88C2AA2BC898BE6907FC84D73F239DDB7D240F6F705D07E36C18B72A8FF62A5013EC31AD4A07644675B6B224FD4239830DCE1DCF43CEC18EC65">
+<input type="hidden" name="additionalcond" value="">
+<input type="hidden" name="results_allorderby" value="4E07DE5E5B0C0FE9AAAD9CAE67CB7AEB6BE8ABDDBE37BE94">
+<input type="hidden" name="selectedlisting" value="">
+<input type="hidden" name="sellistings" value="">
+<input type="hidden" name="cart_allorderby" value="">
+
+<input type="hidden" name="headers_check" value="on">
+<input type="hidden" name="grid_check" value="on">
+</form>
+<form name="idxlinkform" action="/cgi-bin/mainmenu.cgi" method="POST">
+	<input type="hidden" name="cmd" value="url+preferences/idx/save_link.html">
+	<div id="idx_link_params"></div>
+</form>
+<form name="portalloginform" id="portalloginform" action="/cgi-bin/mainmenu.cgi" method="POST" target="portallogonframe">
+	<input type="hidden" name="fromsearch" value="true">
+	<div id="portalloginformsearchdiv"></div>
+</form>
+<form name="overlaysubmitform" id="overlaysubmitform" action="/cgi-bin/mainmenu.cgi" target="overlayframe" method="POST"></form>
+<script type="text/javascript">
+</script>
+<script type="text/javascript" src="/client/srch_rs/autoSuggest.js?20220401095214"></script>
+
+	
+  
+
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-p15_showMoreDialog" style="display: none; z-index: 1000; outline: 0px; position: absolute;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-p15_showMoreDialog">&nbsp;</span><a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div id="p15_showMoreDialog" class="ui-dialog-content ui-widget-content"></div><div class="ui-resizable-handle ui-resizable-n"></div><div class="ui-resizable-handle ui-resizable-e"></div><div class="ui-resizable-handle ui-resizable-s"></div><div class="ui-resizable-handle ui-resizable-w"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se" style="z-index: 1001;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1002;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004;"></div></div><div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-p15_idxSearchDialog" style="display: none; z-index: 1000; outline: 0px; position: absolute;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-p15_idxSearchDialog">&nbsp;</span><a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div id="p15_idxSearchDialog" class="ui-dialog-content ui-widget-content"></div><div class="ui-resizable-handle ui-resizable-n"></div><div class="ui-resizable-handle ui-resizable-e"></div><div class="ui-resizable-handle ui-resizable-s"></div><div class="ui-resizable-handle ui-resizable-w"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se" style="z-index: 1001;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1002;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004;"></div></div></body></html>
