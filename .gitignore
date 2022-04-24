@@ -138,3 +138,5 @@ cdk.out/
 
 # Project speific files:
 config.json
+
+.lambda_dependencies

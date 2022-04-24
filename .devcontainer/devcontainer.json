@@ -31,5 +31,10 @@
 
 	
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode"
+	"remoteUser": "vscode",
+
+	"containerEnv": {
+		"CDK_DEFAULT_REGION": "us-west-2"
+
+	}
 }
