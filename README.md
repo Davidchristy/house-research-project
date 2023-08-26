@@ -20,3 +20,20 @@ If you want to mess with the code yourself you can download this and run the `cd
  * `cdk docs`        open CDK documentation
 
 Enjoy!
+
+
+# Details
+## Notes on files
+- Requirements.txt
+    - This is a list of python libraries and versions that go into both the docker container, and the lambda function dependencies layer
+    - Note: These will get broken up into two seperate files at some point, but for now it's easier to have both containers use the same libraries for testing.
+- README.md
+    - This file...
+- house-research_stack.py
+    - The file that contains the code generating the AWS [CDK stack](https://docs.aws.amazon.com/cdk/v2/guide/stacks.html). If you are interested in the "Infrastructure as Code" portion of this project, look there.
+- config.json.template
+    - This is the template file for `config.json` that holds all the values for your specific iteration of the project.
+- cdk.json
+    - Needed for cdk (cloud development kit) toolkit, gives information on what files to deploy with cdk and provides a space to send in context cdk can use when making the stack
+- app.py 
+    - this is the entry point for ckd, it doesn't do much on it's own and only provides a way of making the stack defined in `house-research_stack.py`

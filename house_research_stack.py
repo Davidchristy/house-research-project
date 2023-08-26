@@ -1,6 +1,4 @@
-from distutils.command.config import config
 from aws_cdk import (
-    # Duration,
     Duration,
     Stack,
     aws_ses_actions as ses_actions,
@@ -36,8 +34,6 @@ class HouseResearchStack(Stack):
         # Make bucket to keep local cache of house reports, used mainly for debugging
         # But might make a producer/consumer design
         self.create_full_report_cache_bucket()
-
-        self.create_house_data_table()
         
         # Create lambda function to process incoming emails
         self.create_email_scanner_lambda()
@@ -45,8 +41,11 @@ class HouseResearchStack(Stack):
         # Create ses rule
         self.create_ses_rule()
 
-    def create_house_daa_table(self):
-        self.house_data_table = dynamodb.Table(self, "house-data-table",
+
+
+    def create_house_data_table(self):
+        self.house_data_table = dynamodb.Table(self, 
+            "house-data-table",
             table_name="house-data",
             partition_key=dynamodb.Attribute(
                 name="address", 
@@ -72,10 +71,8 @@ class HouseResearchStack(Stack):
                 "s3:*",
             ],
             resources=[
-                self.email_bucket.bucket_arn,
-                f"{self.email_bucket.bucket_arn}/*",
-                self.report_cache_bucket.bucket_arn,
-                f"{self.report_cache_bucket.bucket_arn}/*"
+                f"{self.email_bucket.bucket_arn}*",
+                f"{self.report_cache_bucket.bucket_arn}*"
 
             ]
         ))
@@ -93,17 +90,17 @@ class HouseResearchStack(Stack):
 
 
         self.email_scanner_lambda = _lambda.Function(self, 'house-research-email-scanner',
-                        function_name="house-research-email-scanner", 
-                        runtime=_lambda.Runtime.PYTHON_3_8,
-                        handler='lambda_function.lambda_handler',
-                        code=_lambda.Code.from_asset('houseSearchEmailScanner'),
-                        environment={
-                            "houseDataTableArn": self.house_data_table.table_arn
-                        },
-                        layers=[self.create_dependencies_layer("house-research", "house-research-email-scanner")],
-                        role=lambda_role,
-                        timeout=Duration.seconds(30)
-                    )
+            function_name="house-research-email-scanner", 
+            runtime=_lambda.Runtime.PYTHON_3_8,
+            handler='lambda_function.lambda_handler',
+            code=_lambda.Code.from_asset('houseSearchEmailScanner'),
+            environment={
+                "houseDataTableArn": self.house_data_table.table_arn
+            },
+            layers=[self.create_dependencies_layer("house-research", "house-research-email-scanner")],
+            role=lambda_role,
+            timeout=Duration.seconds(30)
+        )
         self.email_scanner_lambda.node.default_child.override_logical_id("houseresearchemailscanner")
 
         self.email_scanner_lambda.add_event_source(
@@ -116,24 +113,24 @@ class HouseResearchStack(Stack):
 
     def create_full_report_cache_bucket(self):
         self.report_cache_bucket = s3.Bucket(self, 
-                                    "house-full-report-cache",
-                                    bucket_name="house-full-report-cache",
-                                    block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-                                    lifecycle_rules=[
-                                        s3.LifecycleRule(expiration=Duration.days(7))
-                                    ]
-                                )
+            "house-full-report-cache",
+            bucket_name="house-full-report-cache",
+            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            lifecycle_rules=[
+                s3.LifecycleRule(expiration=Duration.days(7))
+            ]
+        )
         self.report_cache_bucket.node.default_child.override_logical_id("housefullreport")
 
     def create_email_s3_bucket(self):
         self.email_bucket = s3.Bucket(self, 
-                                    "house-research-emails",
-                                    bucket_name="house-research-emails",
-                                    block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-                                    lifecycle_rules=[
-                                        s3.LifecycleRule(expiration=Duration.days(30))
-                                    ]
-                                )
+            "house-research-emails",
+            bucket_name="house-research-emails",
+            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            lifecycle_rules=[
+                s3.LifecycleRule(expiration=Duration.days(30))
+            ]
+        )
         self.email_bucket.node.default_child.override_logical_id("houseresearchemails")
 
 
