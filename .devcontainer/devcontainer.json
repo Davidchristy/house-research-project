@@ -7,6 +7,7 @@
 	"extensions": [
 		"ms-python.python",
 		"amazonwebservices.aws-toolkit-vscode",
+		"redhat.vscode-yaml"
 	],
 
 	// Set *default* container specific settings.json values on container create.
@@ -27,6 +28,8 @@
 	"mounts": [
 		// Expose local .aws profiles and credentials
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind",
+		// Expose host docker to dev container
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
 	],
 
 	

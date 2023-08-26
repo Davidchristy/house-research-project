@@ -1,9 +1,10 @@
 aws-cdk-lib==2.17.0
 constructs>=10.0.0,<11.0.0
 setuptools==56.0.0
-# aws_cdk
 awscli==1.22.82
 botocore==1.24.27
 beautifulsoup4
 requests
-boto3
+pyppeteer
+boto3==1.21.27
+aws-sam-cli==1.42.0

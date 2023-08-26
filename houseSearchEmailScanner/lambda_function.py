@@ -2,11 +2,10 @@ from ast import Str
 import json
 import boto3
 from bs4 import BeautifulSoup
-# import codecs
 import quopri
 import requests
 from urllib import parse
-
+import os
 
 def lambda_handler(event, context):
     print(event)
@@ -154,6 +153,7 @@ def parse_full_report_page(full_report_page: str):
     #     if "description" not in key:
     #         print(f"{key}:\t\t{result[key].strip()}")    
     return {k:safeCovert(v) for k, v in result.items()}
+
 
 def safeCovert(v):
     # TODO: I'll want to convert numbers and floats here, but that can come later

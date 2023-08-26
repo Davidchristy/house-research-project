@@ -9,8 +9,8 @@ from aws_cdk import (
     aws_iam as iam,
     aws_s3_notifications as s3_notify,
     aws_lambda as _lambda,
+    aws_lambda_event_sources as lambda_event_sources,
     aws_dynamodb as dynamodb,
-    aws_lambda_event_sources as lambda_event_sources
 )
 import json
 import os
@@ -27,8 +27,7 @@ class HouseResearchStack(Stack):
         with open('config.json') as json_file:
             self.config = json.load(json_file)
 
-            
-
+        self.create_house_data_table()
 
 
         # make bucket for incoming emails
@@ -46,16 +45,16 @@ class HouseResearchStack(Stack):
         # Create ses rule
         self.create_ses_rule()
 
-    def create_house_data_table(self):
-        self.house_data_table = dynamodb.Table(self, 
-                                                "house-data",
-                                                table_name="house-data",
-                                                partition_key=dynamodb.Attribute(name="address",
-                                                type=dynamodb.AttributeType.STRING)
-                                            )
+    def create_house_daa_table(self):
+        self.house_data_table = dynamodb.Table(self, "house-data-table",
+            table_name="house-data",
+            partition_key=dynamodb.Attribute(
+                name="address", 
+                type=dynamodb.AttributeType.STRING
+            ),
+            billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST
+        )
         self.house_data_table.node.default_child.override_logical_id("housedatatable")
-
-
 
 
     def create_email_scanner_lambda(self):
@@ -98,7 +97,9 @@ class HouseResearchStack(Stack):
                         runtime=_lambda.Runtime.PYTHON_3_8,
                         handler='lambda_function.lambda_handler',
                         code=_lambda.Code.from_asset('houseSearchEmailScanner'),
-                        environment={},
+                        environment={
+                            "houseDataTableArn": self.house_data_table.table_arn
+                        },
                         layers=[self.create_dependencies_layer("house-research", "house-research-email-scanner")],
                         role=lambda_role,
                         timeout=Duration.seconds(30)
