@@ -7,4 +7,5 @@ beautifulsoup4
 requests
 pyppeteer
 boto3==1.21.27
-aws-sam-cli==1.42.0
+aws-sam-cli
+typing-extensions

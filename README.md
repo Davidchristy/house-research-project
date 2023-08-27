@@ -37,3 +37,8 @@ Enjoy!
     - Needed for cdk (cloud development kit) toolkit, gives information on what files to deploy with cdk and provides a space to send in context cdk can use when making the stack
 - app.py 
     - this is the entry point for ckd, it doesn't do much on it's own and only provides a way of making the stack defined in `house-research_stack.py`
+
+##AWS Setup
+You'll need some AWS configuration in your env. If you use the docker container provided it will use your hosting systems default aws env `~/.aws/`.
+
+By default we expect a profile named `developer` whose AWS enviroment you will load the stack into. Feel free to reach 

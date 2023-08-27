@@ -1,3 +1,6 @@
+from bs4 import BeautifulSoup
+from urllib import parse
+
 def parse_full_report_page(full_report_page: str):
     result = {}
     soup:BeautifulSoup = BeautifulSoup(full_report_page, "html.parser")
@@ -72,3 +75,13 @@ def parse_full_report_page(full_report_page: str):
     result["water"] = safe_parse(lambda :tables[9].table.findAll("td")[20].table.findAll("td")[11].text, "water")
  
     return {k:safeCovert(v) for k, v in result.items()}
+
+
+def parseEmailContent(emailContent:str):
+    soup = BeautifulSoup(emailContent, 'html.parser')
+    rows = soup.find_all("tr")
+    house_ids = []
+    for row in rows:
+        id = parse.parse_qs(parse.urlparse(row.a['href']).query)['start_id'][0]
+        house_ids.append(id)
+    return house_ids

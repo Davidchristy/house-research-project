@@ -1,11 +1,9 @@
 import json
 import boto3
-from bs4 import BeautifulSoup
 import quopri
 import requests
-from urllib import parse
 
-from email_parser import parse_full_report_page
+from email_parser import parse_full_report_page, parseEmailContent
 
 def lambda_handler(event, context):
     record_s3 = event["Records"][0]["s3"]
@@ -83,14 +81,7 @@ def safeCovert(v):
         return ""
     return v.strip()
 
-def parseEmailContent(emailContent:str):
-    soup = BeautifulSoup(emailContent, 'html.parser')
-    rows = soup.find_all("tr")
-    house_ids = []
-    for row in rows:
-        id = parse.parse_qs(parse.urlparse(row.a['href']).query)['start_id'][0]
-        house_ids.append(id)
-    return house_ids
+
 
 if __name__ == '__main__':
     # with open('tests/test_email_body.html') as f:
