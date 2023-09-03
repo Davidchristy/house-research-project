@@ -2,6 +2,8 @@ import json
 import boto3
 import quopri
 import requests
+from datetime import datetime
+import pytz
 
 from email_parser import parse_full_report_page, parseEmailContent
 
@@ -45,9 +47,6 @@ def lambda_handler(event, context):
             save_house_to_table(house_result, dynamo_house_data_table)
 
             
-         
-
-
 
     return {
         'statusCode': 200,
@@ -59,27 +58,13 @@ def save_house_to_table(house_data: dict, table_name:str):
     # TODO: I'll want to check for types and assign different types, but all strings is fine now
     parameters = {}
     for key in house_data:
-        parameters[key]={"S":house_data[key]}
+        parameters[key]={"S": house_data[key]}
+    current_datetime_arizona = datetime.now().astimezone(pytz.timezone('US/Arizona'))
+    parameters["timestamp"] = {"S": str(current_datetime_arizona)}
     boto3.client('dynamodb').put_item(
         TableName=table_name,
         Item=parameters
     )
-
-def safe_parse(parse_function, parameter: str):
-    try:
-        return parse_function()
-    except Exception as e:
-        print(f"Trying to run {parameter} has failed with the following error\n{e}")
-        return None
-
-
-
-
-def safeCovert(v):
-    # TODO: I'll want to convert numbers and floats here, but that can come later
-    if not v:
-        return ""
-    return v.strip()
 
 
 

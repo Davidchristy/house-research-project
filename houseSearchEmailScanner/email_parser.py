@@ -85,3 +85,16 @@ def parseEmailContent(emailContent:str):
         id = parse.parse_qs(parse.urlparse(row.a['href']).query)['start_id'][0]
         house_ids.append(id)
     return house_ids
+
+def safe_parse(parse_function, parameter: str):
+    try:
+        return parse_function()
+    except Exception as e:
+        print(f"Trying to run {parameter} has failed with the following error\n{e}")
+        return None
+
+def safeCovert(v):
+    # TODO: I'll want to convert numbers and floats here, but that can come later
+    if not v:
+        return ""
+    return v.strip()
